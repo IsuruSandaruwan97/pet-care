@@ -11,8 +11,7 @@ import { useTiltCard } from "@/hooks/useTiltCard";
 import { classNames } from "@/utils/classNames";
 import { useState } from "react";
 
-const heroImage =
-  "https://lh3.googleusercontent.com/aida-public/AB6AXuC2A3Q86ty2x5EcGTczYeqksNc6WbFIYWZuSucE2XMYCaqtg6LetqaqNgTVaQQwNifn8VcWcQgvx7X4PpLwrWPz_J7d4buKsMAsTHVOhzKiOtlNCbFu-5vTF3Cmx5zxp1AisqJLHOmaDbPSBjbdv5lkB2N-7pZ50ql9uwQKHwZ0NESqOQO3i8zAjnwrqjYRWz779CO0WzlDp7FMhC3DlY3iE9_gpHaNOen2oed-grSqSCv_givrk11oqhyhwCSTXY0N4vmtpELLLg2X";
+const heroVideo = "/assets/videos/hero_banner_video.mp4";
 
 const aboutImage =
   "https://lh3.googleusercontent.com/aida-public/AB6AXuAfByICx8e7P0fiZEgfp31qJcVyviGCWUl_gomgSkQ_T7kqbKHljuHwcLAh64FIIyoC_M_zmQk8pwdbs5ujf-ugvUc7rDG1Vf0xiii0IHbjk8YUD_4Zt_54MG8ZxziFXHKPuo2ynjY4HU8YxUGLfMU1ReraUnRhqkBvudYP0W3wrxxinTOAYHrG4ZslX9oG1iExUZQ7YQHpWjMgKqn5LFHwtjmiWG9JgzZnXY6FLYZ8rCM9Wcgv81w9_tG44s8q-adECZW9A72zm7Gb";
@@ -240,9 +239,21 @@ function Navigation() {
 
 function Hero() {
   return (
-    <header className="relative flex h-screen items-center justify-center overflow-hidden" id="home">
+    <header
+      className="relative flex min-h-[calc(100dvh-72px)] items-center justify-center overflow-hidden md:min-h-[calc(100dvh-112px)]"
+      id="home"
+    >
       <div className="absolute inset-0 z-0">
-        <div className="h-full w-full scale-105 bg-cover bg-center" style={{ backgroundImage: `url("${heroImage}")` }} />
+        <video
+          autoPlay
+          className="h-full w-full scale-105 object-cover"
+          loop
+          muted
+          playsInline
+          preload="auto"
+        >
+          <source src={heroVideo} type="video/mp4" />
+        </video>
         <div className="absolute inset-0 bg-primary/40 backdrop-brightness-50" />
       </div>
       <div className="relative z-10 mx-auto max-w-5xl px-margin-mobile text-center">
