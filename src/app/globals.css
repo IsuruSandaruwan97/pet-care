@@ -968,17 +968,14 @@
 }
 
 .hp-testimonials {
-  display: flex;
-  gap: 22px;
-  overflow-x: auto;
+  overflow: hidden;
   padding: 10px 4px 20px;
-  scroll-behavior: smooth;
-  scroll-snap-type: x mandatory;
-  scrollbar-width: none;
 }
 
-.hp-testimonials::-webkit-scrollbar {
-  display: none;
+.hp-testimonials-track {
+  display: flex;
+  gap: 22px;
+  will-change: transform;
 }
 
 .hp-testimonial-card {
@@ -990,7 +987,6 @@
   max-width: 330px;
   min-width: 330px;
   padding: 28px;
-  scroll-snap-align: center;
   transform-style: preserve-3d;
 }
 
@@ -1042,10 +1038,6 @@
   font-weight: 600;
 }
 
-.hp-testimonials-wrap .hp-scroll-buttons {
-  pointer-events: none;
-}
-
 .hp-testimonials-wrap .hp-scroll-buttons button {
   align-items: center;
   background: #fff;
@@ -1059,7 +1051,6 @@
   height: 44px;
   justify-content: center;
   line-height: 1;
-  pointer-events: auto;
   position: absolute;
   top: 50%;
   transform: translateY(-50%);

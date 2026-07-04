@@ -402,13 +402,28 @@ function Stagger({
 function MotionCard({
   children,
   className = "",
+  onBlur,
+  onFocus,
+  onMouseEnter,
+  onMouseLeave,
+  "aria-hidden": ariaHidden,
 }: {
   children: ReactNode;
   className?: string;
+  onBlur?: () => void;
+  onFocus?: () => void;
+  onMouseEnter?: () => void;
+  onMouseLeave?: () => void;
+  "aria-hidden"?: boolean;
 }) {
   return (
     <motion.article
+      aria-hidden={ariaHidden}
       className={className}
+      onBlur={onBlur}
+      onFocus={onFocus}
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
       variants={itemVariants}
       whileHover={{ y: -6, scale: 1.015 }}
       whileTap={{ scale: 0.99 }}
@@ -848,9 +863,95 @@ function TestimonialStar() {
 }
 
 function Testimonials() {
-  const ref = useRef<HTMLDivElement>(null);
-  const scroll = (direction: number) =>
-    ref.current?.scrollBy({ left: direction * 352, behavior: "smooth" });
+  const trackRef = useRef<HTMLDivElement>(null);
+  const resumeTimeout = useRef<number | null>(null);
+  const isHoverPaused = useRef(false);
+  const isControlPaused = useRef(false);
+  const trackPosition = useRef(0);
+  const shouldReduceMotion = useReducedMotion();
+  const setTrackPosition = (position: number) => {
+    const track = trackRef.current;
+
+    if (!track) {
+      return;
+    }
+
+    const loopPoint = track.scrollWidth / 2;
+
+    if (loopPoint > 0) {
+      while (position < 0) {
+        position += loopPoint;
+      }
+
+      while (position >= loopPoint) {
+        position -= loopPoint;
+      }
+    }
+
+    trackPosition.current = position;
+    track.style.transform = `translate3d(${-position}px, 0, 0)`;
+  };
+
+  const scroll = (direction: number) => {
+    isControlPaused.current = true;
+    setTrackPosition(trackPosition.current + direction * 352);
+
+    if (resumeTimeout.current) {
+      window.clearTimeout(resumeTimeout.current);
+    }
+
+    resumeTimeout.current = window.setTimeout(() => {
+      isControlPaused.current = false;
+    }, 900);
+  };
+
+  const pauseForHover = () => {
+    isHoverPaused.current = true;
+  };
+
+  const resumeAfterHover = () => {
+    isHoverPaused.current = false;
+  };
+
+  useEffect(() => {
+    const track = trackRef.current;
+
+    if (!track || shouldReduceMotion) {
+      return;
+    }
+
+    let frame = 0;
+    let lastTime = performance.now();
+
+    const tick = (time: number) => {
+      const delta = time - lastTime;
+      lastTime = time;
+      const loopPoint = track.scrollWidth / 2;
+
+      if (
+        loopPoint > 0 &&
+        !isHoverPaused.current &&
+        !isControlPaused.current
+      ) {
+        setTrackPosition(trackPosition.current + delta * 0.035);
+      }
+
+      frame = window.requestAnimationFrame(tick);
+    };
+
+    frame = window.requestAnimationFrame(tick);
+
+    return () => window.cancelAnimationFrame(frame);
+  }, [shouldReduceMotion]);
+
+  useEffect(
+    () => () => {
+      if (resumeTimeout.current) {
+        window.clearTimeout(resumeTimeout.current);
+      }
+    },
+    [],
+  );
 
   return (
     <section className="hp-section hp-testimonials-section" id="testimonials">
@@ -862,26 +963,37 @@ function Testimonials() {
         <div className="hp-testimonials-wrap">
           <motion.div
             className="hp-testimonials"
-            ref={ref}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.14 }}
             variants={staggerVariants}
           >
-            {testimonials.map(([quote, name, initials]) => (
-              <MotionCard className="hp-testimonial-card hp-tilt-card" key={name}>
-                <div className="hp-stars">
-                  {Array.from({ length: 5 }, (_, index) => (
-                    <TestimonialStar key={index} />
-                  ))}
-                </div>
-                <p>"{quote}"</p>
-                <div>
-                  <span>{initials}</span>
-                  <strong>{name}</strong>
-                </div>
-              </MotionCard>
-            ))}
+            <div className="hp-testimonials-track" ref={trackRef}>
+              {[...testimonials, ...testimonials].map(
+                ([quote, name, initials], index) => (
+                  <MotionCard
+                    aria-hidden={index >= testimonials.length}
+                    className="hp-testimonial-card hp-tilt-card"
+                    key={`${name}-${index}`}
+                    onBlur={resumeAfterHover}
+                    onFocus={pauseForHover}
+                    onMouseEnter={pauseForHover}
+                    onMouseLeave={resumeAfterHover}
+                  >
+                    <div className="hp-stars">
+                      {Array.from({ length: 5 }, (_, index) => (
+                        <TestimonialStar key={index} />
+                      ))}
+                    </div>
+                    <p>"{quote}"</p>
+                    <div>
+                      <span>{initials}</span>
+                      <strong>{name}</strong>
+                    </div>
+                  </MotionCard>
+                ),
+              )}
+            </div>
           </motion.div>
           <div className="hp-scroll-buttons">
             <button
