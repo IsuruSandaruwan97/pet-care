@@ -15,6 +15,7 @@ import {
   type CSSProperties,
   type ReactNode,
 } from "react";
+import RightClickGuard from "./components/RightClickGuard";
 
 const heroVideo = "/assets/videos/hero_banner_video.mp4";
 
@@ -928,11 +929,7 @@ function Testimonials() {
       lastTime = time;
       const loopPoint = track.scrollWidth / 2;
 
-      if (
-        loopPoint > 0 &&
-        !isHoverPaused.current &&
-        !isControlPaused.current
-      ) {
+      if (loopPoint > 0 && !isHoverPaused.current && !isControlPaused.current) {
         setTrackPosition(trackPosition.current + delta * 0.035);
       }
 
@@ -1233,6 +1230,7 @@ function FooterLinks({ title, links }: { title: string; links: string[] }) {
 export default function App() {
   return (
     <div className="hp-page">
+      <RightClickGuard enabled={true} />
       <Header />
       <Hero />
       <About />
