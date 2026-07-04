@@ -837,19 +837,52 @@ function Pricing() {
   );
 }
 
+function TestimonialStar() {
+  return (
+    <span className="hp-star-icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="currentColor" width="100%" height="100%">
+        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26" />
+      </svg>
+    </span>
+  );
+}
+
 function Testimonials() {
   const ref = useRef<HTMLDivElement>(null);
   const scroll = (direction: number) =>
     ref.current?.scrollBy({ left: direction * 352, behavior: "smooth" });
 
   return (
-    <section className="hp-section" id="testimonials">
+    <section className="hp-section hp-testimonials-section" id="testimonials">
       <div className="hp-container">
-        <div className="hp-title-row">
-          <SectionTitle
-            eyebrow="Testimonials"
-            title="Stories from Happy Pet Parents"
-          />
+        <SectionTitle
+          eyebrow="Testimonials"
+          title="Stories from Happy Pet Parents"
+        />
+        <div className="hp-testimonials-wrap">
+          <motion.div
+            className="hp-testimonials"
+            ref={ref}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.14 }}
+            variants={staggerVariants}
+          >
+            {testimonials.map(([quote, name, initials]) => (
+              <MotionCard className="hp-testimonial-card hp-tilt-card" key={name}>
+                <div className="hp-stars">
+                  {Array.from({ length: 5 }, (_, index) => (
+                    <TestimonialStar key={index} />
+                  ))}
+                </div>
+                <p>"{quote}"</p>
+                <div>
+                  <span>{initials}</span>
+                  <strong>{name}</strong>
+                </div>
+              </MotionCard>
+            ))}
+          </motion.div>
           <div className="hp-scroll-buttons">
             <button
               onClick={() => scroll(-1)}
@@ -867,29 +900,6 @@ function Testimonials() {
             </button>
           </div>
         </div>
-        <motion.div
-          className="hp-testimonials"
-          ref={ref}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.14 }}
-          variants={staggerVariants}
-        >
-          {testimonials.map(([quote, name, initials]) => (
-            <MotionCard className="hp-testimonial-card" key={name}>
-              <div className="hp-stars">
-                {Array.from({ length: 5 }, (_, index) => (
-                  <Icon name="star" key={index} />
-                ))}
-              </div>
-              <p>"{quote}"</p>
-              <div>
-                <span>{initials}</span>
-                <strong>{name}</strong>
-              </div>
-            </MotionCard>
-          ))}
-        </motion.div>
       </div>
     </section>
   );
