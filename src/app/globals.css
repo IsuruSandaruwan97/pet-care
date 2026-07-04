@@ -1,4 +1,4 @@
-@tailwind base;
+﻿@tailwind base;
 @tailwind components;
 @tailwind utilities;
 
@@ -122,6 +122,17 @@
   gap: 26px;
   justify-content: center;
   padding: 7px 16px;
+}
+
+.hp-topbar span,
+.hp-topbar strong {
+  align-items: center;
+  display: inline-flex;
+  gap: 6px;
+}
+
+.hp-topbar .material-symbols-outlined {
+  font-size: 16px;
 }
 
 .hp-topbar span:nth-child(2) {
@@ -612,7 +623,6 @@
 
 .hp-tilt-card:hover {
   box-shadow: 0 22px 46px rgba(27, 67, 50, 0.16);
-  transform: translateY(-5px);
 }
 
 .hp-icon-badge {
@@ -699,7 +709,7 @@
 }
 
 .hp-team {
-  background: var(--hp-green);
+  background: var(--hp-cream);
   position: relative;
 }
 
@@ -787,22 +797,41 @@
   text-decoration: none;
 }
 
+.hp-pricing-section {
+  background: var(--hp-green);
+}
+
+.hp-pricing-section .hp-section-title {
+  margin-bottom: 52px;
+}
+
+.hp-pricing-section .hp-section-title h2 {
+  color: #fff;
+}
+
 .hp-pricing-grid {
   align-items: stretch;
+  gap: 22px;
   grid-template-columns: repeat(4, 1fr);
+  margin-top: 48px;
 }
 
 .hp-price-card {
+  background: #fff;
+  border: 1px solid var(--hp-border);
+  border-radius: 18px;
+  box-shadow: 0 8px 24px rgba(27, 67, 50, 0.1);
   display: flex;
   flex-direction: column;
   min-height: 420px;
+  padding: 28px 24px;
   position: relative;
 }
 
 .hp-price-popular {
   border: 2px solid var(--hp-amber);
   box-shadow: 0 18px 40px rgba(242, 166, 90, 0.22);
-  transform: translateY(-12px);
+  margin-top: -12px;
 }
 
 .hp-popular {
@@ -810,59 +839,88 @@
   border-radius: 999px;
   color: #fff;
   font-size: 11px;
-  font-weight: 800;
-  padding: 6px 12px;
+  font-weight: 700;
+  left: 50%;
+  letter-spacing: 0.5px;
+  padding: 5px 14px;
   position: absolute;
-  right: 22px;
-  text-transform: uppercase;
+  text-transform: none;
   top: -13px;
+  transform: translateX(-50%);
+  white-space: nowrap;
 }
 
-.hp-price-emoji {
+.hp-price-icon {
   font-size: 30px;
+  line-height: 1;
   margin-bottom: 10px;
 }
 
-.hp-price {
+.hp-price-card h3 {
   color: var(--hp-green);
-  font-size: 38px;
-  font-weight: 800;
-  margin: 12px 0 18px;
+  font-family: "Fraunces", serif;
+  font-size: 19px;
+  font-weight: 600;
+  margin: 10px 0 0;
+}
+
+.hp-price {
+  align-items: baseline;
+  color: var(--hp-green);
+  display: flex;
+  gap: 3px;
+  margin-top: 8px;
+}
+
+.hp-price {
+  font-family: "Fraunces", serif;
+  font-size: 32px;
+  font-weight: 600;
 }
 
 .hp-price span {
-  color: var(--hp-muted);
+  color: rgba(26, 26, 26, 0.5);
   font-size: 14px;
-  font-weight: 500;
-  margin-left: 4px;
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+}
+
+.hp-price-divider {
+  background: var(--hp-mist);
+  height: 1px;
+  margin: 18px 0;
 }
 
 .hp-price-card ul {
-  color: var(--hp-muted);
   flex: 1;
-  font-size: 14px;
-  line-height: 1.6;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
   list-style: none;
-  margin: 0 0 24px;
+  margin: 0 0 22px;
   padding: 0;
 }
 
 .hp-price-card li {
-  margin-bottom: 10px;
-  padding-left: 20px;
-  position: relative;
+  color: rgba(26, 26, 26, 0.72);
+  display: flex;
+  font-size: 13px;
+  gap: 8px;
+  line-height: 1.5;
+  padding-left: 0;
 }
 
 .hp-price-card li::before {
-  color: var(--hp-amber);
-  content: "✓";
+  color: #2d6a4f;
+  content: "\2713";
   font-weight: 800;
-  left: 0;
-  position: absolute;
 }
 
 .hp-price-card a {
   background: var(--hp-green);
+  margin-top: auto;
+  text-align: center;
+  padding: 11px;
   width: 100%;
 }
 
@@ -870,6 +928,12 @@
   background: var(--hp-amber);
 }
 
+.hp-pricing-note {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 14px;
+  margin-top: 32px;
+  text-align: center;
+}
 .hp-title-row {
   align-items: flex-end;
   display: flex;
@@ -926,9 +990,14 @@
 }
 
 .hp-stars {
+  display: flex;
+  gap: 2px;
   color: var(--hp-amber);
-  letter-spacing: 2px;
   margin-bottom: 18px;
+}
+
+.hp-stars .material-symbols-outlined {
+  font-size: 20px;
 }
 
 .hp-testimonial-card p {
@@ -1020,14 +1089,8 @@
   line-height: 1;
 }
 
-.hp-faq-item > div {
-  max-height: 0;
+.hp-faq-panel {
   overflow: hidden;
-  transition: max-height 0.35s ease;
-}
-
-.hp-faq-item > div.hp-faq-open {
-  max-height: 180px;
 }
 
 .hp-faq-item p {
@@ -1305,3 +1368,4 @@
     transform: none;
   }
 }
+

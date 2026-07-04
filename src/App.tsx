@@ -1,8 +1,20 @@
-"use client";
+﻿"use client";
 
 import { Icon } from "@/components/Icon";
 import { classNames } from "@/utils/classNames";
-import { useEffect, useRef, useState, type CSSProperties } from "react";
+import {
+  AnimatePresence,
+  motion,
+  useReducedMotion,
+  type Variants,
+} from "motion/react";
+import {
+  useEffect,
+  useRef,
+  useState,
+  type CSSProperties,
+  type ReactNode,
+} from "react";
 
 const heroVideo = "/assets/videos/hero_banner_video.mp4";
 
@@ -36,27 +48,111 @@ const stats = [
 ];
 
 const whyCards = [
-  ["stethoscope", "Experienced, Caring Vets", "Every member of our team is licensed, certified, and genuinely loves animals."],
-  ["biotech", "Modern Equipment", "On-site diagnostics mean faster answers and faster treatment."],
-  ["favorite", "Fear-Free Approach", "We use gentle handling techniques to keep visits low-stress for nervous pets."],
-  ["receipt_long", "Transparent Pricing", "No hidden fees. You'll always know the cost before we proceed."],
-  ["schedule", "24/7 Emergency Access", "Because emergencies don't wait for business hours."],
-  ["assignment", "Personalized Care Plans", "No cookie-cutter treatment. Every pet gets a plan built around their needs."],
+  [
+    "stethoscope",
+    "Experienced, Caring Vets",
+    "Every member of our team is licensed, certified, and genuinely loves animals.",
+  ],
+  [
+    "biotech",
+    "Modern Equipment",
+    "On-site diagnostics mean faster answers and faster treatment.",
+  ],
+  [
+    "favorite",
+    "Fear-Free Approach",
+    "We use gentle handling techniques to keep visits low-stress for nervous pets.",
+  ],
+  [
+    "receipt_long",
+    "Transparent Pricing",
+    "No hidden fees. You'll always know the cost before we proceed.",
+  ],
+  [
+    "schedule",
+    "24/7 Emergency Access",
+    "Because emergencies don't wait for business hours.",
+  ],
+  [
+    "assignment",
+    "Personalized Care Plans",
+    "No cookie-cutter treatment. Every pet gets a plan built around their needs.",
+  ],
 ];
 
 const services = [
-  ["verified_user", "Wellness & Preventive Care", "Annual checkups, vaccinations, parasite prevention, and early-detection screenings to keep small problems from becoming big ones.", false],
-  ["vaccines", "Vaccinations", "Core and lifestyle vaccines for puppies, kittens, and adult pets, tailored to age, breed, and lifestyle.", false],
-  ["sentiment_satisfied", "Dental Care", "Professional cleanings, dental X-rays, and extractions to keep teeth and gums healthy.", false],
-  ["content_cut", "Surgery", "From spay/neuter to soft-tissue surgeries, performed with modern equipment and full anesthetic monitoring.", true],
-  ["emergency_home", "Emergency & Urgent Care", "Same-day appointments and a 24-hour emergency line for accidents or sudden illness.", true],
-  ["science", "Diagnostics & Lab Services", "On-site bloodwork, X-rays, ultrasound, and lab testing for fast, accurate diagnoses.", false],
-  ["pets", "Senior Pet Care", "Specialized wellness plans for aging cats and dogs, including arthritis management and organ health monitoring.", false],
-  ["auto_awesome", "Grooming", "Baths, haircuts, nail trims, and ear cleaning to keep your pet looking and feeling their best.", false],
-  ["home", "Boarding & Daycare", "Safe, supervised overnight boarding and daytime play while you're away or at work.", false],
-  ["nutrition", "Nutrition Counseling", "Personalized diet plans for weight management, allergies, and breed-specific nutritional needs.", false],
-  ["qr_code_scanner", "Microchipping", "Quick, painless microchipping so your pet can always find their way home.", false],
-  ["videocam", "In-Home & Telehealth Visits", "Virtual consultations and at-home visits for pets who do better outside a clinic setting.", false],
+  [
+    "verified_user",
+    "Wellness & Preventive Care",
+    "Annual checkups, vaccinations, parasite prevention, and early-detection screenings to keep small problems from becoming big ones.",
+    false,
+  ],
+  [
+    "vaccines",
+    "Vaccinations",
+    "Core and lifestyle vaccines for puppies, kittens, and adult pets, tailored to age, breed, and lifestyle.",
+    false,
+  ],
+  [
+    "sentiment_satisfied",
+    "Dental Care",
+    "Professional cleanings, dental X-rays, and extractions to keep teeth and gums healthy.",
+    false,
+  ],
+  [
+    "content_cut",
+    "Surgery",
+    "From spay/neuter to soft-tissue surgeries, performed with modern equipment and full anesthetic monitoring.",
+    true,
+  ],
+  [
+    "emergency_home",
+    "Emergency & Urgent Care",
+    "Same-day appointments and a 24-hour emergency line for accidents or sudden illness.",
+    true,
+  ],
+  [
+    "science",
+    "Diagnostics & Lab Services",
+    "On-site bloodwork, X-rays, ultrasound, and lab testing for fast, accurate diagnoses.",
+    false,
+  ],
+  [
+    "orthopedics",
+    "Senior Pet Care",
+    "Specialized wellness plans for aging cats and dogs, including arthritis management and organ health monitoring.",
+    false,
+  ],
+  [
+    "auto_awesome",
+    "Grooming",
+    "Baths, haircuts, nail trims, and ear cleaning to keep your pet looking and feeling their best.",
+    false,
+  ],
+  [
+    "home",
+    "Boarding & Daycare",
+    "Safe, supervised overnight boarding and daytime play while you're away or at work.",
+    false,
+  ],
+  [
+    "nutrition",
+    "Nutrition Counseling",
+    "Personalized diet plans for weight management, allergies, and breed-specific nutritional needs.",
+    false,
+  ],
+  [
+    "qr_code_scanner",
+    "Microchipping",
+    "Quick, painless microchipping so your pet can always find their way home.",
+    false,
+  ],
+  [
+    "videocam",
+    "In-Home & Telehealth Visits",
+    "Virtual consultations and at-home visits for pets who do better outside a clinic setting.",
+    false,
+  ],
 ] as const;
 
 const facilities = [
@@ -78,24 +174,110 @@ const facilities = [
 ];
 
 const team = [
-  ["Dr. Sarah Mitchell, DVM", "Lead Veterinarian · 15 yrs", "Specializing in internal medicine and senior pet wellness, Dr. Mitchell has a soft spot for grumpy old cats and the families who love them.", "TEAM HEADSHOT - Dr. Mitchell", "https://lh3.googleusercontent.com/aida-public/AB6AXuDIGJRcfSy0vpsMmHarG4TcFAy783nsmtvOsM3sU48IpBBJtTetIfh9XLWXOoox7LT193_ppDUk89_GEUic0-a1cEiaNOQPERTZVy6tCGFKeq-P8odww9U85Em0H18j-rT38Hm2ECncK1c3qAJmZKNQSptiD73SvOL2u6kDxnaH3uBivlSnpIeuCzRtFXJsBijquVa_QT-SHZd8ikMmZhOXcTgL5DpkKpyXe4AmRxlPYCjfjQV8CJynjC7Ftpil4LG4Xm9VOC8bEIES"],
-  ["Dr. James Okafor, DVM", "Surgical Specialist · 10 yrs", "Dr. Okafor leads our surgical team, with a particular focus on orthopedic and soft-tissue procedures for dogs of all sizes.", "TEAM HEADSHOT - Dr. Okafor", "https://lh3.googleusercontent.com/aida-public/AB6AXuB4Bjz90oWgfmYOry5M-jfDf-R5z8YCdkmNw45LozmTqP8Q_5NxtRDvkrvbS5J1U86px3fHhjXRQhMCb1vJnNxJPQtj07so1liW-m2-hdlCWXrsHZBoAID-sRXeO0IOE6uy6EmAeYI38LExEV4zMJdgh41hbmVOo5f1UmgiLmSI3_aNzTZfZxSifDZYH-CdAwnN6209m9KfSnC_t725-LLeeoHWZkTXc1g_p0tZCoVypg8LwspF_eH2AJaeMDaOu-Dv2lEwCHqnIvaK"],
-  ["Dr. Priya Nair, DVM", "Feline & Exotic Care · 8 yrs", "A self-described cat whisperer, Dr. Nair has built her career around fear-free handling techniques for anxious feline patients.", "TEAM HEADSHOT - Dr. Nair", "https://lh3.googleusercontent.com/aida-public/AB6AXuAzRHD-rOZYWkagNsKvDkZDU1XNKZZ-x3Rh4ELT1o2kgA6NGPCFdwcPbGANii9QnDVBXe7Z-LKTO9FER6smRTErCMCeXRW3ItVtG4j6xguzTZ86c-G1Agz7JKtiXBFda95nvQdzae4tQOhTfiHb4THzhBamj9DnLML5yo9vY2h47d-bOgBZZVNbLp2pK4SxQ1Y7AHAzh5OCxUj9f3TrfjaCahYpfkjzIoLZQxZS43poAICqqiPWlVsNfQB62DktLI3RBIC8DRbLTveo"],
-  ["Dr. Michael Chen, DVM", "Emergency & Critical Care · 12 yrs", "Dr. Chen heads our emergency department, bringing calm, decisive care to high-stress situations.", "TEAM HEADSHOT - Dr. Chen", "https://lh3.googleusercontent.com/aida-public/AB6AXuBkO3mS6_QnCeAgbF5Jcgp6Ee_e-I8ivFFWczy-Y39kLGUwYu1_6rSdHuY94LH6VIy9q4TguHNmnpgt0O5c_riGYUrqSVuZbfL2vIsTKd3nyrNRCRY8a2MBkDQ7wUJLvG7jg6g7HYXxwtj-uZeGEJJTIyASnjpqZSq1YClGIoQCq4CsGgZRmkfipOpxN2LrIwRu_jUlILv6I3BrEh3iWEss2APjHBKfS9q2VSHuzOv2Z3hPxVrROivcUTDX-CcZ4gvTelazuk9Evz4G"],
+  [
+    "Dr. Sarah Mitchell, DVM",
+    "Lead Veterinarian - 15 yrs",
+    "Specializing in internal medicine and senior pet wellness, Dr. Mitchell has a soft spot for grumpy old cats and the families who love them.",
+    "TEAM HEADSHOT - Dr. Mitchell",
+    "https://lh3.googleusercontent.com/aida-public/AB6AXuDIGJRcfSy0vpsMmHarG4TcFAy783nsmtvOsM3sU48IpBBJtTetIfh9XLWXOoox7LT193_ppDUk89_GEUic0-a1cEiaNOQPERTZVy6tCGFKeq-P8odww9U85Em0H18j-rT38Hm2ECncK1c3qAJmZKNQSptiD73SvOL2u6kDxnaH3uBivlSnpIeuCzRtFXJsBijquVa_QT-SHZd8ikMmZhOXcTgL5DpkKpyXe4AmRxlPYCjfjQV8CJynjC7Ftpil4LG4Xm9VOC8bEIES",
+  ],
+  [
+    "Dr. James Okafor, DVM",
+    "Surgical Specialist - 10 yrs",
+    "Dr. Okafor leads our surgical team, with a particular focus on orthopedic and soft-tissue procedures for dogs of all sizes.",
+    "TEAM HEADSHOT - Dr. Okafor",
+    "https://lh3.googleusercontent.com/aida-public/AB6AXuB4Bjz90oWgfmYOry5M-jfDf-R5z8YCdkmNw45LozmTqP8Q_5NxtRDvkrvbS5J1U86px3fHhjXRQhMCb1vJnNxJPQtj07so1liW-m2-hdlCWXrsHZBoAID-sRXeO0IOE6uy6EmAeYI38LExEV4zMJdgh41hbmVOo5f1UmgiLmSI3_aNzTZfZxSifDZYH-CdAwnN6209m9KfSnC_t725-LLeeoHWZkTXc1g_p0tZCoVypg8LwspF_eH2AJaeMDaOu-Dv2lEwCHqnIvaK",
+  ],
+  [
+    "Dr. Priya Nair, DVM",
+    "Feline & Exotic Care - 8 yrs",
+    "A self-described cat whisperer, Dr. Nair has built her career around fear-free handling techniques for anxious feline patients.",
+    "TEAM HEADSHOT - Dr. Nair",
+    "https://lh3.googleusercontent.com/aida-public/AB6AXuAzRHD-rOZYWkagNsKvDkZDU1XNKZZ-x3Rh4ELT1o2kgA6NGPCFdwcPbGANii9QnDVBXe7Z-LKTO9FER6smRTErCMCeXRW3ItVtG4j6xguzTZ86c-G1Agz7JKtiXBFda95nvQdzae4tQOhTfiHb4THzhBamj9DnLML5yo9vY2h47d-bOgBZZVNbLp2pK4SxQ1Y7AHAzh5OCxUj9f3TrfjaCahYpfkjzIoLZQxZS43poAICqqiPWlVsNfQB62DktLI3RBIC8DRbLTveo",
+  ],
+  [
+    "Dr. Michael Chen, DVM",
+    "Emergency & Critical Care - 12 yrs",
+    "Dr. Chen heads our emergency department, bringing calm, decisive care to high-stress situations.",
+    "TEAM HEADSHOT - Dr. Chen",
+    "https://lh3.googleusercontent.com/aida-public/AB6AXuBkO3mS6_QnCeAgbF5Jcgp6Ee_e-I8ivFFWczy-Y39kLGUwYu1_6rSdHuY94LH6VIy9q4TguHNmnpgt0O5c_riGYUrqSVuZbfL2vIsTKd3nyrNRCRY8a2MBkDQ7wUJLvG7jg6g7HYXxwtj-uZeGEJJTIyASnjpqZSq1YClGIoQCq4CsGgZRmkfipOpxN2LrIwRu_jUlILv6I3BrEh3iWEss2APjHBKfS9q2VSHuzOv2Z3hPxVrROivcUTDX-CcZ4gvTelazuk9Evz4G",
+  ],
 ];
 
 const pricing = [
-  ["🐶", "Puppy & Kitten Starter", "$129", "", ["Initial health exam", "First round of core vaccinations", "Deworming treatment", "Microchipping", "Nutrition & care consultation"], false],
-  ["🐾", "Annual Wellness", "$189", "/year", ["Annual physical exam", "Core vaccinations", "Parasite prevention screening", "Bloodwork panel", "Dental check"], true],
-  ["🦴", "Senior Pet Care", "$229", "/year", ["Comprehensive senior wellness exam", "Bloodwork & organ function panel", "Joint & mobility assessment", "Dental evaluation", "Personalized nutrition plan"], false],
-  ["🚨", "Emergency Visit", "$95", "start", ["Final cost depends on diagnostics and treatment required."], false],
+  [
+    "\u{1F436}",
+    "Puppy & Kitten Starter",
+    "$129",
+    "",
+    [
+      "Initial health exam",
+      "First round of core vaccinations",
+      "Deworming treatment",
+      "Microchipping",
+      "Nutrition & care consultation",
+    ],
+    false,
+  ],
+  [
+    "\u{1F43E}",
+    "Annual Wellness",
+    "$189",
+    "/year",
+    [
+      "Annual physical exam",
+      "Core vaccinations",
+      "Parasite prevention screening",
+      "Bloodwork panel",
+      "Dental check",
+    ],
+    true,
+  ],
+  [
+    "\u{1F9B4}",
+    "Senior Pet Care",
+    "$229",
+    "/year",
+    [
+      "Comprehensive senior wellness exam",
+      "Bloodwork & organ function panel",
+      "Joint & mobility assessment",
+      "Dental evaluation",
+      "Personalized nutrition plan",
+    ],
+    false,
+  ],
+  [
+    "\u{1F6A8}",
+    "Emergency Visit",
+    "$95",
+    "start",
+    ["Final cost depends on diagnostics and treatment required."],
+    false,
+  ],
 ] as const;
 
 const testimonials = [
-  ["They treated my 14-year-old lab like she was their own. I've never felt so confident in a vet's hands.", "Amanda R.", "AR"],
-  ["Our cat hates vet visits, but the team here somehow made it stress-free for both of us.", "David L.", "DL"],
-  ["Fast, honest, and affordable. They explained every option before we made a decision.", "Priyanka S.", "PS"],
-  ["We had a middle-of-the-night emergency and they picked up immediately. Forever grateful.", "Marcus T.", "MT"],
+  [
+    "They treated my 14-year-old lab like she was their own. I've never felt so confident in a vet's hands.",
+    "Amanda R.",
+    "AR",
+  ],
+  [
+    "Our cat hates vet visits, but the team here somehow made it stress-free for both of us.",
+    "David L.",
+    "DL",
+  ],
+  [
+    "Fast, honest, and affordable. They explained every option before we made a decision.",
+    "Priyanka S.",
+    "PS",
+  ],
+  [
+    "We had a middle-of-the-night emergency and they picked up immediately. Forever grateful.",
+    "Marcus T.",
+    "MT",
+  ],
 ];
 
 const tips = [
@@ -108,11 +290,26 @@ const tips = [
 ];
 
 const faqs = [
-  ["Do I need an appointment, or can I walk in?", "We recommend booking ahead to minimize wait times, but we accept urgent walk-ins whenever possible."],
-  ["Do you treat emergencies after hours?", "Yes, our 24/7 emergency line connects you directly with on-call veterinary staff."],
-  ["What payment methods do you accept?", "We accept all major credit cards, debit, and offer flexible payment plans for larger treatments."],
-  ["Do you treat pets other than cats and dogs?", "Our primary focus is cats and dogs, though we can advise on referrals for exotic pet care."],
-  ["How do I get my pet's medical records?", "Simply call or email our front desk, and we'll send records to you or a new provider directly."],
+  [
+    "Do I need an appointment, or can I walk in?",
+    "We recommend booking ahead to minimize wait times, but we accept urgent walk-ins whenever possible.",
+  ],
+  [
+    "Do you treat emergencies after hours?",
+    "Yes, our 24/7 emergency line connects you directly with on-call veterinary staff.",
+  ],
+  [
+    "What payment methods do you accept?",
+    "We accept all major credit cards, debit, and offer flexible payment plans for larger treatments.",
+  ],
+  [
+    "Do you treat pets other than cats and dogs?",
+    "Our primary focus is cats and dogs, though we can advise on referrals for exotic pet care.",
+  ],
+  [
+    "How do I get my pet's medical records?",
+    "Simply call or email our front desk, and we'll send records to you or a new provider directly.",
+  ],
 ];
 
 function useScrolled(threshold = 40) {
@@ -128,9 +325,114 @@ function useScrolled(threshold = 40) {
   return scrolled;
 }
 
-function PawMark({ className = "", style }: { className?: string; style?: CSSProperties }) {
+const revealTransition = { duration: 0.7, ease: [0.16, 1, 0.3, 1] } as const;
+
+const staggerVariants: Variants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.08,
+      delayChildren: 0.05,
+    },
+  },
+};
+
+const itemVariants: Variants = {
+  hidden: { opacity: 0, y: 24, filter: "blur(6px)" },
+  visible: {
+    opacity: 1,
+    y: 0,
+    filter: "blur(0px)",
+    transition: revealTransition,
+  },
+};
+
+function Reveal({
+  children,
+  className = "",
+}: {
+  children: ReactNode;
+  className?: string;
+}) {
+  const shouldReduceMotion = useReducedMotion();
+
+  if (shouldReduceMotion) {
+    return <div className={className}>{children}</div>;
+  }
+
   return (
-    <svg className={className} style={style} viewBox="0 0 100 100" aria-hidden="true">
+    <motion.div
+      className={className}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.18 }}
+      variants={itemVariants}
+    >
+      {children}
+    </motion.div>
+  );
+}
+
+function Stagger({
+  children,
+  className = "",
+}: {
+  children: ReactNode;
+  className?: string;
+}) {
+  const shouldReduceMotion = useReducedMotion();
+
+  if (shouldReduceMotion) {
+    return <div className={className}>{children}</div>;
+  }
+
+  return (
+    <motion.div
+      className={className}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.14 }}
+      variants={staggerVariants}
+    >
+      {children}
+    </motion.div>
+  );
+}
+
+function MotionCard({
+  children,
+  className = "",
+}: {
+  children: ReactNode;
+  className?: string;
+}) {
+  return (
+    <motion.article
+      className={className}
+      variants={itemVariants}
+      whileHover={{ y: -6, scale: 1.015 }}
+      whileTap={{ scale: 0.99 }}
+      transition={{ type: "spring", stiffness: 280, damping: 24 }}
+    >
+      {children}
+    </motion.article>
+  );
+}
+
+function PawMark({
+  className = "",
+  style,
+}: {
+  className?: string;
+  style?: CSSProperties;
+}) {
+  return (
+    <svg
+      className={className}
+      style={style}
+      viewBox="0 0 100 100"
+      aria-hidden="true"
+    >
       <ellipse cx="50" cy="64" rx="26" ry="22" fill="currentColor" />
       <circle cx="24" cy="38" r="11" fill="currentColor" />
       <circle cx="42" cy="22" r="11" fill="currentColor" />
@@ -147,9 +449,15 @@ function Header() {
   return (
     <header className="hp-header">
       <div className="hp-topbar">
-        <span>📞 (555) 123-4567</span>
-        <span>🕐 Mon-Sat: 8 AM-7 PM</span>
-        <strong>🚨 24/7 Emergency Line</strong>
+        <span>
+          <Icon name="call" /> (555) 123-4567
+        </span>
+        <span>
+          <Icon name="schedule" /> Mon-Sat: 8 AM-7 PM
+        </span>
+        <strong>
+          <Icon name="emergency_home" /> 24/7 Emergency Line
+        </strong>
       </div>
       <nav className={classNames("hp-nav", scrolled && "hp-nav-scrolled")}>
         <a className="hp-brand" href="#home" onClick={() => setOpen(false)}>
@@ -158,28 +466,59 @@ function Header() {
         </a>
         <div className="hp-navlinks">
           {navLinks.map(([label, href]) => (
-            <a href={href} key={label}>{label}</a>
+            <a href={href} key={label}>
+              {label}
+            </a>
           ))}
         </div>
-        <a className="hp-cta hp-nav-cta" href="#contact">Book an Appointment</a>
-        <button className="hp-burger" type="button" aria-label="Menu" onClick={() => setOpen(true)}>
+        <a className="hp-cta hp-nav-cta" href="#contact">
+          Book an Appointment
+        </a>
+        <button
+          className="hp-burger"
+          type="button"
+          aria-label="Menu"
+          onClick={() => setOpen(true)}
+        >
           <span />
           <span />
           <span />
         </button>
       </nav>
-      {open ? (
-        <div className="hp-mobile">
-          <div className="hp-mobile-head">
-            <span>Happy Paws</span>
-            <button type="button" onClick={() => setOpen(false)} aria-label="Close menu">×</button>
-          </div>
-          {navLinks.map(([label, href]) => (
-            <a href={href} key={label} onClick={() => setOpen(false)}>{label}</a>
-          ))}
-          <a className="hp-cta" href="#contact" onClick={() => setOpen(false)}>Book an Appointment</a>
-        </div>
-      ) : null}
+      <AnimatePresence>
+        {open ? (
+          <motion.div
+            className="hp-mobile"
+            initial={{ opacity: 0, y: -18 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -18 }}
+            transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <div className="hp-mobile-head">
+              <span>Happy Paws</span>
+              <button
+                type="button"
+                onClick={() => setOpen(false)}
+                aria-label="Close menu"
+              >
+                x
+              </button>
+            </div>
+            {navLinks.map(([label, href]) => (
+              <a href={href} key={label} onClick={() => setOpen(false)}>
+                {label}
+              </a>
+            ))}
+            <a
+              className="hp-cta"
+              href="#contact"
+              onClick={() => setOpen(false)}
+            >
+              Book an Appointment
+            </a>
+          </motion.div>
+        ) : null}
+      </AnimatePresence>
     </header>
   );
 }
@@ -187,27 +526,66 @@ function Header() {
 function Hero() {
   return (
     <section className="hp-hero" id="home">
-      <video autoPlay muted loop playsInline preload="auto" className="hp-hero-video">
+      <video
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="auto"
+        className="hp-hero-video"
+      >
         <source src={heroVideo} type="video/mp4" />
       </video>
       <div className="hp-hero-overlay" />
       <FloatingPaws variant="hero" />
-      <div className="hp-hero-content">
+      <motion.div
+        className="hp-hero-content"
+        initial="hidden"
+        animate="visible"
+        variants={staggerVariants}
+      >
         <h1>
-          <span>Compassionate Care for Your</span>
-          <span><em>Cats and Dogs</em>, Every Step of the Way</span>
+          <motion.span variants={itemVariants}>
+            Compassionate Care for Your
+          </motion.span>
+          <motion.span variants={itemVariants}>
+            <em>Cats and Dogs</em>, Every Step of the Way
+          </motion.span>
         </h1>
-        <p>From routine checkups to emergency care, our experienced veterinary team treats your pets like family - because they're family to you.</p>
-        <div className="hp-hero-actions">
-          <a className="hp-cta hp-cta-lg" href="#contact">Book an Appointment</a>
-          <a className="hp-call" href="tel:5551234567"><Icon name="call" /> Call Us: (555) 123-4567</a>
-        </div>
-      </div>
-      <div className="hp-trust">
+        <motion.p variants={itemVariants}>
+          From routine checkups to emergency care, our experienced veterinary
+          team treats your pets like family - because they're family to you.
+        </motion.p>
+        <motion.div className="hp-hero-actions" variants={itemVariants}>
+          <motion.a
+            className="hp-cta hp-cta-lg"
+            href="#contact"
+            whileHover={{ scale: 1.04 }}
+            whileTap={{ scale: 0.96 }}
+          >
+            Book an Appointment
+          </motion.a>
+          <motion.a
+            className="hp-call"
+            href="tel:5551234567"
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.97 }}
+          >
+            <Icon name="call" /> Call Us: (555) 123-4567
+          </motion.a>
+        </motion.div>
+      </motion.div>
+      <Stagger className="hp-trust">
         {trustChips.map((chip) => (
-          <div className="hp-trust-chip" key={chip}><PawMark /> {chip}</div>
+          <motion.div
+            className="hp-trust-chip"
+            key={chip}
+            variants={itemVariants}
+          >
+            <PawMark /> {chip}
+          </motion.div>
         ))}
-      </div>
+      </Stagger>
     </section>
   );
 }
@@ -236,19 +614,34 @@ function FloatingPaws({ variant }: { variant: "hero" | "footer" }) {
         <PawMark
           className={String(animation)}
           key={`${left}-${top}`}
-          style={{ left, top, width: size, height: size, opacity } as CSSProperties}
+          style={
+            { left, top, width: size, height: size, opacity } as CSSProperties
+          }
         />
       ))}
     </div>
   );
 }
 
-function SectionTitle({ eyebrow, title, inverse = false }: { eyebrow?: string; title: string; inverse?: boolean }) {
+function SectionTitle({
+  eyebrow,
+  title,
+  inverse = false,
+}: {
+  eyebrow?: string;
+  title: string;
+  inverse?: boolean;
+}) {
   return (
-    <div className={classNames("hp-section-title", inverse && "hp-section-title-inverse")}>
+    <Reveal
+      className={classNames(
+        "hp-section-title",
+        inverse && "hp-section-title-inverse",
+      )}
+    >
       {eyebrow ? <span>{eyebrow}</span> : null}
       <h2>{title}</h2>
-    </div>
+    </Reveal>
   );
 }
 
@@ -256,32 +649,35 @@ function About() {
   return (
     <section className="hp-section hp-about" id="about">
       <div className="hp-container hp-about-grid">
-        <div>
+        <Reveal>
           <span className="hp-eyebrow">About Happy Paws</span>
           <h2>Veterinary care that feels calm, clear, and personal.</h2>
           <p>
-            Happy Paws was built for pet parents who want expert medical care without the cold clinic feeling. Our team blends modern diagnostics, thoughtful communication, and low-stress handling so every visit feels easier for pets and people.
+            Happy Paws was built for pet parents who want expert medical care
+            without the cold clinic feeling. Our team blends modern diagnostics,
+            thoughtful communication, and low-stress handling so every visit
+            feels easier for pets and people.
           </p>
           <div className="hp-about-list">
             <span>AAHA-aligned care standards</span>
             <span>Fear-free handling techniques</span>
             <span>Transparent treatment estimates</span>
           </div>
-        </div>
-        <div className="hp-about-card hp-tilt-card">
+        </Reveal>
+        <Reveal className="hp-about-card hp-tilt-card">
           <img src={aboutImage} alt="Veterinarian holding a pet" />
           <div>6 Certified Vets</div>
-        </div>
+        </Reveal>
       </div>
       <div className="hp-stats">
-        <div className="hp-container">
+        <Stagger className="hp-container">
           {stats.map(([value, label]) => (
-            <div key={label}>
+            <motion.div key={label} variants={itemVariants}>
               <strong>{value}</strong>
               <span>{label}</span>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </Stagger>
       </div>
     </section>
   );
@@ -292,15 +688,17 @@ function WhyChooseUs() {
     <section className="hp-section hp-cream">
       <div className="hp-container">
         <SectionTitle title="Why Pet Parents Trust Us" />
-        <div className="hp-card-grid">
+        <Stagger className="hp-card-grid">
           {whyCards.map(([icon, title, text]) => (
-            <article className="hp-card hp-tilt-card" key={title}>
-              <span className="hp-icon-badge"><Icon name={icon} /></span>
+            <MotionCard className="hp-card hp-tilt-card" key={title}>
+              <span className="hp-icon-badge">
+                <Icon name={icon} />
+              </span>
               <h3>{title}</h3>
               <p>{text}</p>
-            </article>
+            </MotionCard>
           ))}
-        </div>
+        </Stagger>
       </div>
     </section>
   );
@@ -310,16 +708,27 @@ function Services() {
   return (
     <section className="hp-section" id="services">
       <div className="hp-container">
-        <SectionTitle eyebrow="Services" title="Full-Service Care for Cats and Dogs" />
-        <div className="hp-service-grid">
+        <SectionTitle
+          eyebrow="Services"
+          title="Full-Service Care for Cats and Dogs"
+        />
+        <Stagger className="hp-service-grid">
           {services.map(([icon, title, text, featured]) => (
-            <article className={classNames("hp-service-card hp-tilt-card", featured && "hp-service-featured")} key={title}>
-              <span className="hp-icon-badge"><Icon name={icon} /></span>
+            <MotionCard
+              className={classNames(
+                "hp-service-card hp-tilt-card",
+                featured && "hp-service-featured",
+              )}
+              key={title}
+            >
+              <span className="hp-icon-badge">
+                <Icon name={icon} />
+              </span>
               <h3>{title}</h3>
               <p>{text}</p>
-            </article>
+            </MotionCard>
           ))}
-        </div>
+        </Stagger>
       </div>
     </section>
   );
@@ -329,18 +738,21 @@ function Facilities() {
   return (
     <section className="hp-section hp-cream" id="facilities">
       <div className="hp-container">
-        <SectionTitle eyebrow="Clinic Spaces" title="Designed for Comfort and Clarity" />
-        <div className="hp-facilities">
+        <SectionTitle
+          eyebrow="Clinic Spaces"
+          title="Designed for Comfort and Clarity"
+        />
+        <Stagger className="hp-facilities">
           {facilities.map(([title, text, image]) => (
-            <article className="hp-facility-card" key={title}>
+            <MotionCard className="hp-facility-card" key={title}>
               <img src={image} alt={title} />
               <div>
                 <h3>{title}</h3>
                 <p>{text}</p>
               </div>
-            </article>
+            </MotionCard>
           ))}
-        </div>
+        </Stagger>
       </div>
     </section>
   );
@@ -350,7 +762,7 @@ function Team() {
   return (
     <section className="hp-section hp-team" id="team">
       <div className="hp-container">
-        <SectionTitle eyebrow="Our Vets" title="Meet the Care Team" inverse />
+        <SectionTitle eyebrow="Our Vets" title="Meet the Care Team" />
         <div className="hp-team-grid">
           {team.map(([name, role, bio, label, image]) => (
             <article className="hp-team-card" key={name}>
@@ -379,23 +791,47 @@ function Team() {
 
 function Pricing() {
   return (
-    <section className="hp-section hp-cream" id="pricing">
+    <section className="hp-section hp-pricing-section" id="pricing">
       <div className="hp-container">
-        <SectionTitle eyebrow="Pricing" title="Simple, Transparent Care Options" />
-        <div className="hp-pricing-grid">
+        <SectionTitle title="Simple, Transparent Pricing" />
+        <Stagger className="hp-pricing-grid">
           {pricing.map(([emoji, name, price, per, features, popular]) => (
-            <article className={classNames("hp-price-card hp-tilt-card", popular && "hp-price-popular")} key={name}>
-              {popular ? <span className="hp-popular">Popular</span> : null}
-              <div className="hp-price-emoji">{emoji}</div>
+            <MotionCard
+              className={classNames(
+                "hp-price-card hp-tilt-card",
+                popular && "hp-price-popular",
+              )}
+              key={name}
+            >
+              {popular ? (
+                <span className="hp-popular">MOST POPULAR</span>
+              ) : null}
+              <div className="hp-price-icon">{emoji}</div>
               <h3>{name}</h3>
-              <div className="hp-price">{price}<span>{per}</span></div>
+              <div className="hp-price">
+                {price}
+                <span>{per}</span>
+              </div>
+              <div className="hp-price-divider" />
               <ul>
-                {features.map((feature) => <li key={feature}>{feature}</li>)}
+                {features.map((feature) => (
+                  <li key={feature}>{feature}</li>
+                ))}
               </ul>
-              <a href="#contact">{popular ? "Book Wellness" : "Get Started"}</a>
-            </article>
+              <motion.a
+                href="#contact"
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.97 }}
+              >
+                Book This Package
+              </motion.a>
+            </MotionCard>
           ))}
-        </div>
+        </Stagger>
+        <Reveal className="hp-pricing-note">
+          All packages can be customized. Ask our front desk about multi-pet
+          discounts and payment plans.
+        </Reveal>
       </div>
     </section>
   );
@@ -403,30 +839,57 @@ function Pricing() {
 
 function Testimonials() {
   const ref = useRef<HTMLDivElement>(null);
-  const scroll = (direction: number) => ref.current?.scrollBy({ left: direction * 352, behavior: "smooth" });
+  const scroll = (direction: number) =>
+    ref.current?.scrollBy({ left: direction * 352, behavior: "smooth" });
 
   return (
     <section className="hp-section" id="testimonials">
       <div className="hp-container">
         <div className="hp-title-row">
-          <SectionTitle eyebrow="Testimonials" title="Stories from Happy Pet Parents" />
+          <SectionTitle
+            eyebrow="Testimonials"
+            title="Stories from Happy Pet Parents"
+          />
           <div className="hp-scroll-buttons">
-            <button onClick={() => scroll(-1)} type="button" aria-label="Previous testimonial">‹</button>
-            <button onClick={() => scroll(1)} type="button" aria-label="Next testimonial">›</button>
+            <button
+              onClick={() => scroll(-1)}
+              type="button"
+              aria-label="Previous testimonial"
+            >
+              <Icon name="chevron_left" />
+            </button>
+            <button
+              onClick={() => scroll(1)}
+              type="button"
+              aria-label="Next testimonial"
+            >
+              <Icon name="chevron_right" />
+            </button>
           </div>
         </div>
-        <div className="hp-testimonials" ref={ref}>
+        <motion.div
+          className="hp-testimonials"
+          ref={ref}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.14 }}
+          variants={staggerVariants}
+        >
           {testimonials.map(([quote, name, initials]) => (
-            <article className="hp-testimonial-card" key={name}>
-              <div className="hp-stars">★★★★★</div>
+            <MotionCard className="hp-testimonial-card" key={name}>
+              <div className="hp-stars">
+                {Array.from({ length: 5 }, (_, index) => (
+                  <Icon name="star" key={index} />
+                ))}
+              </div>
               <p>"{quote}"</p>
               <div>
                 <span>{initials}</span>
                 <strong>{name}</strong>
               </div>
-            </article>
+            </MotionCard>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
@@ -439,28 +902,51 @@ function TipsAndFaq() {
     <section className="hp-section hp-cream" id="tips">
       <div className="hp-container hp-tips-faq">
         <div>
-          <SectionTitle eyebrow="Pet Care Tips" title="Helpful Reads for Everyday Care" />
-          <div className="hp-tips-grid">
+          <SectionTitle
+            eyebrow="Pet Care Tips"
+            title="Helpful Reads for Everyday Care"
+          />
+          <Stagger className="hp-tips-grid">
             {tips.map((tip) => (
-              <article className="hp-tip-card" key={tip}>
-                <span><Icon name="pets" /></span>
+              <MotionCard className="hp-tip-card" key={tip}>
+                <span>
+                  <Icon name="pets" />
+                </span>
                 <h3>{tip}</h3>
                 <a href="#">Read Article</a>
-              </article>
+              </MotionCard>
             ))}
-          </div>
+          </Stagger>
         </div>
         <div className="hp-faq">
           <h2>Frequently Asked</h2>
           {faqs.map(([question, answer], index) => (
             <div className="hp-faq-item" key={question}>
-              <button type="button" onClick={() => setOpenFaq(openFaq === index ? -1 : index)}>
+              <button
+                type="button"
+                onClick={() => setOpenFaq(openFaq === index ? -1 : index)}
+              >
                 {question}
-                <span>{openFaq === index ? "×" : "+"}</span>
+                <motion.span
+                  animate={{ rotate: openFaq === index ? 45 : 0 }}
+                  transition={{ duration: 0.25 }}
+                >
+                  +
+                </motion.span>
               </button>
-              <div className={classNames(openFaq === index && "hp-faq-open")}>
-                <p>{answer}</p>
-              </div>
+              <AnimatePresence initial={false}>
+                {openFaq === index ? (
+                  <motion.div
+                    className="hp-faq-panel"
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: "auto", opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.32, ease: [0.16, 1, 0.3, 1] }}
+                  >
+                    <p>{answer}</p>
+                  </motion.div>
+                ) : null}
+              </AnimatePresence>
             </div>
           ))}
         </div>
@@ -478,32 +964,70 @@ function Contact() {
       <div className="hp-container hp-contact-grid">
         <div>
           <SectionTitle eyebrow="Book a Visit" title="Request an Appointment" />
-          <form className="hp-form" onSubmit={(event) => { event.preventDefault(); setSubmitted(true); }}>
+          <form
+            className="hp-form"
+            onSubmit={(event) => {
+              event.preventDefault();
+              setSubmitted(true);
+            }}
+          >
             <div className="hp-pet-toggle">
-              <button className={classNames(pet === "dog" && "hp-selected")} onClick={() => setPet("dog")} type="button">Dog</button>
-              <button className={classNames(pet === "cat" && "hp-selected")} onClick={() => setPet("cat")} type="button">Cat</button>
+              <button
+                className={classNames(pet === "dog" && "hp-selected")}
+                onClick={() => setPet("dog")}
+                type="button"
+              >
+                Dog
+              </button>
+              <button
+                className={classNames(pet === "cat" && "hp-selected")}
+                onClick={() => setPet("cat")}
+                type="button"
+              >
+                Cat
+              </button>
             </div>
             <div className="hp-form-row">
               <input placeholder="Your name" />
               <input placeholder="Pet name" />
             </div>
             <select defaultValue="">
-              <option value="" disabled>Service needed</option>
+              <option value="" disabled>
+                Service needed
+              </option>
               <option>Wellness & Preventive Care</option>
               <option>Emergency & Urgent Care</option>
               <option>Dental Care</option>
               <option>Grooming</option>
             </select>
             <textarea placeholder={`Tell us about your ${pet}`} rows={5} />
-            <button className="hp-cta" type="submit">{submitted ? "Request Sent" : "Send Request"}</button>
+            <button className="hp-cta" type="submit">
+              {submitted ? "Request Sent" : "Send Request"}
+            </button>
           </form>
         </div>
         <aside className="hp-contact-card">
           <h3>Clinic Information</h3>
-          <p><strong>Main Clinic</strong><br />123 Pet Lane, Healthville, ST 54321</p>
-          <p><strong>Contact Numbers</strong><br />Main: (555) 123-4567<br /><span>ER Line: (555) 999-0000</span></p>
-          <p><strong>Email Support</strong><br />care@happypaws.com</p>
-          <div className="hp-map"><Icon name="map" /></div>
+          <p>
+            <strong>Main Clinic</strong>
+            <br />
+            123 Pet Lane, Healthville, ST 54321
+          </p>
+          <p>
+            <strong>Contact Numbers</strong>
+            <br />
+            Main: (555) 123-4567
+            <br />
+            <span>ER Line: (555) 999-0000</span>
+          </p>
+          <p>
+            <strong>Email Support</strong>
+            <br />
+            care@happypaws.com
+          </p>
+          <div className="hp-map">
+            <Icon name="map" />
+          </div>
         </aside>
       </div>
     </section>
@@ -516,23 +1040,54 @@ function Footer() {
       <FloatingPaws variant="footer" />
       <div className="hp-container hp-footer-grid">
         <div>
-          <a className="hp-brand hp-footer-brand" href="#home"><PawMark className="hp-brand-mark" /> <span>Happy Paws</span></a>
-          <p>Providing professional warmth and expert clinical care for your pets since 2009.</p>
+          <a className="hp-brand hp-footer-brand" href="#home">
+            <PawMark className="hp-brand-mark" /> <span>Happy Paws</span>
+          </a>
+          <p>
+            Providing professional warmth and expert clinical care for your pets
+            since 2009.
+          </p>
         </div>
-        <FooterLinks title="Quick Links" links={["Home", "About Us", "Services", "Our Vets", "Testimonials", "Contact"]} />
-        <FooterLinks title="Services" links={["Wellness & Vaccinations", "Surgery", "Emergency Care", "Grooming", "Boarding", "Senior Pet Care"]} />
+        <FooterLinks
+          title="Quick Links"
+          links={[
+            "Home",
+            "About Us",
+            "Services",
+            "Our Vets",
+            "Testimonials",
+            "Contact",
+          ]}
+        />
+        <FooterLinks
+          title="Services"
+          links={[
+            "Wellness & Vaccinations",
+            "Surgery",
+            "Emergency Care",
+            "Grooming",
+            "Boarding",
+            "Senior Pet Care",
+          ]}
+        />
         <div>
           <h3>Newsletter</h3>
           <p>Get monthly pet care tips delivered to your inbox.</p>
           <div className="hp-newsletter">
             <input placeholder="Email Address" type="email" />
-            <button type="button" aria-label="Subscribe">→</button>
+            <button type="button" aria-label="Subscribe">
+              <Icon name="arrow_forward" />
+            </button>
           </div>
         </div>
       </div>
       <div className="hp-container hp-footer-bottom">
-        <span>© 2024 Happy Paws Veterinary Clinic. All rights reserved.</span>
-        <div><a href="#">Privacy Policy</a><a href="#">Terms of Service</a><a href="#">Cookie Policy</a></div>
+        <span>(c) 2024 Happy Paws Veterinary Clinic. All rights reserved.</span>
+        <div>
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+          <a href="#">Cookie Policy</a>
+        </div>
       </div>
     </footer>
   );
@@ -543,7 +1098,11 @@ function FooterLinks({ title, links }: { title: string; links: string[] }) {
     <div>
       <h3>{title}</h3>
       <ul>
-        {links.map((link) => <li key={link}><a href="#">{link}</a></li>)}
+        {links.map((link) => (
+          <li key={link}>
+            <a href="#">{link}</a>
+          </li>
+        ))}
       </ul>
     </div>
   );
