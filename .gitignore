@@ -32,3 +32,4 @@ Thumbs.db
 # Package manager
 .pnpm-store/
 design
+dev-server.log
