@@ -25,13 +25,14 @@ import {
   useState,
   type CSSProperties,
   type ReactNode,
+  type SyntheticEvent,
 } from "react";
 import RightClickGuard from "./components/RightClickGuard";
 
 const heroVideo = "/assets/videos/hero_banner_video.mp4";
 
-const aboutImage =
-  "https://lh3.googleusercontent.com/aida-public/AB6AXuAfByICx8e7P0fiZEgfp31qJcVyviGCWUl_gomgSkQ_T7kqbKHljuHwcLAh64FIIyoC_M_zmQk8pwdbs5ujf-ugvUc7rDG1Vf0xiii0IHbjk8YUD_4Zt_54MG8ZxziFXHKPuo2ynjY4HU8YxUGLfMU1ReraUnRhqkBvudYP0W3wrxxinTOAYHrG4ZslX9oG1iExUZQ7YQHpWjMgKqn5LFHwtjmiWG9JgzZnXY6FLYZ8rCM9Wcgv81w9_tG44s8q-adECZW9A72zm7Gb";
+const certifiedVetsVideo = "/assets/videos/certified_vets.mp4";
+const videoLoopFadeSeconds = 0.55;
 
 const navLinks = [
   ["Home", "#home"],
@@ -446,6 +447,88 @@ function RevealCard({
   );
 }
 
+function CrossfadeLoopVideo({
+  ariaLabel,
+  src,
+}: {
+  ariaLabel: string;
+  src: string;
+}) {
+  const firstVideoRef = useRef<HTMLVideoElement>(null);
+  const secondVideoRef = useRef<HTMLVideoElement>(null);
+  const [activeVideo, setActiveVideo] = useState(0);
+  const isTransitioningRef = useRef(false);
+
+  const startNextLoop = (currentIndex: number) => {
+    if (isTransitioningRef.current) {
+      return;
+    }
+
+    const currentVideo =
+      currentIndex === 0 ? firstVideoRef.current : secondVideoRef.current;
+    const nextVideo =
+      currentIndex === 0 ? secondVideoRef.current : firstVideoRef.current;
+
+    if (!currentVideo || !nextVideo) {
+      return;
+    }
+
+    isTransitioningRef.current = true;
+    nextVideo.currentTime = 0;
+    void nextVideo.play();
+    setActiveVideo(currentIndex === 0 ? 1 : 0);
+
+    window.setTimeout(() => {
+      currentVideo.pause();
+      currentVideo.currentTime = 0;
+      isTransitioningRef.current = false;
+    }, (videoLoopFadeSeconds + 0.08) * 1000);
+  };
+
+  const handleTimeUpdate = (
+    event: SyntheticEvent<HTMLVideoElement>,
+    index: number,
+  ) => {
+    if (index !== activeVideo) {
+      return;
+    }
+
+    const video = event.currentTarget;
+
+    if (
+      Number.isFinite(video.duration) &&
+      video.duration > videoLoopFadeSeconds &&
+      video.duration - video.currentTime <= videoLoopFadeSeconds
+    ) {
+      startNextLoop(index);
+    }
+  };
+
+  return (
+    <div aria-label={ariaLabel} className="hp-loop-video" role="img">
+      {[firstVideoRef, secondVideoRef].map((videoRef, index) => (
+        <video
+          aria-hidden="true"
+          autoPlay={index === 0}
+          className={classNames(
+            "hp-loop-video-media",
+            activeVideo === index && "hp-loop-video-active",
+          )}
+          key={index}
+          muted
+          onEnded={() => startNextLoop(index)}
+          onTimeUpdate={(event) => handleTimeUpdate(event, index)}
+          playsInline
+          preload="auto"
+          ref={videoRef}
+        >
+          <source src={src} type="video/mp4" />
+        </video>
+      ))}
+    </div>
+  );
+}
+
 function Stagger({
   children,
   className = "",
@@ -737,8 +820,11 @@ function About() {
           </div>
         </Reveal>
         <RevealCard className="hp-about-card hp-tilt-card">
-          <img src={aboutImage} alt="Veterinarian holding a pet" />
-          <div>6 Certified Vets</div>
+          <CrossfadeLoopVideo
+            ariaLabel="Certified veterinarians caring for a pet"
+            src={certifiedVetsVideo}
+          />
+          <div className="hp-about-card-badge">6 Certified Vets</div>
         </RevealCard>
       </div>
       <div className="hp-stats">
