@@ -2,6 +2,7 @@
 
 import { Button } from "@/components/Button";
 import { Card } from "@/components/Card";
+import { Dropdown } from "@/components/Dropdown";
 import { Icon } from "@/components/Icon";
 import { IconBadge } from "@/components/IconBadge";
 import { PawMark } from "@/components/PawMark";
@@ -319,6 +320,29 @@ const faqs = [
     "How do I get my pet's medical records?",
     "Simply call or email our front desk, and we'll send records to you or a new provider directly.",
   ],
+];
+
+const visitReasonOptions = [
+  {
+    label: "Reason for Visit - Wellness Exam",
+    value: "wellness",
+  },
+  {
+    label: "Vaccination",
+    value: "vaccination",
+  },
+  {
+    label: "Illness / Injury",
+    value: "illness-injury",
+  },
+  {
+    label: "Surgery Consult",
+    value: "surgery-consult",
+  },
+  {
+    label: "Other",
+    value: "other",
+  },
 ];
 
 function useScrolled(threshold = 40) {
@@ -1166,13 +1190,7 @@ function Contact() {
                   </Button>
                 </div>
               </div>
-              <select defaultValue="Reason for Visit - Wellness Exam">
-                <option>Reason for Visit - Wellness Exam</option>
-                <option>Vaccination</option>
-                <option>Illness / Injury</option>
-                <option>Surgery Consult</option>
-                <option>Other</option>
-              </select>
+              <Dropdown name="reason" options={visitReasonOptions} />
               <input type="datetime-local" />
               <textarea placeholder="Additional Notes" rows={3} />
               <Button className="hp-contact-submit" type="submit" variant="unstyled">

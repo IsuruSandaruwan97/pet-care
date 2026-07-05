@@ -1229,7 +1229,6 @@
 }
 
 .hp-form input,
-.hp-form select,
 .hp-form textarea {
   background: #fff;
   border: 1px solid var(--hp-mist);
@@ -1242,7 +1241,6 @@
   width: 100%;
 }
 
-.hp-form select,
 .hp-form input[type="datetime-local"] {
   color: rgba(26, 26, 26, 0.7);
 }
@@ -1252,7 +1250,6 @@
 }
 
 .hp-form input:focus,
-.hp-form select:focus,
 .hp-form textarea:focus {
   border-color: var(--hp-amber);
 }
@@ -1267,6 +1264,89 @@
   flex-direction: column;
   gap: 14px;
   margin-top: 22px;
+}
+
+.hp-dropdown {
+  position: relative;
+  width: 100%;
+  z-index: 4;
+}
+
+.hp-dropdown-trigger {
+  align-items: center;
+  background: #fff;
+  border: 1px solid var(--hp-mist);
+  border-radius: 12px;
+  color: rgba(26, 26, 26, 0.7);
+  cursor: pointer;
+  display: flex;
+  font: inherit;
+  font-size: 14px;
+  justify-content: space-between;
+  outline: none;
+  padding: 13px 16px;
+  text-align: left;
+  width: 100%;
+}
+
+.hp-dropdown-trigger:focus-visible,
+.hp-dropdown-trigger[aria-expanded="true"] {
+  border-color: var(--hp-amber);
+}
+
+.hp-dropdown-trigger .material-symbols-outlined {
+  color: var(--hp-amber-dark);
+  font-size: 20px;
+  transition: transform 0.2s;
+}
+
+.hp-dropdown-trigger[aria-expanded="true"] .material-symbols-outlined {
+  transform: rotate(180deg);
+}
+
+.hp-dropdown-menu {
+  background: #fff;
+  border: 1px solid var(--hp-border);
+  border-radius: 14px;
+  box-shadow: 0 14px 30px rgba(27, 67, 50, 0.12);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  left: 0;
+  overflow: hidden;
+  padding: 6px;
+  position: absolute;
+  right: 0;
+  top: calc(100% + 8px);
+}
+
+.hp-dropdown-option {
+  background: transparent;
+  border: 0;
+  border-radius: 10px;
+  color: rgba(26, 26, 26, 0.72);
+  cursor: pointer;
+  display: block;
+  font: inherit;
+  font-size: 14px;
+  padding: 11px 12px;
+  text-align: left;
+  width: 100%;
+}
+
+.hp-dropdown-option:hover,
+.hp-dropdown-option[aria-selected="true"] {
+  color: var(--hp-green);
+}
+
+.hp-dropdown-option:hover {
+  background: rgba(242, 166, 90, 0.14);
+}
+
+.hp-dropdown-option[aria-selected="true"] {
+  background: var(--hp-mist);
+  color: var(--hp-green);
+  font-weight: 600;
 }
 
 .hp-contact-form-card {
