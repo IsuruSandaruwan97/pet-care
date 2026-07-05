@@ -6,8 +6,20 @@
   box-sizing: border-box;
 }
 
+html {
+  scrollbar-width: none;
+}
+
+body::-webkit-scrollbar {
+  display: none;
+}
+
 .material-symbols-outlined {
-  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+  font-variation-settings:
+    "FILL" 0,
+    "wght" 400,
+    "GRAD" 0,
+    "opsz" 24;
 }
 
 .tilt-card {
@@ -89,6 +101,7 @@
   --hp-border: #efe7da;
   --hp-ink: #1a1a1a;
   --hp-muted: rgba(26, 26, 26, 0.66);
+  --hp-honey-deep: #985d15;
 }
 
 .hp-page {
@@ -96,6 +109,25 @@
   color: var(--hp-ink);
   min-height: 100vh;
   overflow-x: hidden;
+}
+
+.hp-scroll-progress {
+  background: transparent;
+  height: 3px;
+  left: 0;
+  overflow: hidden;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 100;
+}
+
+.hp-scroll-progress div {
+  background: linear-gradient(90deg, var(--hp-amber), var(--hp-honey-deep));
+  height: 100%;
+  transform-origin: left center;
+  transition: transform 0.08s linear;
+  width: 100%;
 }
 
 .hp-container {
@@ -121,7 +153,7 @@
   font-size: 12px;
   gap: 26px;
   justify-content: center;
-  padding: 7px 16px;
+  padding: 16px 16px 12px 16px;
 }
 
 .hp-topbar span,
@@ -151,7 +183,10 @@
   gap: 24px;
   justify-content: space-between;
   padding: 14px 28px;
-  transition: background 0.3s, box-shadow 0.3s, border-color 0.3s;
+  transition:
+    background 0.3s,
+    box-shadow 0.3s,
+    border-color 0.3s;
 }
 
 .hp-nav-scrolled {
@@ -225,7 +260,10 @@
   justify-content: center;
   padding: 11px 22px;
   text-decoration: none;
-  transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+  transition:
+    background 0.2s,
+    transform 0.2s,
+    box-shadow 0.2s;
 }
 
 .hp-cta:hover,
@@ -326,7 +364,12 @@
 
 .hp-hero-overlay {
   background:
-    linear-gradient(to top, var(--hp-green) 4%, rgba(27, 67, 50, 0.45) 45%, rgba(27, 67, 50, 0.25)),
+    linear-gradient(
+      to top,
+      var(--hp-green) 4%,
+      rgba(27, 67, 50, 0.45) 45%,
+      rgba(27, 67, 50, 0.25)
+    ),
     rgba(20, 48, 38, 0.38);
   inset: 0;
   position: absolute;
@@ -344,13 +387,23 @@
 }
 
 @keyframes hpFloatA {
-  0%, 100% { transform: translateY(0) rotate(0deg); }
-  50% { transform: translateY(-28px) rotate(9deg); }
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-28px) rotate(9deg);
+  }
 }
 
 @keyframes hpFloatB {
-  0%, 100% { transform: translateY(0) rotate(0deg); }
-  50% { transform: translateY(24px) rotate(-11deg); }
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(24px) rotate(-11deg);
+  }
 }
 
 .hp-float-a {
@@ -615,7 +668,9 @@
 
 .hp-tilt-card {
   transform-style: preserve-3d;
-  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.45s ease;
+  transition:
+    transform 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.45s ease;
 }
 
 .hp-tilt-card:hover {
@@ -1146,7 +1201,9 @@
   font-weight: 500;
   padding: 11px 26px;
   text-decoration: none;
-  transition: background 0.2s, color 0.2s;
+  transition:
+    background 0.2s,
+    color 0.2s;
 }
 
 .hp-tips-more a:hover {
@@ -1897,4 +1954,3 @@
     transform: none;
   }
 }
-

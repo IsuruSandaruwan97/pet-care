@@ -8,6 +8,7 @@ import { Icon } from "@/components/Icon";
 import { IconBadge } from "@/components/IconBadge";
 import { PawMark } from "@/components/PawMark";
 import { Profile } from "@/components/Profile";
+import { ScrollProgress } from "@/components/ScrollProgress";
 import { Section } from "@/components/Section";
 import { SectionHeader } from "@/components/SectionHeader";
 import { SocialIcon } from "@/components/SocialIcon";
@@ -1154,9 +1155,7 @@ function Contact() {
             <Card className="hp-contact-success" unstyled>
               <div aria-hidden="true">&#128062;</div>
               <strong>Request received!</strong>
-              <p>
-                Our team will reach out within one business day to confirm.
-              </p>
+              <p>Our team will reach out within one business day to confirm.</p>
             </Card>
           ) : (
             <form
@@ -1194,7 +1193,11 @@ function Contact() {
               <Dropdown name="reason" options={visitReasonOptions} />
               <DateTimePicker name="appointmentAt" />
               <textarea placeholder="Additional Notes" rows={3} />
-              <Button className="hp-contact-submit" type="submit" variant="unstyled">
+              <Button
+                className="hp-contact-submit"
+                type="submit"
+                variant="unstyled"
+              >
                 Request Appointment
               </Button>
             </form>
@@ -1280,8 +1283,7 @@ function Footer() {
       </div>
       <div className="hp-container hp-footer-bottom">
         <span>
-          &copy; 2026 Happy Paws Veterinary &amp; Pet Care. All rights
-          reserved.
+          &copy; 2026 Happy Paws Veterinary &amp; Pet Care. All rights reserved.
         </span>
         <span>Privacy Policy &middot; Terms of Service &middot; Sitemap</span>
       </div>
@@ -1313,7 +1315,8 @@ function FooterLinks({
 export default function App() {
   return (
     <div className="hp-page">
-      <RightClickGuard enabled={true} />
+      <ScrollProgress />
+      <RightClickGuard enabled={false} />
       <Header />
       <Hero />
       <About />
