@@ -104,7 +104,7 @@ const services = [
     "content_cut",
     "Surgery",
     "From spay/neuter to soft-tissue surgeries, performed with modern equipment and full anesthetic monitoring.",
-    true,
+    false,
   ],
   [
     "emergency_home",
@@ -351,9 +351,11 @@ const itemVariants: Variants = {
 function Reveal({
   children,
   className = "",
+  delay = 0,
 }: {
   children: ReactNode;
   className?: string;
+  delay?: number;
 }) {
   const shouldReduceMotion = useReducedMotion();
 
@@ -368,6 +370,7 @@ function Reveal({
       whileInView="visible"
       viewport={{ once: true, amount: 0.18 }}
       variants={itemVariants}
+      transition={{ delay }}
     >
       {children}
     </motion.div>
@@ -1014,38 +1017,73 @@ function Testimonials() {
   );
 }
 
-function TipsAndFaq() {
+function TipPawMark() {
+  return (
+    <svg
+      aria-hidden="true"
+      className="hp-tip-paw"
+      viewBox="0 0 100 100"
+      width="100%"
+      height="100%"
+    >
+      <ellipse cx="50" cy="64" rx="26" ry="22" fill="currentColor" />
+      <circle cx="24" cy="38" r="11" fill="currentColor" />
+      <circle cx="42" cy="22" r="11" fill="currentColor" />
+      <circle cx="62" cy="23" r="11" fill="currentColor" />
+      <circle cx="80" cy="40" r="11" fill="currentColor" />
+    </svg>
+  );
+}
+
+function PetCareTips() {
+  return (
+    <section className="hp-section hp-pet-care-tips" id="tips">
+      <div className="hp-container">
+        <Reveal className="hp-reference-title">
+          <h2>From Our Vets: Pet Care Tips &amp; Advice</h2>
+        </Reveal>
+        <Stagger className="hp-tips-grid">
+          {tips.map((tip) => (
+            <MotionCard className="hp-tip-card hp-tilt-card" key={tip}>
+              <div className="hp-tip-visual">
+                <TipPawMark />
+              </div>
+              <div className="hp-tip-body">
+                <h3>{tip}</h3>
+                <a href="#">Read More &rarr;</a>
+              </div>
+            </MotionCard>
+          ))}
+        </Stagger>
+        <div className="hp-tips-more">
+          <a href="#tips">Read More Pet Care Tips &rarr;</a>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function FrequentlyAskedQuestions() {
   const [openFaq, setOpenFaq] = useState(0);
 
   return (
-    <section className="hp-section hp-cream" id="tips">
-      <div className="hp-container hp-tips-faq">
-        <div>
-          <SectionTitle
-            eyebrow="Pet Care Tips"
-            title="Helpful Reads for Everyday Care"
-          />
-          <Stagger className="hp-tips-grid">
-            {tips.map((tip) => (
-              <MotionCard className="hp-tip-card" key={tip}>
-                <span>
-                  <Icon name="pets" />
-                </span>
-                <h3>{tip}</h3>
-                <a href="#">Read Article</a>
-              </MotionCard>
-            ))}
-          </Stagger>
-        </div>
-        <div className="hp-faq">
-          <h2>Frequently Asked</h2>
+    <section className="hp-section hp-faq-section">
+      <div className="hp-container hp-faq-container">
+        <Reveal className="hp-reference-title">
+          <h2>Frequently Asked Questions</h2>
+        </Reveal>
+        <Stagger className="hp-faq-list">
           {faqs.map(([question, answer], index) => (
-            <div className="hp-faq-item" key={question}>
+            <motion.div
+              className="hp-faq-item"
+              key={question}
+              variants={itemVariants}
+            >
               <button
                 type="button"
                 onClick={() => setOpenFaq(openFaq === index ? -1 : index)}
               >
-                {question}
+                <span>{question}</span>
                 <motion.span
                   animate={{ rotate: openFaq === index ? 45 : 0 }}
                   transition={{ duration: 0.25 }}
@@ -1066,9 +1104,9 @@ function TipsAndFaq() {
                   </motion.div>
                 ) : null}
               </AnimatePresence>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </Stagger>
       </div>
     </section>
   );
@@ -1081,73 +1119,82 @@ function Contact() {
   return (
     <section className="hp-section hp-contact" id="contact">
       <div className="hp-container hp-contact-grid">
-        <div>
-          <SectionTitle eyebrow="Book a Visit" title="Request an Appointment" />
-          <form
-            className="hp-form"
-            onSubmit={(event) => {
-              event.preventDefault();
-              setSubmitted(true);
-            }}
-          >
-            <div className="hp-pet-toggle">
-              <button
-                className={classNames(pet === "dog" && "hp-selected")}
-                onClick={() => setPet("dog")}
-                type="button"
-              >
-                Dog
-              </button>
-              <button
-                className={classNames(pet === "cat" && "hp-selected")}
-                onClick={() => setPet("cat")}
-                type="button"
-              >
-                Cat
-              </button>
+        <Reveal className="hp-contact-form-card">
+          <h2>Ready to Book Your Pet&apos;s Visit?</h2>
+          <p>
+            Fill out the form below or give us a call - our front desk team will
+            confirm your appointment within one business day.
+          </p>
+          {submitted ? (
+            <div className="hp-contact-success">
+              <div aria-hidden="true">&#128062;</div>
+              <strong>Request received!</strong>
+              <p>
+                Our team will reach out within one business day to confirm.
+              </p>
             </div>
-            <div className="hp-form-row">
-              <input placeholder="Your name" />
-              <input placeholder="Pet name" />
-            </div>
-            <select defaultValue="">
-              <option value="" disabled>
-                Service needed
-              </option>
-              <option>Wellness & Preventive Care</option>
-              <option>Emergency & Urgent Care</option>
-              <option>Dental Care</option>
-              <option>Grooming</option>
-            </select>
-            <textarea placeholder={`Tell us about your ${pet}`} rows={5} />
-            <button className="hp-cta" type="submit">
-              {submitted ? "Request Sent" : "Send Request"}
-            </button>
-          </form>
-        </div>
-        <aside className="hp-contact-card">
-          <h3>Clinic Information</h3>
-          <p>
-            <strong>Main Clinic</strong>
-            <br />
-            123 Pet Lane, Healthville, ST 54321
-          </p>
-          <p>
-            <strong>Contact Numbers</strong>
-            <br />
-            Main: (555) 123-4567
-            <br />
-            <span>ER Line: (555) 999-0000</span>
-          </p>
-          <p>
-            <strong>Email Support</strong>
-            <br />
-            care@happypaws.com
-          </p>
+          ) : (
+            <form
+              className="hp-form"
+              onSubmit={(event) => {
+                event.preventDefault();
+                setSubmitted(true);
+              }}
+            >
+              <input placeholder="Pet Owner Name" />
+              <input placeholder="Phone Number" />
+              <input placeholder="Email Address" />
+              <input placeholder="Pet Name" />
+              <div>
+                <div className="hp-pet-label">Pet Type</div>
+                <div className="hp-pet-toggle">
+                  <button
+                    className={classNames(pet === "dog" && "hp-selected")}
+                    onClick={() => setPet("dog")}
+                    type="button"
+                  >
+                    &#128054; Dog
+                  </button>
+                  <button
+                    className={classNames(pet === "cat" && "hp-selected")}
+                    onClick={() => setPet("cat")}
+                    type="button"
+                  >
+                    &#128049; Cat
+                  </button>
+                </div>
+              </div>
+              <select defaultValue="Reason for Visit - Wellness Exam">
+                <option>Reason for Visit - Wellness Exam</option>
+                <option>Vaccination</option>
+                <option>Illness / Injury</option>
+                <option>Surgery Consult</option>
+                <option>Other</option>
+              </select>
+              <input type="datetime-local" />
+              <textarea placeholder="Additional Notes" rows={3} />
+              <button className="hp-contact-submit" type="submit">
+                Request Appointment
+              </button>
+            </form>
+          )}
+        </Reveal>
+        <Reveal className="hp-contact-info" delay={0.12}>
           <div className="hp-map">
-            <Icon name="map" />
+            <div />
+            <span>[ GOOGLE MAP EMBED ]</span>
           </div>
-        </aside>
+          <div className="hp-contact-details">
+            <div>&#128205; 123 Main Street, Your City, ST 00000</div>
+            <div>&#128222; (555) 123-4567</div>
+            <div>&#9993;&#65039; hello@happypawsvet.com</div>
+            <div>
+              &#128336; Mon-Fri: 8 AM-7 PM &nbsp;|&nbsp; Sat: 9 AM-4 PM
+              &nbsp;|&nbsp; Sun: Closed
+            </div>
+            <div>&#128680; 24/7 Emergency Line: (555) 999-0000</div>
+          </div>
+        </Reveal>
       </div>
     </section>
   );
@@ -1163,63 +1210,76 @@ function Footer() {
             <PawMark className="hp-brand-mark" /> <span>Happy Paws</span>
           </a>
           <p>
-            Providing professional warmth and expert clinical care for your pets
-            since 2009.
+            Compassionate care for your cats and dogs, every step of the way.
           </p>
+          <div className="hp-footer-socials">
+            <a href="#" aria-label="Facebook">
+              <Icon name="facebook" />
+            </a>
+            <a href="#" aria-label="Instagram">
+              <Icon name="photo_camera" />
+            </a>
+            <a href="#" aria-label="TikTok">
+              <span aria-hidden="true">&#9834;</span>
+            </a>
+          </div>
         </div>
         <FooterLinks
           title="Quick Links"
           links={[
-            "Home",
-            "About Us",
-            "Services",
-            "Our Vets",
-            "Testimonials",
-            "Contact",
+            ["Home", "#home"],
+            ["About Us", "#about"],
+            ["Services", "#services"],
+            ["Our Vets", "#team"],
+            ["Testimonials", "#testimonials"],
+            ["Contact", "#contact"],
           ]}
         />
         <FooterLinks
           title="Services"
           links={[
-            "Wellness & Vaccinations",
-            "Surgery",
-            "Emergency Care",
-            "Grooming",
-            "Boarding",
-            "Senior Pet Care",
+            ["Wellness & Vaccinations", "#services"],
+            ["Surgery", "#services"],
+            ["Emergency Care", "#services"],
+            ["Grooming", "#services"],
+            ["Boarding", "#services"],
+            ["Senior Pet Care", "#services"],
           ]}
         />
         <div>
           <h3>Newsletter</h3>
-          <p>Get monthly pet care tips delivered to your inbox.</p>
+          <p>Get pet care tips straight to your inbox.</p>
           <div className="hp-newsletter">
-            <input placeholder="Email Address" type="email" />
-            <button type="button" aria-label="Subscribe">
-              <Icon name="arrow_forward" />
-            </button>
+            <input placeholder="Email" type="email" />
+            <button type="button">Subscribe</button>
           </div>
         </div>
       </div>
       <div className="hp-container hp-footer-bottom">
-        <span>(c) 2024 Happy Paws Veterinary Clinic. All rights reserved.</span>
-        <div>
-          <a href="#">Privacy Policy</a>
-          <a href="#">Terms of Service</a>
-          <a href="#">Cookie Policy</a>
-        </div>
+        <span>
+          &copy; 2026 Happy Paws Veterinary &amp; Pet Care. All rights
+          reserved.
+        </span>
+        <span>Privacy Policy &middot; Terms of Service &middot; Sitemap</span>
       </div>
     </footer>
   );
 }
 
-function FooterLinks({ title, links }: { title: string; links: string[] }) {
+function FooterLinks({
+  title,
+  links,
+}: {
+  title: string;
+  links: Array<[string, string]>;
+}) {
   return (
     <div>
       <h3>{title}</h3>
       <ul>
-        {links.map((link) => (
-          <li key={link}>
-            <a href="#">{link}</a>
+        {links.map(([label, href]) => (
+          <li key={label}>
+            <a href={href}>{label}</a>
           </li>
         ))}
       </ul>
@@ -1240,7 +1300,8 @@ export default function App() {
       <Team />
       <Pricing />
       <Testimonials />
-      <TipsAndFaq />
+      <PetCareTips />
+      <FrequentlyAskedQuestions />
       <Contact />
       <Footer />
     </div>
