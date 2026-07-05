@@ -1508,11 +1508,11 @@
   width: 20px;
 }
 
-.hp-footer-socials .material-symbols-outlined {
-  font-size: 20px;
+.hp-footer-socials svg {
+  display: block;
 }
 
-.hp-footer-socials span:not(.material-symbols-outlined) {
+.hp-footer-socials span {
   font-size: 15px;
   font-weight: 700;
 }

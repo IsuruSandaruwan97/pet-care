@@ -1,6 +1,14 @@
 ﻿"use client";
 
+import { Button } from "@/components/Button";
+import { Card } from "@/components/Card";
 import { Icon } from "@/components/Icon";
+import { IconBadge } from "@/components/IconBadge";
+import { PawMark } from "@/components/PawMark";
+import { Profile } from "@/components/Profile";
+import { Section } from "@/components/Section";
+import { SectionHeader } from "@/components/SectionHeader";
+import { SocialIcon } from "@/components/SocialIcon";
 import { classNames } from "@/utils/classNames";
 import {
   AnimatePresence,
@@ -377,6 +385,41 @@ function Reveal({
   );
 }
 
+function RevealCard({
+  children,
+  className = "",
+  delay = 0,
+}: {
+  children: ReactNode;
+  className?: string;
+  delay?: number;
+}) {
+  const shouldReduceMotion = useReducedMotion();
+
+  if (shouldReduceMotion) {
+    return (
+      <Card className={className} unstyled>
+        {children}
+      </Card>
+    );
+  }
+
+  return (
+    <Card
+      as={motion.div}
+      className={className}
+      initial="hidden"
+      transition={{ delay }}
+      unstyled
+      variants={itemVariants}
+      viewport={{ once: true, amount: 0.18 }}
+      whileInView="visible"
+    >
+      {children}
+    </Card>
+  );
+}
+
 function Stagger({
   children,
   className = "",
@@ -421,43 +464,22 @@ function MotionCard({
   "aria-hidden"?: boolean;
 }) {
   return (
-    <motion.article
+    <Card
+      as={motion.article}
       aria-hidden={ariaHidden}
       className={className}
       onBlur={onBlur}
       onFocus={onFocus}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
+      unstyled
       variants={itemVariants}
       whileHover={{ y: -6, scale: 1.015 }}
       whileTap={{ scale: 0.99 }}
       transition={{ type: "spring", stiffness: 280, damping: 24 }}
     >
       {children}
-    </motion.article>
-  );
-}
-
-function PawMark({
-  className = "",
-  style,
-}: {
-  className?: string;
-  style?: CSSProperties;
-}) {
-  return (
-    <svg
-      className={className}
-      style={style}
-      viewBox="0 0 100 100"
-      aria-hidden="true"
-    >
-      <ellipse cx="50" cy="64" rx="26" ry="22" fill="currentColor" />
-      <circle cx="24" cy="38" r="11" fill="currentColor" />
-      <circle cx="42" cy="22" r="11" fill="currentColor" />
-      <circle cx="62" cy="23" r="11" fill="currentColor" />
-      <circle cx="80" cy="40" r="11" fill="currentColor" />
-    </svg>
+    </Card>
   );
 }
 
@@ -493,16 +515,16 @@ function Header() {
         <a className="hp-cta hp-nav-cta" href="#contact">
           Book an Appointment
         </a>
-        <button
+        <Button
           className="hp-burger"
-          type="button"
+          variant="unstyled"
           aria-label="Menu"
           onClick={() => setOpen(true)}
         >
           <span />
           <span />
           <span />
-        </button>
+        </Button>
       </nav>
       <AnimatePresence>
         {open ? (
@@ -515,13 +537,14 @@ function Header() {
           >
             <div className="hp-mobile-head">
               <span>Happy Paws</span>
-              <button
+              <Button
+                variant="unstyled"
                 type="button"
                 onClick={() => setOpen(false)}
                 aria-label="Close menu"
               >
                 x
-              </button>
+              </Button>
             </div>
             {navLinks.map(([label, href]) => (
               <a href={href} key={label} onClick={() => setOpen(false)}>
@@ -544,7 +567,7 @@ function Header() {
 
 function Hero() {
   return (
-    <section className="hp-hero" id="home">
+    <Section className="hp-hero" id="home">
       <video
         autoPlay
         muted
@@ -605,7 +628,7 @@ function Hero() {
           </motion.div>
         ))}
       </Stagger>
-    </section>
+    </Section>
   );
 }
 
@@ -658,15 +681,19 @@ function SectionTitle({
         inverse && "hp-section-title-inverse",
       )}
     >
-      {eyebrow ? <span>{eyebrow}</span> : null}
-      <h2>{title}</h2>
+      <SectionHeader
+        eyebrow={eyebrow}
+        title={title}
+        showDivider={false}
+        unstyled
+      />
     </Reveal>
   );
 }
 
 function About() {
   return (
-    <section className="hp-section hp-about" id="about">
+    <Section className="hp-section hp-about" id="about">
       <div className="hp-container hp-about-grid">
         <Reveal>
           <span className="hp-eyebrow">About Happy Paws</span>
@@ -683,10 +710,10 @@ function About() {
             <span>Transparent treatment estimates</span>
           </div>
         </Reveal>
-        <Reveal className="hp-about-card hp-tilt-card">
+        <RevealCard className="hp-about-card hp-tilt-card">
           <img src={aboutImage} alt="Veterinarian holding a pet" />
           <div>6 Certified Vets</div>
-        </Reveal>
+        </RevealCard>
       </div>
       <div className="hp-stats">
         <Stagger className="hp-container">
@@ -698,34 +725,32 @@ function About() {
           ))}
         </Stagger>
       </div>
-    </section>
+    </Section>
   );
 }
 
 function WhyChooseUs() {
   return (
-    <section className="hp-section hp-cream">
+    <Section className="hp-section hp-cream">
       <div className="hp-container">
         <SectionTitle title="Why Pet Parents Trust Us" />
         <Stagger className="hp-card-grid">
           {whyCards.map(([icon, title, text]) => (
             <MotionCard className="hp-card hp-tilt-card" key={title}>
-              <span className="hp-icon-badge">
-                <Icon name={icon} />
-              </span>
+              <IconBadge icon={icon} />
               <h3>{title}</h3>
               <p>{text}</p>
             </MotionCard>
           ))}
         </Stagger>
       </div>
-    </section>
+    </Section>
   );
 }
 
 function Services() {
   return (
-    <section className="hp-section" id="services">
+    <Section className="hp-section" id="services">
       <div className="hp-container">
         <SectionTitle
           eyebrow="Services"
@@ -740,22 +765,20 @@ function Services() {
               )}
               key={title}
             >
-              <span className="hp-icon-badge">
-                <Icon name={icon} />
-              </span>
+              <IconBadge icon={icon} />
               <h3>{title}</h3>
               <p>{text}</p>
             </MotionCard>
           ))}
         </Stagger>
       </div>
-    </section>
+    </Section>
   );
 }
 
 function Facilities() {
   return (
-    <section className="hp-section hp-cream" id="facilities">
+    <Section className="hp-section hp-cream" id="facilities">
       <div className="hp-container">
         <SectionTitle
           eyebrow="Clinic Spaces"
@@ -773,44 +796,36 @@ function Facilities() {
           ))}
         </Stagger>
       </div>
-    </section>
+    </Section>
   );
 }
 
 function Team() {
   return (
-    <section className="hp-section hp-team" id="team">
+    <Section className="hp-section hp-team" id="team">
       <div className="hp-container">
         <SectionTitle eyebrow="Our Vets" title="Meet the Care Team" />
         <div className="hp-team-grid">
           {team.map(([name, role, bio, label, image]) => (
-            <article className="hp-team-card" key={name}>
-              <div className="hp-team-inner">
-                <div className="hp-team-front">
-                  <img src={image} alt={name} />
-                  <div>
-                    <span>{label}</span>
-                    <h3>{name}</h3>
-                    <p>{role}</p>
-                  </div>
-                </div>
-                <div className="hp-team-back">
-                  <h3>{name}</h3>
-                  <p>{bio}</p>
-                  <a href="#contact">Book with this vet</a>
-                </div>
-              </div>
-            </article>
+            <Profile
+              bio={bio}
+              image={image}
+              key={name}
+              label={label}
+              name={name}
+              role={role}
+              variant="happyPaws"
+            />
           ))}
         </div>
       </div>
-    </section>
+    </Section>
   );
 }
 
 function Pricing() {
   return (
-    <section className="hp-section hp-pricing-section" id="pricing">
+    <Section className="hp-section hp-pricing-section" id="pricing">
       <div className="hp-container">
         <SectionTitle title="Simple, Transparent Pricing" />
         <Stagger className="hp-pricing-grid">
@@ -852,7 +867,7 @@ function Pricing() {
           discounts and payment plans.
         </Reveal>
       </div>
-    </section>
+    </Section>
   );
 }
 
@@ -954,7 +969,7 @@ function Testimonials() {
   );
 
   return (
-    <section className="hp-section hp-testimonials-section" id="testimonials">
+    <Section className="hp-section hp-testimonials-section" id="testimonials">
       <div className="hp-container">
         <SectionTitle
           eyebrow="Testimonials"
@@ -996,48 +1011,30 @@ function Testimonials() {
             </div>
           </motion.div>
           <div className="hp-scroll-buttons">
-            <button
+            <Button
               onClick={() => scroll(-1)}
-              type="button"
+              variant="unstyled"
               aria-label="Previous testimonial"
             >
               <Icon name="chevron_left" />
-            </button>
-            <button
+            </Button>
+            <Button
               onClick={() => scroll(1)}
-              type="button"
+              variant="unstyled"
               aria-label="Next testimonial"
             >
               <Icon name="chevron_right" />
-            </button>
+            </Button>
           </div>
         </div>
       </div>
-    </section>
-  );
-}
-
-function TipPawMark() {
-  return (
-    <svg
-      aria-hidden="true"
-      className="hp-tip-paw"
-      viewBox="0 0 100 100"
-      width="100%"
-      height="100%"
-    >
-      <ellipse cx="50" cy="64" rx="26" ry="22" fill="currentColor" />
-      <circle cx="24" cy="38" r="11" fill="currentColor" />
-      <circle cx="42" cy="22" r="11" fill="currentColor" />
-      <circle cx="62" cy="23" r="11" fill="currentColor" />
-      <circle cx="80" cy="40" r="11" fill="currentColor" />
-    </svg>
+    </Section>
   );
 }
 
 function PetCareTips() {
   return (
-    <section className="hp-section hp-pet-care-tips" id="tips">
+    <Section className="hp-section hp-pet-care-tips" id="tips">
       <div className="hp-container">
         <Reveal className="hp-reference-title">
           <h2>From Our Vets: Pet Care Tips &amp; Advice</h2>
@@ -1046,7 +1043,7 @@ function PetCareTips() {
           {tips.map((tip) => (
             <MotionCard className="hp-tip-card hp-tilt-card" key={tip}>
               <div className="hp-tip-visual">
-                <TipPawMark />
+                <PawMark className="hp-tip-paw" />
               </div>
               <div className="hp-tip-body">
                 <h3>{tip}</h3>
@@ -1059,7 +1056,7 @@ function PetCareTips() {
           <a href="#tips">Read More Pet Care Tips &rarr;</a>
         </div>
       </div>
-    </section>
+    </Section>
   );
 }
 
@@ -1067,19 +1064,22 @@ function FrequentlyAskedQuestions() {
   const [openFaq, setOpenFaq] = useState(0);
 
   return (
-    <section className="hp-section hp-faq-section">
+    <Section className="hp-section hp-faq-section">
       <div className="hp-container hp-faq-container">
         <Reveal className="hp-reference-title">
           <h2>Frequently Asked Questions</h2>
         </Reveal>
         <Stagger className="hp-faq-list">
           {faqs.map(([question, answer], index) => (
-            <motion.div
+            <Card
+              as={motion.div}
               className="hp-faq-item"
               key={question}
+              unstyled
               variants={itemVariants}
             >
-              <button
+              <Button
+                variant="unstyled"
                 type="button"
                 onClick={() => setOpenFaq(openFaq === index ? -1 : index)}
               >
@@ -1090,7 +1090,7 @@ function FrequentlyAskedQuestions() {
                 >
                   +
                 </motion.span>
-              </button>
+              </Button>
               <AnimatePresence initial={false}>
                 {openFaq === index ? (
                   <motion.div
@@ -1104,11 +1104,11 @@ function FrequentlyAskedQuestions() {
                   </motion.div>
                 ) : null}
               </AnimatePresence>
-            </motion.div>
+            </Card>
           ))}
         </Stagger>
       </div>
-    </section>
+    </Section>
   );
 }
 
@@ -1117,22 +1117,22 @@ function Contact() {
   const [submitted, setSubmitted] = useState(false);
 
   return (
-    <section className="hp-section hp-contact" id="contact">
+    <Section className="hp-section hp-contact" id="contact">
       <div className="hp-container hp-contact-grid">
-        <Reveal className="hp-contact-form-card">
+        <RevealCard className="hp-contact-form-card">
           <h2>Ready to Book Your Pet&apos;s Visit?</h2>
           <p>
             Fill out the form below or give us a call - our front desk team will
             confirm your appointment within one business day.
           </p>
           {submitted ? (
-            <div className="hp-contact-success">
+            <Card className="hp-contact-success" unstyled>
               <div aria-hidden="true">&#128062;</div>
               <strong>Request received!</strong>
               <p>
                 Our team will reach out within one business day to confirm.
               </p>
-            </div>
+            </Card>
           ) : (
             <form
               className="hp-form"
@@ -1148,20 +1148,22 @@ function Contact() {
               <div>
                 <div className="hp-pet-label">Pet Type</div>
                 <div className="hp-pet-toggle">
-                  <button
+                  <Button
                     className={classNames(pet === "dog" && "hp-selected")}
                     onClick={() => setPet("dog")}
                     type="button"
+                    variant="unstyled"
                   >
                     &#128054; Dog
-                  </button>
-                  <button
+                  </Button>
+                  <Button
                     className={classNames(pet === "cat" && "hp-selected")}
                     onClick={() => setPet("cat")}
                     type="button"
+                    variant="unstyled"
                   >
                     &#128049; Cat
-                  </button>
+                  </Button>
                 </div>
               </div>
               <select defaultValue="Reason for Visit - Wellness Exam">
@@ -1173,18 +1175,18 @@ function Contact() {
               </select>
               <input type="datetime-local" />
               <textarea placeholder="Additional Notes" rows={3} />
-              <button className="hp-contact-submit" type="submit">
+              <Button className="hp-contact-submit" type="submit" variant="unstyled">
                 Request Appointment
-              </button>
+              </Button>
             </form>
           )}
-        </Reveal>
-        <Reveal className="hp-contact-info" delay={0.12}>
-          <div className="hp-map">
+        </RevealCard>
+        <RevealCard className="hp-contact-info" delay={0.12}>
+          <Card className="hp-map" unstyled>
             <div />
             <span>[ GOOGLE MAP EMBED ]</span>
-          </div>
-          <div className="hp-contact-details">
+          </Card>
+          <Card className="hp-contact-details" unstyled>
             <div>&#128205; 123 Main Street, Your City, ST 00000</div>
             <div>&#128222; (555) 123-4567</div>
             <div>&#9993;&#65039; hello@happypawsvet.com</div>
@@ -1193,10 +1195,10 @@ function Contact() {
               &nbsp;|&nbsp; Sun: Closed
             </div>
             <div>&#128680; 24/7 Emergency Line: (555) 999-0000</div>
-          </div>
-        </Reveal>
+          </Card>
+        </RevealCard>
       </div>
-    </section>
+    </Section>
   );
 }
 
@@ -1214,10 +1216,10 @@ function Footer() {
           </p>
           <div className="hp-footer-socials">
             <a href="#" aria-label="Facebook">
-              <Icon name="facebook" />
+              <SocialIcon name="facebook" />
             </a>
             <a href="#" aria-label="Instagram">
-              <Icon name="photo_camera" />
+              <SocialIcon name="instagram" />
             </a>
             <a href="#" aria-label="TikTok">
               <span aria-hidden="true">&#9834;</span>
@@ -1251,7 +1253,9 @@ function Footer() {
           <p>Get pet care tips straight to your inbox.</p>
           <div className="hp-newsletter">
             <input placeholder="Email" type="email" />
-            <button type="button">Subscribe</button>
+            <Button type="button" variant="unstyled">
+              Subscribe
+            </Button>
           </div>
         </div>
       </div>

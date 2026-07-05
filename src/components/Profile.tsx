@@ -5,9 +5,33 @@ type ProfileProps = {
   role: string;
   bio: string;
   image: string;
+  label?: string;
+  variant?: "default" | "happyPaws";
 };
 
-export function Profile({ name, role, bio, image }: ProfileProps) {
+export function Profile({ name, role, bio, image, label, variant = "default" }: ProfileProps) {
+  if (variant === "happyPaws") {
+    return (
+      <article className="hp-team-card">
+        <div className="hp-team-inner">
+          <div className="hp-team-front">
+            <img src={image} alt={name} />
+            <div>
+              {label ? <span>{label}</span> : null}
+              <h3>{name}</h3>
+              <p>{role}</p>
+            </div>
+          </div>
+          <div className="hp-team-back">
+            <h3>{name}</h3>
+            <p>{bio}</p>
+            <a href="#contact">Book with this vet</a>
+          </div>
+        </div>
+      </article>
+    );
+  }
+
   return (
     <div className="flip-card h-[450px] w-full">
       <div className="flip-card-inner relative h-full w-full rounded-2xl shadow-xl">
