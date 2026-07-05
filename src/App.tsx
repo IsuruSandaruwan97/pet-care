@@ -9,6 +9,7 @@ import { IconBadge } from "@/components/IconBadge";
 import { PawMark } from "@/components/PawMark";
 import { Profile } from "@/components/Profile";
 import { ScrollProgress } from "@/components/ScrollProgress";
+import { ScrollToTop } from "@/components/ScrollToTop";
 import { Section } from "@/components/Section";
 import { SectionHeader } from "@/components/SectionHeader";
 import { SocialIcon } from "@/components/SocialIcon";
@@ -1416,6 +1417,7 @@ export default function App() {
       <FrequentlyAskedQuestions />
       <Contact />
       <Footer />
+      <ScrollToTop />
     </div>
   );
 }

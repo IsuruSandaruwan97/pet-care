@@ -130,6 +130,48 @@ body::-webkit-scrollbar {
   width: 100%;
 }
 
+.hp-scroll-top {
+  align-items: center;
+  background: var(--hp-amber);
+  border: 1px solid rgba(255, 255, 255, 0.46);
+  border-radius: 999px;
+  bottom: 26px;
+  box-shadow: 0 16px 34px rgba(27, 67, 50, 0.24);
+  color: #fff;
+  cursor: pointer;
+  display: inline-flex;
+  height: 48px;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  position: fixed;
+  right: 26px;
+  transform: translateY(18px) scale(0.92);
+  transition:
+    background 0.2s,
+    box-shadow 0.2s,
+    opacity 0.24s,
+    transform 0.24s;
+  width: 48px;
+  z-index: 45;
+}
+
+.hp-scroll-top-visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0) scale(1);
+}
+
+.hp-scroll-top-visible:hover {
+  background: var(--hp-amber-dark);
+  box-shadow: 0 18px 38px rgba(27, 67, 50, 0.3);
+  transform: translateY(-2px) scale(1.02);
+}
+
+.hp-scroll-top .material-symbols-outlined {
+  font-size: 30px;
+}
+
 .hp-container {
   margin: 0 auto;
   max-width: 1180px;
