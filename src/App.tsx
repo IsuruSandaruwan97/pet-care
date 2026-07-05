@@ -17,6 +17,7 @@ import { classNames } from "@/utils/classNames";
 import {
   AnimatePresence,
   motion,
+  useInView,
   useReducedMotion,
   type Variants,
 } from "motion/react";
@@ -25,6 +26,7 @@ import {
   useRef,
   useState,
   type CSSProperties,
+  type MouseEvent,
   type ReactNode,
   type SyntheticEvent,
 } from "react";
@@ -458,7 +460,45 @@ function CrossfadeLoopVideo({
   const firstVideoRef = useRef<HTMLVideoElement>(null);
   const secondVideoRef = useRef<HTMLVideoElement>(null);
   const [activeVideo, setActiveVideo] = useState(0);
+  const [isReady, setIsReady] = useState(false);
+  const [showLoader, setShowLoader] = useState(false);
   const isTransitioningRef = useRef(false);
+
+  useEffect(() => {
+    setActiveVideo(0);
+    setIsReady(false);
+    setShowLoader(false);
+
+    const markReadyIfLoaded = () => {
+      const firstVideo = firstVideoRef.current;
+
+      if (firstVideo && firstVideo.readyState >= HTMLMediaElement.HAVE_CURRENT_DATA) {
+        setIsReady(true);
+        setShowLoader(false);
+      }
+    };
+
+    markReadyIfLoaded();
+
+    const loaderTimer = window.setTimeout(() => {
+      markReadyIfLoaded();
+      setShowLoader(() => {
+        const firstVideo = firstVideoRef.current;
+        return (firstVideo?.readyState ?? 0) >= HTMLMediaElement.HAVE_CURRENT_DATA
+          ? false
+          : true;
+      });
+    }, 450);
+
+    const preloadTimer = window.setTimeout(() => {
+      secondVideoRef.current?.load();
+    }, 1200);
+
+    return () => {
+      window.clearTimeout(loaderTimer);
+      window.clearTimeout(preloadTimer);
+    };
+  }, [src]);
 
   const startNextLoop = (currentIndex: number) => {
     if (isTransitioningRef.current) {
@@ -476,7 +516,9 @@ function CrossfadeLoopVideo({
 
     isTransitioningRef.current = true;
     nextVideo.currentTime = 0;
-    void nextVideo.play();
+    void nextVideo.play().catch(() => {
+      isTransitioningRef.current = false;
+    });
     setActiveVideo(currentIndex === 0 ? 1 : 0);
 
     window.setTimeout(() => {
@@ -505,8 +547,37 @@ function CrossfadeLoopVideo({
     }
   };
 
+  const handleVideoReady = (index: number, video?: HTMLVideoElement) => {
+    if (isReady) {
+      return;
+    }
+
+    const isFirstVideoReady =
+      index === 0 ||
+      (firstVideoRef.current?.readyState ?? 0) >=
+        HTMLMediaElement.HAVE_CURRENT_DATA ||
+      video === firstVideoRef.current;
+
+    if (isFirstVideoReady) {
+      setIsReady(true);
+      setShowLoader(false);
+      void firstVideoRef.current?.play().catch(() => {
+        setShowLoader(true);
+      });
+      secondVideoRef.current?.load();
+    }
+  };
+
   return (
-    <div aria-label={ariaLabel} className="hp-loop-video" role="img">
+    <div
+      aria-busy={!isReady}
+      aria-label={ariaLabel}
+      className={classNames(
+        "hp-loop-video",
+        isReady && "hp-loop-video-ready",
+      )}
+      role="img"
+    >
       {[firstVideoRef, secondVideoRef].map((videoRef, index) => (
         <video
           aria-hidden="true"
@@ -518,14 +589,25 @@ function CrossfadeLoopVideo({
           key={index}
           muted
           onEnded={() => startNextLoop(index)}
+          onLoadedData={(event) => handleVideoReady(index, event.currentTarget)}
+          onCanPlay={(event) => handleVideoReady(index, event.currentTarget)}
+          onPlaying={(event) => handleVideoReady(index, event.currentTarget)}
+          onStalled={() => setShowLoader(true)}
+          onWaiting={() => setShowLoader(true)}
           onTimeUpdate={(event) => handleTimeUpdate(event, index)}
           playsInline
-          preload="auto"
+          preload={index === 0 ? "auto" : "metadata"}
           ref={videoRef}
         >
           <source src={src} type="video/mp4" />
         </video>
       ))}
+      {!isReady && showLoader ? (
+        <div className="hp-loop-video-loader" aria-live="polite">
+          <span className="hp-loop-video-spinner" />
+          <span>Loading video</span>
+        </div>
+      ) : null}
     </div>
   );
 }
@@ -553,6 +635,69 @@ function Stagger({
     >
       {children}
     </motion.div>
+  );
+}
+
+function parseStatValue(value: string) {
+  const match = value.match(/^([\d,]+)(.*)$/);
+
+  if (!match) {
+    return {
+      target: 0,
+      suffix: value,
+    };
+  }
+
+  return {
+    target: Number(match[1].replace(/,/g, "")),
+    suffix: match[2],
+  };
+}
+
+function StatNumber({ value }: { value: string }) {
+  const ref = useRef<HTMLElement>(null);
+  const isInView = useInView(ref, { once: true, amount: 0.8 });
+  const shouldReduceMotion = useReducedMotion();
+  const { target, suffix } = parseStatValue(value);
+  const [displayValue, setDisplayValue] = useState(
+    shouldReduceMotion ? target : 0,
+  );
+
+  useEffect(() => {
+    if (!isInView) {
+      return;
+    }
+
+    if (shouldReduceMotion || target === 0) {
+      setDisplayValue(target);
+      return;
+    }
+
+    const duration = 1400;
+    const startTime = window.performance.now();
+    let frameId = 0;
+
+    const update = (currentTime: number) => {
+      const progress = Math.min((currentTime - startTime) / duration, 1);
+      const easedProgress = 1 - Math.pow(1 - progress, 3);
+
+      setDisplayValue(Math.round(target * easedProgress));
+
+      if (progress < 1) {
+        frameId = window.requestAnimationFrame(update);
+      }
+    };
+
+    frameId = window.requestAnimationFrame(update);
+
+    return () => window.cancelAnimationFrame(frameId);
+  }, [isInView, shouldReduceMotion, target]);
+
+  return (
+    <strong ref={ref}>
+      {displayValue.toLocaleString()}
+      {suffix}
+    </strong>
   );
 }
 
@@ -802,6 +947,24 @@ function SectionTitle({
 }
 
 function About() {
+  const handleVideoCardMove = (event: MouseEvent<HTMLElement>) => {
+    const card = event.currentTarget;
+    const rect = card.getBoundingClientRect();
+    const pointerX = event.clientX - rect.left;
+    const pointerY = event.clientY - rect.top;
+    const rotateY = (pointerX / rect.width - 0.5) * 8;
+    const rotateX = -(pointerY / rect.height - 0.5) * 8;
+
+    card.style.transform = `perspective(900px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) translateZ(10px)`;
+    card.style.boxShadow = "0 22px 46px rgba(27,67,50,.18)";
+  };
+
+  const handleVideoCardLeave = (event: MouseEvent<HTMLElement>) => {
+    event.currentTarget.style.transform =
+      "perspective(900px) rotateX(0deg) rotateY(0deg) translateZ(0)";
+    event.currentTarget.style.boxShadow = "";
+  };
+
   return (
     <Section className="hp-section hp-about" id="about">
       <div className="hp-container hp-about-grid">
@@ -820,19 +983,25 @@ function About() {
             <span>Transparent treatment estimates</span>
           </div>
         </Reveal>
-        <RevealCard className="hp-about-card hp-tilt-card">
+        <RevealCard className="hp-about-media-wrap">
+          <div
+            className="hp-about-card"
+            onMouseLeave={handleVideoCardLeave}
+            onMouseMove={handleVideoCardMove}
+          >
           <CrossfadeLoopVideo
             ariaLabel="Certified veterinarians caring for a pet"
             src={certifiedVetsVideo}
           />
-          <div className="hp-about-card-badge">6 Certified Vets</div>
+          </div>
+          <div className="hp-about-card-badge">6 Certified Vets on Staff</div>
         </RevealCard>
       </div>
       <div className="hp-stats">
         <Stagger className="hp-container">
           {stats.map(([value, label]) => (
             <motion.div key={label} variants={itemVariants}>
-              <strong>{value}</strong>
+              <StatNumber value={value} />
               <span>{label}</span>
             </motion.div>
           ))}
@@ -844,7 +1013,7 @@ function About() {
 
 function WhyChooseUs() {
   return (
-    <Section className="hp-section hp-cream">
+    <Section className="hp-section hp-cream hp-why">
       <div className="hp-container">
         <SectionTitle title="Why Pet Parents Trust Us" />
         <Stagger className="hp-card-grid">
