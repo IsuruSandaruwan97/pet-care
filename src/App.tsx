@@ -36,6 +36,7 @@ const heroVideo = "/assets/videos/hero_banner_video.mp4";
 
 const certifiedVetsVideo = "/assets/videos/certified_vets.mp4";
 const videoLoopFadeSeconds = 0.55;
+const rightClickGuardEnabled = process.env.NEXT_PUBLIC_APP_ENV === "local";
 
 const navLinks = [
   ["Home", "#home"],
@@ -472,7 +473,10 @@ function CrossfadeLoopVideo({
     const markReadyIfLoaded = () => {
       const firstVideo = firstVideoRef.current;
 
-      if (firstVideo && firstVideo.readyState >= HTMLMediaElement.HAVE_CURRENT_DATA) {
+      if (
+        firstVideo &&
+        firstVideo.readyState >= HTMLMediaElement.HAVE_CURRENT_DATA
+      ) {
         setIsReady(true);
         setShowLoader(false);
       }
@@ -484,7 +488,8 @@ function CrossfadeLoopVideo({
       markReadyIfLoaded();
       setShowLoader(() => {
         const firstVideo = firstVideoRef.current;
-        return (firstVideo?.readyState ?? 0) >= HTMLMediaElement.HAVE_CURRENT_DATA
+        return (firstVideo?.readyState ?? 0) >=
+          HTMLMediaElement.HAVE_CURRENT_DATA
           ? false
           : true;
       });
@@ -521,11 +526,14 @@ function CrossfadeLoopVideo({
     });
     setActiveVideo(currentIndex === 0 ? 1 : 0);
 
-    window.setTimeout(() => {
-      currentVideo.pause();
-      currentVideo.currentTime = 0;
-      isTransitioningRef.current = false;
-    }, (videoLoopFadeSeconds + 0.08) * 1000);
+    window.setTimeout(
+      () => {
+        currentVideo.pause();
+        currentVideo.currentTime = 0;
+        isTransitioningRef.current = false;
+      },
+      (videoLoopFadeSeconds + 0.08) * 1000,
+    );
   };
 
   const handleTimeUpdate = (
@@ -572,10 +580,7 @@ function CrossfadeLoopVideo({
     <div
       aria-busy={!isReady}
       aria-label={ariaLabel}
-      className={classNames(
-        "hp-loop-video",
-        isReady && "hp-loop-video-ready",
-      )}
+      className={classNames("hp-loop-video", isReady && "hp-loop-video-ready")}
       role="img"
     >
       {[firstVideoRef, secondVideoRef].map((videoRef, index) => (
@@ -989,10 +994,10 @@ function About() {
             onMouseLeave={handleVideoCardLeave}
             onMouseMove={handleVideoCardMove}
           >
-          <CrossfadeLoopVideo
-            ariaLabel="Certified veterinarians caring for a pet"
-            src={certifiedVetsVideo}
-          />
+            <CrossfadeLoopVideo
+              ariaLabel="Certified veterinarians caring for a pet"
+              src={certifiedVetsVideo}
+            />
           </div>
           <div className="hp-about-card-badge">6 Certified Vets on Staff</div>
         </RevealCard>
@@ -1572,7 +1577,7 @@ export default function App() {
   return (
     <div className="hp-page">
       <ScrollProgress />
-      <RightClickGuard enabled={false} />
+      <RightClickGuard enabled={rightClickGuardEnabled} />
       <Header />
       <Hero />
       <About />
