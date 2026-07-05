@@ -150,10 +150,10 @@ body::-webkit-scrollbar {
   color: #fff;
   display: flex;
   flex-wrap: wrap;
-  font-size: 12px;
+  font-size: 10px;
   gap: 26px;
   justify-content: center;
-  padding: 16px 16px 12px 16px;
+  padding: 8px 16px 6px 16px;
 }
 
 .hp-topbar span,
