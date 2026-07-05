@@ -2,6 +2,7 @@
 
 import { Button } from "@/components/Button";
 import { Card } from "@/components/Card";
+import { DateTimePicker } from "@/components/DateTimePicker";
 import { Dropdown } from "@/components/Dropdown";
 import { Icon } from "@/components/Icon";
 import { IconBadge } from "@/components/IconBadge";
@@ -1191,7 +1192,7 @@ function Contact() {
                 </div>
               </div>
               <Dropdown name="reason" options={visitReasonOptions} />
-              <input type="datetime-local" />
+              <DateTimePicker name="appointmentAt" />
               <textarea placeholder="Additional Notes" rows={3} />
               <Button className="hp-contact-submit" type="submit" variant="unstyled">
                 Request Appointment
