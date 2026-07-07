@@ -21,7 +21,7 @@ import {
   Testimonials,
   WhyChooseUs,
   Services,
-} from "@/app/home-page/components";
+} from "@/screens/home-page/components";
 
 export default function HomePage() {
   return (
