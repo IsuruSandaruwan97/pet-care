@@ -376,6 +376,8 @@ body::-webkit-scrollbar {
 }
 
 .hp-nav-cta {
+  font-size: 11.2px;
+  padding: 8.8px 17.6px;
   white-space: nowrap;
 }
 
