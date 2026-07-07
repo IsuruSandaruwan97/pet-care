@@ -1,19 +1,22 @@
 ﻿"use client";
 
-import { Button } from "@/components/Button";
-import { Card } from "@/components/Card";
-import { CustomCursor } from "@/components/Cursor";
-import { DateTimePicker } from "@/components/DateTimePicker";
-import { Dropdown } from "@/components/Dropdown";
-import { Icon } from "@/components/Icon";
-import { IconBadge } from "@/components/IconBadge";
-import { PawMark } from "@/components/PawMark";
-import { Profile } from "@/components/Profile";
-import { ScrollProgress } from "@/components/ScrollProgress";
-import { ScrollToTop } from "@/components/ScrollToTop";
-import { Section } from "@/components/Section";
-import { SectionHeader } from "@/components/SectionHeader";
-import { SocialIcon } from "@/components/SocialIcon";
+import {
+  Button,
+  Card,
+  CustomCursor,
+  DateTimePicker,
+  Dropdown,
+  Icon,
+  IconBadge,
+  PawMark,
+  Profile,
+  RightClickGuard,
+  ScrollProgress,
+  ScrollToTop,
+  Section,
+  SectionHeader,
+  SocialIcon,
+} from "@/components/ui";
 import { classNames } from "@/utils/classNames";
 import {
   AnimatePresence,
@@ -31,7 +34,6 @@ import {
   type ReactNode,
   type SyntheticEvent,
 } from "react";
-import RightClickGuard from "./components/RightClickGuard";
 
 const heroVideo = "/assets/videos/hero_banner_video.mp4";
 

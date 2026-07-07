@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { PawMark } from "@/components/PawMark";
+import { PawMark } from "./PawMark";
 
 const interactiveSelector = [
   "a",
@@ -71,8 +71,12 @@ export function CustomCursor() {
     };
 
     document.body.classList.add("hp-custom-cursor-enabled");
-    window.addEventListener("pointermove", handlePointerMove, { passive: true });
-    window.addEventListener("pointerdown", handlePointerDown, { passive: true });
+    window.addEventListener("pointermove", handlePointerMove, {
+      passive: true,
+    });
+    window.addEventListener("pointerdown", handlePointerDown, {
+      passive: true,
+    });
     window.addEventListener("pointerup", handlePointerUp, { passive: true });
     document.documentElement.addEventListener("mouseleave", handlePointerLeave);
 
