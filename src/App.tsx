@@ -2,6 +2,7 @@
 
 import { Button } from "@/components/Button";
 import { Card } from "@/components/Card";
+import { CustomCursor } from "@/components/Cursor";
 import { DateTimePicker } from "@/components/DateTimePicker";
 import { Dropdown } from "@/components/Dropdown";
 import { Icon } from "@/components/Icon";
@@ -1576,6 +1577,7 @@ function FooterLinks({
 export default function App() {
   return (
     <div className="hp-page">
+      <CustomCursor />
       <ScrollProgress />
       <RightClickGuard enabled={rightClickGuardEnabled} />
       <Header />

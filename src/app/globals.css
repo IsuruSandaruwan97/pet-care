@@ -111,6 +111,67 @@ body::-webkit-scrollbar {
   overflow-x: hidden;
 }
 
+.hp-custom-cursor-enabled,
+.hp-custom-cursor-enabled * {
+  cursor: none !important;
+}
+
+.hp-custom-cursor {
+  height: 22px;
+  left: -11px;
+  opacity: 0;
+  pointer-events: none;
+  position: fixed;
+  top: -11px;
+  transition: opacity 0.18s ease;
+  width: 22px;
+  z-index: 9999;
+}
+
+.hp-custom-cursor-visible {
+  opacity: 1;
+}
+
+.hp-custom-cursor-paw {
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition:
+    color 0.16s ease,
+    filter 0.16s ease,
+    transform 0.16s ease;
+}
+
+.hp-custom-cursor-paw {
+  color: #f7b267;
+  filter:
+    drop-shadow(0 0 1px #143026)
+    drop-shadow(0 0 2px #143026)
+    drop-shadow(0 3px 8px rgba(0, 0, 0, 0.34));
+  height: 18px;
+  width: 18px;
+}
+
+.hp-custom-cursor-interactive .hp-custom-cursor-paw {
+  color: #fff8f0;
+  filter:
+    drop-shadow(0 0 1px var(--hp-green))
+    drop-shadow(0 0 3px var(--hp-green))
+    drop-shadow(0 5px 10px rgba(0, 0, 0, 0.36));
+  transform: translate(-50%, -50%) scale(1.14) rotate(-8deg);
+}
+
+.hp-custom-cursor-pressed .hp-custom-cursor-paw {
+  transform: translate(-50%, -50%) scale(0.9) rotate(-8deg);
+}
+
+@media (hover: none), (pointer: coarse) {
+  .hp-custom-cursor {
+    display: none;
+  }
+}
+
 .hp-scroll-progress {
   background: transparent;
   height: 3px;
