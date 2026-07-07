@@ -1,3 +1,4 @@
+"use client";
 import { parseStatValue } from "@/utils";
 import { useInView, useReducedMotion } from "motion/react";
 import { useRef, useState, useEffect } from "react";

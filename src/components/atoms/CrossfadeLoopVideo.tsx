@@ -1,3 +1,4 @@
+"use client";
 import { videoLoopFadeSeconds } from "@/constants";
 import { classNames } from "@/utils";
 import { useRef, useState, useEffect, SyntheticEvent } from "react";

@@ -26,9 +26,6 @@ import {
 export default function HomePage() {
   return (
     <div className="hp-page">
-      <CustomCursor />
-      <ScrollProgress />
-      <RightClickGuard enabled={rightClickGuardEnabled} />
       <Header />
       <Hero />
       <About />
@@ -42,7 +39,6 @@ export default function HomePage() {
       <FrequentlyAskedQuestions />
       <Contact />
       <Footer />
-      <ScrollToTop />
     </div>
   );
 }
