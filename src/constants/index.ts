@@ -11,7 +11,7 @@ export const navLinks = [
   { label: "Services", section: "services", page: "services" },
   { label: "Facilities", section: "facilities" },
   { label: "Our Vets", section: "team", page: "our-vets" },
-  { label: "Pet Care Tips", section: "tips" },
+  { label: "Pet Care Tips", section: "tips", page: "pet-care" },
   { label: "Pricing", section: "pricing", page: "pricing" },
   { label: "Testimonials", section: "testimonials" },
   { label: "Contact", section: "contact" },
