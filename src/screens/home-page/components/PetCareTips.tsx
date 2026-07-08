@@ -22,13 +22,13 @@ export function PetCareTips() {
               </div>
               <div className="hp-tip-body">
                 <h3>{tip}</h3>
-                <a href="#">Read More &rarr;</a>
+                <a href="/pet-care">Read More &rarr;</a>
               </div>
             </MotionCard>
           ))}
         </Stagger>
         <div className="hp-tips-more">
-          <a href="#tips">Read More Pet Care Tips &rarr;</a>
+          <a href="/pet-care">Read More Pet Care Tips &rarr;</a>
         </div>
       </div>
     </Section>

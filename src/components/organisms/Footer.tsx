@@ -47,6 +47,10 @@ export function Footer() {
               "Our Vets",
               resolveHref({ section: "team", page: "our-vets" }, pathname),
             ],
+            [
+              "Pet Care Tips",
+              resolveHref({ section: "tips", page: "pet-care" }, pathname),
+            ],
             ["Testimonials", resolveHref({ section: "testimonials" }, pathname)],
             ["Contact", resolveHref({ section: "contact" }, pathname)],
           ]}

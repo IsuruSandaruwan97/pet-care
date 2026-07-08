@@ -1,0 +1,449 @@
+.hp-pet-care-page {
+  background: var(--hp-cream);
+}
+
+.hp-pet-care-hero {
+  background:
+    linear-gradient(135deg, rgba(20, 48, 38, 0.96), rgba(27, 67, 50, 0.9)),
+    var(--hp-green);
+  color: #fff;
+  overflow: hidden;
+  padding: 168px 0 92px;
+  position: relative;
+}
+
+.hp-pet-care-hero-paw {
+  bottom: -90px;
+  color: rgba(242, 166, 90, 0.12);
+  height: 360px;
+  position: absolute;
+  right: -70px;
+  width: 360px;
+}
+
+.hp-pet-care-hero-grid {
+  align-items: center;
+  display: grid;
+  gap: 54px;
+  grid-template-columns: minmax(0, 0.96fr) minmax(340px, 0.82fr);
+  position: relative;
+  z-index: 1;
+}
+
+.hp-pet-care-kicker {
+  align-items: center;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 999px;
+  color: var(--hp-amber);
+  display: inline-flex;
+  font-size: 12px;
+  font-weight: 800;
+  gap: 8px;
+  letter-spacing: 0.08em;
+  margin-bottom: 22px;
+  padding: 10px 16px;
+  text-transform: uppercase;
+}
+
+.hp-pet-care-kicker .hp-icon {
+  font-size: 18px;
+}
+
+.hp-pet-care-hero h1,
+.hp-pet-care-section-head h2,
+.hp-pet-care-topic-copy h2,
+.hp-pet-care-checklist h2,
+.hp-pet-care-alert h2,
+.hp-pet-care-final h2 {
+  font-family: var(--font-fraunces), Georgia, serif;
+  font-weight: 600;
+  line-height: 1.08;
+}
+
+.hp-pet-care-hero h1 {
+  font-size: clamp(42px, 6vw, 70px);
+  max-width: 820px;
+}
+
+.hp-pet-care-hero p {
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 18px;
+  line-height: 1.72;
+  margin-top: 24px;
+  max-width: 660px;
+}
+
+.hp-pet-care-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 32px;
+}
+
+.hp-pet-care-actions .border-primary,
+.hp-pet-care-final-card .border-primary {
+  border-color: rgba(255, 255, 255, 0.46);
+  color: #fff;
+}
+
+.hp-pet-care-actions .border-primary:hover,
+.hp-pet-care-final-card .border-primary:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+
+.hp-pet-care-hero-media {
+  aspect-ratio: 0.92;
+  border: 12px solid rgba(255, 255, 255, 0.12);
+  border-radius: 28px;
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.24);
+  min-height: 500px;
+  overflow: hidden;
+  position: relative;
+}
+
+.hp-pet-care-hero-media img {
+  object-fit: cover;
+}
+
+.hp-pet-care-hero-card {
+  align-items: center;
+  background: rgba(255, 248, 240, 0.94);
+  border: 1px solid rgba(255, 255, 255, 0.62);
+  border-radius: 18px;
+  bottom: 20px;
+  color: var(--hp-green);
+  display: flex;
+  gap: 12px;
+  left: 20px;
+  padding: 16px 18px;
+  position: absolute;
+  right: 20px;
+  z-index: 2;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+
+.hp-pet-care-hero-card .hp-icon {
+  color: var(--hp-amber-dark);
+  font-size: 30px;
+}
+
+.hp-pet-care-hero-card span {
+  font-weight: 800;
+  line-height: 1.35;
+}
+
+.hp-pet-care-guides {
+  padding: 92px 0;
+}
+
+.hp-pet-care-section-head {
+  margin: 0 auto;
+  max-width: 720px;
+  text-align: center;
+}
+
+.hp-pet-care-section-head h2,
+.hp-pet-care-topic-copy h2,
+.hp-pet-care-checklist h2,
+.hp-pet-care-alert h2,
+.hp-pet-care-final h2 {
+  color: var(--hp-green);
+  font-size: clamp(32px, 4.8vw, 50px);
+}
+
+.hp-pet-care-featured-grid {
+  gap: 22px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: 44px;
+}
+
+.hp-pet-care-featured-card {
+  background: #fff;
+  border: 1px solid var(--hp-border);
+  border-radius: 20px;
+  box-shadow: 0 14px 34px rgba(27, 67, 50, 0.08);
+  display: flex;
+  flex-direction: column;
+  padding: 28px 28px 34px;
+  margin-bottom: 12px;
+}
+
+.hp-pet-care-featured-card > div {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+.hp-pet-care-featured-card .hp-icon {
+  color: var(--hp-green);
+  font-size: 34px;
+}
+
+.hp-pet-care-featured-card > div span {
+  background: var(--hp-mist);
+  border-radius: 999px;
+  color: var(--hp-honey-deep);
+  font-size: 11px;
+  font-weight: 800;
+  padding: 7px 11px;
+  text-transform: uppercase;
+}
+
+.hp-pet-care-featured-card h3 {
+  color: var(--hp-green);
+  font-family: var(--font-fraunces), Georgia, serif;
+  font-size: 26px;
+  font-weight: 600;
+  line-height: 1.16;
+  margin-top: 24px;
+}
+
+.hp-pet-care-featured-card p {
+  color: var(--hp-muted);
+  line-height: 1.62;
+  margin-top: 14px;
+}
+
+.hp-pet-care-featured-card a {
+  align-items: center;
+  color: var(--hp-amber-dark);
+  display: inline-flex;
+  font-weight: 800;
+  gap: 8px;
+  margin-top: auto;
+  padding-top: 24px;
+  text-decoration: none;
+}
+
+.hp-pet-care-featured-card a .hp-icon {
+  color: currentColor;
+  font-size: 18px;
+}
+
+.hp-pet-care-topics {
+  background: var(--hp-mist);
+  padding: 92px 0;
+}
+
+.hp-pet-care-topics-grid {
+  align-items: start;
+  display: grid;
+  gap: 44px;
+  grid-template-columns: minmax(0, 0.52fr) minmax(0, 1fr);
+}
+
+.hp-pet-care-topic-copy {
+  position: sticky;
+  top: 120px;
+}
+
+.hp-pet-care-topic-copy p {
+  color: var(--hp-muted);
+  font-size: 17px;
+  line-height: 1.7;
+  margin-top: 20px;
+}
+
+.hp-pet-care-topic-list {
+  gap: 16px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.hp-pet-care-topic-card {
+  align-items: flex-start;
+  background: #fff;
+  border: 1px solid var(--hp-border);
+  border-radius: 18px;
+  display: flex;
+  gap: 16px;
+  padding: 22px 22px 28px;
+  margin-bottom: 12px;
+}
+
+.hp-pet-care-topic-card > .hp-icon {
+  background: rgba(242, 166, 90, 0.16);
+  border-radius: 14px;
+  color: var(--hp-amber-dark);
+  font-size: 44px;
+  padding: 10px;
+}
+
+.hp-pet-care-topic-card h3 {
+  color: var(--hp-green);
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.hp-pet-care-topic-card p {
+  color: var(--hp-muted);
+  line-height: 1.58;
+  margin-top: 8px;
+}
+
+.hp-pet-care-seasonal {
+  padding: 92px 0;
+}
+
+.hp-pet-care-seasonal-grid {
+  display: grid;
+  gap: 24px;
+  grid-template-columns: minmax(0, 1fr) minmax(320px, 0.74fr);
+}
+
+.hp-pet-care-checklist,
+.hp-pet-care-alert {
+  border-radius: 24px;
+  padding: 38px;
+}
+
+.hp-pet-care-checklist {
+  background: #fff;
+  border: 1px solid var(--hp-border);
+  box-shadow: 0 16px 40px rgba(27, 67, 50, 0.08);
+}
+
+.hp-pet-care-checklist ul {
+  display: grid;
+  gap: 14px;
+  list-style: none;
+  margin: 28px 0 0;
+  padding: 0;
+}
+
+.hp-pet-care-checklist li {
+  align-items: center;
+  color: var(--hp-muted);
+  display: flex;
+  gap: 12px;
+  line-height: 1.55;
+}
+
+.hp-pet-care-checklist li .hp-icon {
+  color: #2d6a4f;
+  font-size: 22px;
+}
+
+.hp-pet-care-alert {
+  background: var(--hp-green);
+  color: #fff;
+}
+
+.hp-pet-care-alert > .hp-icon {
+  color: var(--hp-amber);
+  font-size: 56px;
+}
+
+.hp-pet-care-alert h2 {
+  color: #fff;
+  font-size: clamp(28px, 4vw, 40px);
+  margin-top: 22px;
+}
+
+.hp-pet-care-alert div {
+  display: grid;
+  gap: 10px;
+  margin: 24px 0 28px;
+}
+
+.hp-pet-care-alert span {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 12px;
+  color: rgba(255, 255, 255, 0.82);
+  padding: 12px 14px;
+}
+
+.hp-pet-care-final {
+  padding: 0 0 88px;
+}
+
+.hp-pet-care-final-card {
+  background:
+    radial-gradient(
+      circle at 50% -20%,
+      rgba(242, 166, 90, 0.3),
+      transparent 36%
+    ),
+    linear-gradient(135deg, var(--hp-green-dark), var(--hp-green));
+  border-radius: 28px;
+  box-shadow: 0 26px 60px rgba(27, 67, 50, 0.2);
+  color: rgba(255, 255, 255, 0.76);
+  padding: 68px 44px;
+  text-align: center;
+}
+
+.hp-pet-care-final-card h2 {
+  color: #fff;
+}
+
+.hp-pet-care-final-card p {
+  font-size: 18px;
+  line-height: 1.6;
+  margin: 20px auto 0;
+  max-width: 640px;
+}
+
+.hp-pet-care-final-card > div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
+  margin-top: 34px;
+}
+
+@media (max-width: 900px) {
+  .hp-pet-care-hero-grid,
+  .hp-pet-care-topics-grid,
+  .hp-pet-care-seasonal-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hp-pet-care-hero-media {
+    aspect-ratio: 1.2;
+    min-height: 0;
+  }
+
+  .hp-pet-care-topic-copy {
+    position: static;
+  }
+
+  .hp-pet-care-featured-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .hp-pet-care-hero {
+    padding: 132px 0 64px;
+  }
+
+  .hp-pet-care-guides,
+  .hp-pet-care-topics,
+  .hp-pet-care-seasonal {
+    padding: 68px 0;
+  }
+
+  .hp-pet-care-hero-media {
+    aspect-ratio: 0.95;
+    border-width: 8px;
+    border-radius: 22px;
+  }
+
+  .hp-pet-care-topic-list {
+    grid-template-columns: 1fr;
+  }
+
+  .hp-pet-care-checklist,
+  .hp-pet-care-alert,
+  .hp-pet-care-final-card {
+    padding: 28px 22px;
+  }
+
+  .hp-pet-care-actions a,
+  .hp-pet-care-final-card a {
+    width: 100%;
+  }
+}
