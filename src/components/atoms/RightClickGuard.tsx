@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
+import { Icon } from "./Icon";
 
 type RightClickGuardProps = {
   enabled: boolean;
@@ -73,9 +74,7 @@ export default function RightClickGuard({ enabled }: RightClickGuardProps) {
     >
       <div className="absolute inset-0 bg-black/15" />
       <div className="relative flex items-center gap-2 rounded-lg border border-red-500/60 bg-red-900/70 px-4 py-2 text-center text-xs font-semibold text-red-100 shadow-[0_0_20px_rgba(239,68,68,0.35)]">
-        <span className="material-symbols-outlined text-sm text-red-300">
-          warning
-        </span>
+        <Icon className="text-sm text-red-300" name="warning" />
         <span>Right click and shortcut keys are disabled.</span>
       </div>
     </div>

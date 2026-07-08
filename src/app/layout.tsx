@@ -20,19 +20,68 @@ export default function RootLayout({
   return (
     <html className="scroll-smooth" lang="en">
       <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
+          rel="preload"
+          href="/assets/fonts/inter-latin-400-800.woff2"
+          as="font"
+          type="font/woff2"
           crossOrigin=""
         />
         <link
-          href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&display=swap"
-          rel="stylesheet"
+          rel="preload"
+          href="/assets/fonts/fraunces-latin-500-600.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin=""
         />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
-          rel="stylesheet"
+        <style
+          dangerouslySetInnerHTML={{
+            __html: `
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400 800;
+  font-display: swap;
+  src: url("/assets/fonts/inter-latin-400-800.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Inter Fallback";
+  src: local("Arial");
+  size-adjust: 107%;
+  ascent-override: 90%;
+  descent-override: 22%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: "Fraunces";
+  font-style: normal;
+  font-weight: 500 600;
+  font-display: swap;
+  src: url("/assets/fonts/fraunces-latin-500-600.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Fraunces";
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/assets/fonts/fraunces-latin-italic-400.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Fraunces Fallback";
+  src: local("Georgia");
+  size-adjust: 95%;
+  ascent-override: 95%;
+  descent-override: 24%;
+  line-gap-override: 0%;
+}
+:root {
+  --font-inter: "Inter", "Inter Fallback", Arial, sans-serif;
+  --font-fraunces: "Fraunces", "Fraunces Fallback", Georgia, serif;
+}`,
+          }}
         />
         <link
           rel="preload"
