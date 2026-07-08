@@ -1,8 +1,28 @@
 import { Section, Icon, Stagger, PawMark } from "@/components/atoms";
 import { FloatingPaws } from "@/components/molecules";
-import { heroVideo, staggerVariants, itemVariants } from "@/constants";
+import {
+  heroVideo,
+  staggerVariants,
+  itemVariants,
+  revealTransition,
+} from "@/constants";
 import { trustChips } from "@/data";
 import { motion } from "motion/react";
+
+const heroTypingCompleteDelay = 4.2;
+
+const delayedHeroItemVariants = {
+  hidden: itemVariants.hidden,
+  visible: {
+    opacity: 1,
+    y: 0,
+    filter: "blur(0px)",
+    transition: {
+      ...revealTransition,
+      delay: heroTypingCompleteDelay,
+    },
+  },
+};
 
 export function Hero() {
   return (
@@ -26,31 +46,52 @@ export function Hero() {
         variants={staggerVariants}
       >
         <h1>
-          <motion.span variants={itemVariants}>
-            Compassionate Care for Your
+          <motion.span
+            className="hp-type-line hp-type-line-one"
+            variants={itemVariants}
+          >
+            Compassionate Care
           </motion.span>
-          <motion.span variants={itemVariants}>
-            <em>Cats and Dogs</em>, Every Step of the Way
+          <motion.span
+            className="hp-type-line hp-type-line-two"
+            variants={itemVariants}
+          >
+            for Your
+          </motion.span>
+          <motion.span
+            className="hp-type-line hp-type-line-three"
+            variants={itemVariants}
+          >
+            <em>Cats and Dogs</em>, Every
+          </motion.span>
+          <motion.span
+            className="hp-type-line hp-type-line-four"
+            variants={itemVariants}
+          >
+            Step of the Way
           </motion.span>
         </h1>
-        <motion.p variants={itemVariants}>
+        <motion.p variants={delayedHeroItemVariants}>
           From routine checkups to emergency care, our experienced veterinary
           team treats your pets like family - because they're family to you.
         </motion.p>
-        <motion.div className="hp-hero-actions" variants={itemVariants}>
+        <motion.div
+          className="hp-hero-actions"
+          variants={delayedHeroItemVariants}
+        >
           <motion.a
             className="hp-cta hp-cta-lg"
             href="#contact"
-            whileHover={{ scale: 1.04 }}
-            whileTap={{ scale: 0.96 }}
+            whileHover={{ scale: 1.05, y: -3 }}
+            whileTap={{ scale: 0.96, y: 0 }}
           >
             Book an Appointment
           </motion.a>
           <motion.a
             className="hp-call"
             href="tel:5551234567"
-            whileHover={{ scale: 1.03 }}
-            whileTap={{ scale: 0.97 }}
+            whileHover={{ scale: 1.04, y: -3 }}
+            whileTap={{ scale: 0.97, y: 0 }}
           >
             <Icon name="call" /> Call Us: (555) 123-4567
           </motion.a>
@@ -61,7 +102,8 @@ export function Hero() {
           <motion.div
             className="hp-trust-chip"
             key={chip}
-            variants={itemVariants}
+            variants={delayedHeroItemVariants}
+            whileHover={{ y: -5, scale: 1.03 }}
           >
             <PawMark /> {chip}
           </motion.div>
