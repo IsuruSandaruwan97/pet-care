@@ -14,24 +14,16 @@ export function RevealCard({
 }) {
   const shouldReduceMotion = useReducedMotion();
 
-  if (shouldReduceMotion) {
-    return (
-      <Card className={className} unstyled>
-        {children}
-      </Card>
-    );
-  }
-
   return (
     <Card
       as={motion.div}
       className={className}
-      initial="hidden"
+      initial={shouldReduceMotion ? false : "hidden"}
       transition={{ delay }}
       unstyled
       variants={itemVariants}
       viewport={{ once: true, amount: 0.18 }}
-      whileInView="visible"
+      whileInView={shouldReduceMotion ? undefined : "visible"}
     >
       {children}
     </Card>

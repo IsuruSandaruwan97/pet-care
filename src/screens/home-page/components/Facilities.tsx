@@ -10,10 +10,16 @@ export function Facilities() {
           title="Designed for Comfort and Clarity"
         />
         <Stagger className="hp-facilities">
-          {facilities.map(([title, text, image]) => (
+          {facilities.map(([title, text, visual]) => (
             <MotionCard className="hp-facility-card" key={title}>
-              <img src={image} alt={title} />
-              <div>
+              <div
+                aria-label={title}
+                className={`hp-facility-visual hp-facility-${visual}`}
+                role="img"
+              >
+                <span>{title}</span>
+              </div>
+              <div className="hp-facility-body">
                 <h3>{title}</h3>
                 <p>{text}</p>
               </div>

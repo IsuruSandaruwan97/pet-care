@@ -32,21 +32,26 @@ function sameDay(first: Date, second: Date) {
 }
 
 export function DateTimePicker({ className = "", name }: DateTimePickerProps) {
-  const today = useMemo(() => new Date(), []);
-  const roundedMinutes = Math.ceil(today.getMinutes() / 5) * 5;
-  const initialHours =
-    roundedMinutes === 60 ? (today.getHours() + 1) % 24 : today.getHours();
-  const initialMinutes = roundedMinutes === 60 ? 0 : roundedMinutes;
-  const nowTime = `${String(initialHours).padStart(2, "0")}:${String(
-    initialMinutes,
-  ).padStart(2, "0")}`;
   const [open, setOpen] = useState(false);
-  const [monthDate, setMonthDate] = useState(
-    new Date(today.getFullYear(), today.getMonth(), 1),
-  );
-  const [selectedDate, setSelectedDate] = useState(today);
-  const [selectedTime, setSelectedTime] = useState(nowTime);
+  const [monthDate, setMonthDate] = useState<Date | null>(null);
+  const [selectedDate, setSelectedDate] = useState<Date | null>(null);
+  const [selectedTime, setSelectedTime] = useState("");
   const rootRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const today = new Date();
+    const roundedMinutes = Math.ceil(today.getMinutes() / 5) * 5;
+    const initialHours =
+      roundedMinutes === 60 ? (today.getHours() + 1) % 24 : today.getHours();
+    const initialMinutes = roundedMinutes === 60 ? 0 : roundedMinutes;
+    const nowTime = `${String(initialHours).padStart(2, "0")}:${String(
+      initialMinutes,
+    ).padStart(2, "0")}`;
+
+    setMonthDate(new Date(today.getFullYear(), today.getMonth(), 1));
+    setSelectedDate(today);
+    setSelectedTime(nowTime);
+  }, []);
 
   useEffect(() => {
     const onPointerDown = (event: PointerEvent) => {
@@ -60,6 +65,10 @@ export function DateTimePicker({ className = "", name }: DateTimePickerProps) {
   }, []);
 
   const days = useMemo(() => {
+    if (!monthDate) {
+      return [];
+    }
+
     const firstDay = new Date(
       monthDate.getFullYear(),
       monthDate.getMonth(),
@@ -82,10 +91,18 @@ export function DateTimePicker({ className = "", name }: DateTimePickerProps) {
     ];
   }, [monthDate]);
 
-  const hiddenValue = `${toDateValue(selectedDate)}T${selectedTime}`;
-  const triggerLabel = `${displayFormatter.format(selectedDate)} at ${selectedTime}`;
+  const hiddenValue =
+    selectedDate && selectedTime ? `${toDateValue(selectedDate)}T${selectedTime}` : "";
+  const triggerLabel =
+    selectedDate && selectedTime
+      ? `${displayFormatter.format(selectedDate)} at ${selectedTime}`
+      : "Select appointment date and time";
 
   const changeMonth = (offset: number) => {
+    if (!monthDate) {
+      return;
+    }
+
     setMonthDate(
       new Date(monthDate.getFullYear(), monthDate.getMonth() + offset, 1),
     );
@@ -115,7 +132,7 @@ export function DateTimePicker({ className = "", name }: DateTimePickerProps) {
             >
               <Icon name="chevron_left" />
             </Button>
-            <strong>{monthFormatter.format(monthDate)}</strong>
+            <strong>{monthDate ? monthFormatter.format(monthDate) : ""}</strong>
             <Button
               aria-label="Next month"
               onClick={() => changeMonth(1)}
@@ -134,7 +151,7 @@ export function DateTimePicker({ className = "", name }: DateTimePickerProps) {
             {days.map((date, index) =>
               date ? (
                 <Button
-                  aria-pressed={sameDay(date, selectedDate)}
+                  aria-pressed={selectedDate ? sameDay(date, selectedDate) : false}
                   className="hp-datetime-day"
                   key={toDateValue(date)}
                   onClick={() => setSelectedDate(date)}

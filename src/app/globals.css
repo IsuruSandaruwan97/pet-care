@@ -1003,14 +1003,74 @@ body::-webkit-scrollbar {
   overflow: hidden;
 }
 
-.hp-facility-card img {
+.hp-facility-card img,
+.hp-facility-visual {
   aspect-ratio: 16 / 10;
   display: block;
   object-fit: cover;
   width: 100%;
 }
 
-.hp-facility-card div {
+.hp-facility-visual {
+  align-items: end;
+  background:
+    linear-gradient(160deg, rgba(27, 67, 50, 0.2), rgba(27, 67, 50, 0.78)),
+    linear-gradient(45deg, #d8eadf 0 25%, #f6efe6 25% 50%, #cde0d4 50% 75%, #fff8f0 75%);
+  background-size: auto, 26px 26px;
+  color: #fff;
+  display: flex;
+  min-height: 180px;
+  overflow: hidden;
+  padding: 20px;
+  position: relative;
+}
+
+.hp-facility-visual::before {
+  background:
+    linear-gradient(90deg, transparent 16px, rgba(255, 255, 255, 0.38) 16px 20px, transparent 20px),
+    linear-gradient(0deg, transparent 16px, rgba(255, 255, 255, 0.38) 16px 20px, transparent 20px);
+  background-size: 42px 42px;
+  content: "";
+  inset: 0;
+  opacity: 0.34;
+  position: absolute;
+}
+
+.hp-facility-visual::after {
+  background: rgba(255, 255, 255, 0.86);
+  border-radius: 18px 18px 0 0;
+  bottom: 0;
+  box-shadow:
+    -42px -28px 0 -8px rgba(242, 166, 90, 0.75),
+    46px -38px 0 -10px rgba(27, 67, 50, 0.28);
+  content: "";
+  height: 62px;
+  position: absolute;
+  right: 28px;
+  width: 118px;
+}
+
+.hp-facility-exam-room {
+  background:
+    linear-gradient(160deg, rgba(27, 67, 50, 0.18), rgba(27, 67, 50, 0.8)),
+    linear-gradient(135deg, #e3f0eb, #fff8f0 46%, #f2a65a 46% 52%, #d8eadf 52%);
+}
+
+.hp-facility-surgery {
+  background:
+    linear-gradient(160deg, rgba(27, 67, 50, 0.12), rgba(27, 67, 50, 0.82)),
+    repeating-linear-gradient(90deg, #d8ecef 0 18px, #edf7f4 18px 36px);
+}
+
+.hp-facility-visual span {
+  font-family: var(--font-fraunces), Georgia, serif;
+  font-size: 24px;
+  font-weight: 600;
+  position: relative;
+  z-index: 1;
+}
+
+.hp-facility-body {
   padding: 22px;
 }
 
@@ -1059,7 +1119,48 @@ body::-webkit-scrollbar {
   width: 100%;
 }
 
-.hp-team-front div {
+.hp-team-portrait {
+  align-items: center;
+  background:
+    radial-gradient(circle at 50% 32%, rgba(255, 255, 255, 0.94) 0 34px, transparent 35px),
+    radial-gradient(circle at 50% 72%, rgba(255, 255, 255, 0.88) 0 74px, transparent 75px),
+    linear-gradient(145deg, #d8eadf, #f6efe6 48%, #c7dcd1);
+  color: var(--hp-green);
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  position: relative;
+  width: 100%;
+}
+
+.hp-team-portrait::before {
+  background: rgba(27, 67, 50, 0.08);
+  border-radius: 999px;
+  content: "";
+  height: 190px;
+  position: absolute;
+  top: 84px;
+  width: 190px;
+}
+
+.hp-team-portrait span {
+  align-items: center;
+  background: var(--hp-green);
+  border: 4px solid rgba(255, 255, 255, 0.8);
+  border-radius: 999px;
+  box-shadow: 0 16px 40px rgba(27, 67, 50, 0.2);
+  color: #fff;
+  display: flex;
+  font-family: var(--font-fraunces), Georgia, serif;
+  font-size: 34px;
+  font-weight: 600;
+  height: 92px;
+  justify-content: center;
+  position: relative;
+  width: 92px;
+}
+
+.hp-team-front-copy {
   background: linear-gradient(to top, rgba(0, 0, 0, 0.78), transparent);
   bottom: 0;
   color: #fff;

@@ -9,14 +9,23 @@ type ProfileProps = {
   variant?: "default" | "happyPaws";
 };
 
-export function Profile({ name, role, bio, image, label, variant = "default" }: ProfileProps) {
+export function Profile({
+  name,
+  role,
+  bio,
+  image,
+  label,
+  variant = "default",
+}: ProfileProps) {
   if (variant === "happyPaws") {
     return (
       <article className="hp-team-card">
         <div className="hp-team-inner">
           <div className="hp-team-front">
-            <img src={image} alt={name} />
-            <div>
+            <div className="hp-team-portrait" aria-label={name} role="img">
+              <img src={image} alt={name} />
+            </div>
+            <div className="hp-team-front-copy">
               {label ? <span>{label}</span> : null}
               <h3>{name}</h3>
               <p>{role}</p>
@@ -45,7 +54,10 @@ export function Profile({ name, role, bio, image, label, variant = "default" }: 
         <div className="flip-card-back absolute flex h-full w-full flex-col items-center justify-center rounded-2xl bg-surface p-xl text-center">
           <h4 className="mb-4 font-headline-md text-primary">{name}</h4>
           <p className="mb-6 text-on-surface-variant">{bio}</p>
-          <Button variant="ghost" className="rounded-none border-b border-primary px-0 py-1 font-bold">
+          <Button
+            variant="ghost"
+            className="rounded-none border-b border-primary px-0 py-1 font-bold"
+          >
             Full Bio
           </Button>
         </div>

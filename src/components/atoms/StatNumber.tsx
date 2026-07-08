@@ -8,9 +8,7 @@ export function StatNumber({ value }: { value: string }) {
   const isInView = useInView(ref, { once: true, amount: 0.8 });
   const shouldReduceMotion = useReducedMotion();
   const { target, suffix } = parseStatValue(value);
-  const [displayValue, setDisplayValue] = useState(
-    shouldReduceMotion ? target : 0,
-  );
+  const [displayValue, setDisplayValue] = useState(0);
 
   useEffect(() => {
     if (!isInView) {

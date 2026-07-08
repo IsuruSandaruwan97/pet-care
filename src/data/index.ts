@@ -124,17 +124,17 @@ export const facilities = [
   [
     "Reception Area",
     "A warm and welcoming space designed for comfort.",
-    "https://lh3.googleusercontent.com/aida/AP1WRLstm07UrrcNsl2iL9PVuiqf3SYI_1kiXMdXCHzp-IhokhMi7BAWOHdM7hqF7C3_lqb0-zbjXXwkg5gCu9_WMTBhj9cJssFPHQmJCfK4CwYeX0fq1E3YH6uuB7LTebu6RcSBm9AOHiIKXfsWtpkFgQrwaU36bk7PnMkkcy7gKdeHkJeY21NkoqMZuOyFWGf9z1kYKtNcJ1HltX6dTv1Pep5fvzkU5xxm7UKwyYJ7sNtfK7dwoyWjXUclB6tz",
+    "reception",
   ],
   [
     "Exam Room",
     "Modern diagnostics in a fear-free clinical setting.",
-    "https://lh3.googleusercontent.com/aida/AP1WRLu8n2pgKiS32AsLBkSJP4oKkuOqL_noGj1Tyz1VYzTgq2_5ZHnDBqwxn30zFwlkvz3VOqH_YcUBw0yrDThWcYxlXAq7SWzNwD60sWHu3pEBEhgQQy_MUNEQ_iaAkSFD6xmrAAB6iMU3vRTnIV1sqXrfakPyvB3Jg1Dp_p8_xcnWmrQLydPt9pGyZybqmcOeeOepJiPZkR1loXZBThlTes6uidHaVqgQxOItcRJS_Pbrr4IgUKMj49pPh0U",
+    "exam-room",
   ],
   [
     "Surgical Suite",
     "Advanced technology for precise and safe procedures.",
-    "https://lh3.googleusercontent.com/aida/AP1WRLvl9Lw9Jqd24nQMHcO_5pAjplyBfr0RV3YXS4BjF_NNzYdX-zWQ8yekAYDVNOFwHkKZzfutF_QjJuhuThQnNeiZHoiIzpuU92oTBLcs68oeOr7e0VnEDPW0T55a4zwnFrjk8IPAf--d507QlpGVy0rGZ6Xar2nhdsWX8IggbbqQ85coZ-chjh7tBpW1e9VhLh5D4XxdnjHss2XCKQhQ4OR0o-RKXhBFqJz6BY9vPjkwIcQXlV-Xxu77XRus",
+    "surgery",
   ],
 ];
 
@@ -144,28 +144,28 @@ export const team = [
     "Lead Veterinarian - 15 yrs",
     "Specializing in internal medicine and senior pet wellness, Dr. Mitchell has a soft spot for grumpy old cats and the families who love them.",
     "TEAM HEADSHOT - Dr. Mitchell",
-    "https://lh3.googleusercontent.com/aida-public/AB6AXuDIGJRcfSy0vpsMmHarG4TcFAy783nsmtvOsM3sU48IpBBJtTetIfh9XLWXOoox7LT193_ppDUk89_GEUic0-a1cEiaNOQPERTZVy6tCGFKeq-P8odww9U85Em0H18j-rT38Hm2ECncK1c3qAJmZKNQSptiD73SvOL2u6kDxnaH3uBivlSnpIeuCzRtFXJsBijquVa_QT-SHZd8ikMmZhOXcTgL5DpkKpyXe4AmRxlPYCjfjQV8CJynjC7Ftpil4LG4Xm9VOC8bEIES",
+    "SM",
   ],
   [
     "Dr. James Okafor, DVM",
     "Surgical Specialist - 10 yrs",
     "Dr. Okafor leads our surgical team, with a particular focus on orthopedic and soft-tissue procedures for dogs of all sizes.",
     "TEAM HEADSHOT - Dr. Okafor",
-    "https://lh3.googleusercontent.com/aida-public/AB6AXuB4Bjz90oWgfmYOry5M-jfDf-R5z8YCdkmNw45LozmTqP8Q_5NxtRDvkrvbS5J1U86px3fHhjXRQhMCb1vJnNxJPQtj07so1liW-m2-hdlCWXrsHZBoAID-sRXeO0IOE6uy6EmAeYI38LExEV4zMJdgh41hbmVOo5f1UmgiLmSI3_aNzTZfZxSifDZYH-CdAwnN6209m9KfSnC_t725-LLeeoHWZkTXc1g_p0tZCoVypg8LwspF_eH2AJaeMDaOu-Dv2lEwCHqnIvaK",
+    "JO",
   ],
   [
     "Dr. Priya Nair, DVM",
     "Feline & Exotic Care - 8 yrs",
     "A self-described cat whisperer, Dr. Nair has built her career around fear-free handling techniques for anxious feline patients.",
     "TEAM HEADSHOT - Dr. Nair",
-    "https://lh3.googleusercontent.com/aida-public/AB6AXuAzRHD-rOZYWkagNsKvDkZDU1XNKZZ-x3Rh4ELT1o2kgA6NGPCFdwcPbGANii9QnDVBXe7Z-LKTO9FER6smRTErCMCeXRW3ItVtG4j6xguzTZ86c-G1Agz7JKtiXBFda95nvQdzae4tQOhTfiHb4THzhBamj9DnLML5yo9vY2h47d-bOgBZZVNbLp2pK4SxQ1Y7AHAzh5OCxUj9f3TrfjaCahYpfkjzIoLZQxZS43poAICqqiPWlVsNfQB62DktLI3RBIC8DRbLTveo",
+    "PN",
   ],
   [
     "Dr. Michael Chen, DVM",
     "Emergency & Critical Care - 12 yrs",
     "Dr. Chen heads our emergency department, bringing calm, decisive care to high-stress situations.",
     "TEAM HEADSHOT - Dr. Chen",
-    "https://lh3.googleusercontent.com/aida-public/AB6AXuBkO3mS6_QnCeAgbF5Jcgp6Ee_e-I8ivFFWczy-Y39kLGUwYu1_6rSdHuY94LH6VIy9q4TguHNmnpgt0O5c_riGYUrqSVuZbfL2vIsTKd3nyrNRCRY8a2MBkDQ7wUJLvG7jg6g7HYXxwtj-uZeGEJJTIyASnjpqZSq1YClGIoQCq4CsGgZRmkfipOpxN2LrIwRu_jUlILv6I3BrEh3iWEss2APjHBKfS9q2VSHuzOv2Z3hPxVrROivcUTDX-CcZ4gvTelazuk9Evz4G",
+    "MC",
   ],
 ];
 
