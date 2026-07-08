@@ -4,6 +4,7 @@ import {
   Stagger,
   MotionCard,
   Reveal,
+  Button,
 } from "@/components/atoms";
 import { pricing } from "@/data";
 import { classNames } from "@/utils";
@@ -51,6 +52,11 @@ export function Pricing() {
         <Reveal className="hp-pricing-note">
           All packages can be customized. Ask our front desk about multi-pet
           discounts and payment plans.
+        </Reveal>
+        <Reveal className="hp-pricing-more">
+          <Button href="/pricing" variant="secondary">
+            See All Plans
+          </Button>
         </Reveal>
       </div>
     </Section>

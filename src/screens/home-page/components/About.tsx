@@ -1,5 +1,6 @@
 import {
   Section,
+  Button,
   Reveal,
   RevealCard,
   CrossfadeLoopVideo,
@@ -40,7 +41,14 @@ export function About() {
             Happy Paws was built for pet parents who want expert medical care
             without the cold clinic feeling. Our team blends modern diagnostics,
             thoughtful communication, and low-stress handling so every visit
-            feels easier for pets and people.
+            feels easier for pets and people.{" "}
+            <Button
+              className="hp-about-inline-button"
+              href="/about-us"
+              variant="unstyled"
+            >
+              See more
+            </Button>
           </p>
           <div className="hp-about-list">
             <span>AAHA-aligned care standards</span>

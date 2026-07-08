@@ -945,6 +945,28 @@ body::-webkit-scrollbar {
   margin-top: 22px;
 }
 
+.hp-about-inline-button {
+  background: none;
+  border: 0;
+  border-bottom: 2px solid rgba(242, 166, 90, 0.42);
+  color: var(--hp-green);
+  cursor: pointer;
+  display: inline;
+  font: inherit;
+  font-weight: 700;
+  padding: 0 0 2px;
+  transition:
+    border-color 0.2s,
+    color 0.2s;
+}
+
+.hp-about-inline-button:hover,
+.hp-about-inline-button:focus-visible {
+  border-color: var(--hp-amber);
+  color: var(--hp-amber-dark);
+  outline: none;
+}
+
 .hp-about-list {
   display: flex;
   flex-wrap: wrap;
@@ -1464,6 +1486,7 @@ body::-webkit-scrollbar {
 
 .hp-pricing-section {
   background: var(--hp-green);
+  padding-bottom: 72px;
 }
 
 .hp-pricing-section .hp-section-title {
@@ -1599,6 +1622,17 @@ body::-webkit-scrollbar {
   margin-top: 32px;
   text-align: center;
 }
+
+.hp-pricing-more {
+  display: flex;
+  justify-content: center;
+  margin-top: 22px;
+}
+
+.hp-pricing-more a {
+  box-shadow: 0 14px 32px rgba(242, 166, 90, 0.2);
+}
+
 .hp-title-row {
   align-items: flex-end;
   display: flex;
@@ -1733,7 +1767,7 @@ body::-webkit-scrollbar {
 
 .hp-pet-care-tips {
   background: var(--hp-mist);
-  padding: 100px 0;
+  padding: 100px 0 72px;
 }
 
 .hp-reference-title {

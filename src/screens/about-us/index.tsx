@@ -1,6 +1,13 @@
 "use client";
 
-import { Button, Icon, MotionCard, Reveal, Section } from "@/components/atoms";
+import {
+  Button,
+  Icon,
+  MotionCard,
+  Reveal,
+  Section,
+  Stagger,
+} from "@/components/atoms";
 import { Footer, Header } from "@/components/organisms";
 import Image from "next/image";
 import "./styles.css";
@@ -11,23 +18,39 @@ const stats = [
   ["98%", "Happy Patients"],
 ] as const;
 
+const trustPoints = [
+  ["verified_user", "AAHA-aligned standards"],
+  ["favorite", "Fear-free handling"],
+  ["science", "Modern diagnostics"],
+] as const;
+
 const philosophy = [
   [
+    "stethoscope",
     "Whole-Pet Wellness",
     "We don't just treat symptoms; we look at nutrition, behavior, and environment to ensure holistic health.",
   ],
   [
+    "chat",
     "Transparent Medicine",
     "Clear communication is our priority. We empower you with the knowledge to make the best decisions.",
   ],
   [
+    "favorite",
     "Stress-Free Visits",
     "Our clinic is designed to be a calm oasis, utilizing Fear Free techniques for every interaction.",
   ],
   [
+    "verified_user",
     "Inclusive Care",
     "Every animal, regardless of breed or background, deserves elite medical attention and kindness.",
   ],
+] as const;
+
+const milestones = [
+  ["2009", "Opened as a neighborhood clinic with one exam room."],
+  ["2016", "Expanded diagnostics, surgery, and dental care under one roof."],
+  ["Today", "A six-vet team serving cats, dogs, and the families who love them."],
 ] as const;
 
 const images = {
@@ -47,8 +70,11 @@ export function AboutUs() {
         <Section className="hp-about-story">
           <div className="hp-container hp-about-story-grid">
             <Reveal className="hp-about-story-copy">
-              <span>Our Journey Since 2009</span>
-              <h1>Started with a wag, fueled by heart.</h1>
+              <span className="hp-about-kicker">
+                <Icon name="verified" />
+                Our Journey Since 2009
+              </span>
+              <h1>Veterinary care built around trust, comfort, and clarity.</h1>
               <p>
                 In the winter of 2009, Dr. Sarah Miller realized her dream. In a
                 small, sun-drenched storefront, Happy Paws was born from a
@@ -58,12 +84,18 @@ export function AboutUs() {
                 cornerstone, built on the trust of thousands of local pet
                 parents.
               </p>
-              <div className="hp-about-stats">
-                {stats.map(([value, label]) => (
-                  <div key={label}>
-                    <strong>{value}</strong>
-                    <span>{label}</span>
-                  </div>
+              <div className="hp-about-hero-actions">
+                <Button href="/#contact">Book an Appointment</Button>
+                <Button href="/our-vets" variant="outline">
+                  Meet Our Vets
+                </Button>
+              </div>
+              <div className="hp-about-trust-row">
+                {trustPoints.map(([icon, label]) => (
+                  <span key={label}>
+                    <Icon name={icon} />
+                    {label}
+                  </span>
                 ))}
               </div>
             </Reveal>
@@ -75,6 +107,14 @@ export function AboutUs() {
                 sizes="(max-width: 900px) 100vw, 50vw"
                 src={images.hero}
               />
+              <div className="hp-about-stats">
+                {stats.map(([value, label]) => (
+                  <div key={label}>
+                    <strong>{value}</strong>
+                    <span>{label}</span>
+                  </div>
+                ))}
+              </div>
             </Reveal>
           </div>
         </Section>
@@ -90,14 +130,15 @@ export function AboutUs() {
                 speak for themselves, ensuring every pet lives their longest,
                 happiest life possible.
               </p>
-              <a href="/#contact">
-                <span>Read our community promise</span>
+              <a href="/#contact" aria-label="Book an appointment">
+                <span>Start your pet's care plan</span>
                 <Icon name="arrow_forward" />
               </a>
             </MotionCard>
             <div className="hp-about-care">
               <Icon name="favorite" />
-              <strong>Care Without Compromise</strong>
+              <strong>Care without compromise</strong>
+              <span>Every visit is planned around comfort, safety, and clear next steps.</span>
             </div>
             <div className="hp-about-clinic-photo">
               <Image
@@ -109,45 +150,51 @@ export function AboutUs() {
             </div>
             <MotionCard className="hp-about-philosophy">
               <h2>Our Philosophy</h2>
-              <div>
-                {philosophy.map(([title, text]) => (
+              <Stagger>
+                {philosophy.map(([icon, title, text]) => (
                   <article key={title}>
+                    <Icon name={icon} />
                     <h3>{title}</h3>
                     <p>{text}</p>
                   </article>
                 ))}
-              </div>
+              </Stagger>
             </MotionCard>
           </div>
         </Section>
 
         <Section className="hp-about-love">
-          <div className="hp-container">
+          <div className="hp-container hp-about-love-grid">
             <Reveal className="hp-about-love-inner">
-              <h2>Why We Love What We Do</h2>
-              <p>
-                "For us, it's not just a job. It's a calling. There's no
-                greater reward than seeing a senior dog bound back into the
-                lobby after surgery, or witnessing the first-time joy of a
-                family bringing their new kitten for a wellness check. We are
-                the stewards of the bond between humans and animals, and that is
-                a responsibility we carry with immense pride."
-              </p>
+              <span className="hp-eyebrow">Why We Love What We Do</span>
+              <h2>We protect the bond between pets and their people.</h2>
+              <blockquote>
+                For us, it's not just a job. There's no greater reward than
+                seeing a senior dog bound back into the lobby after surgery, or
+                witnessing a family's first kitten wellness visit. That bond is
+                a responsibility we carry with immense pride.
+              </blockquote>
               <div className="hp-about-founder">
+                <Image
+                  alt="Dr. Sarah Miller"
+                  height={64}
+                  width={64}
+                  src={images.founder}
+                />
                 <div>
-                  <Image
-                    alt="Dr. Sarah Miller"
-                    fill
-                    sizes="48px"
-                    src={images.founder}
-                  />
-                </div>
-                <span>
                   <strong>Dr. Sarah Miller</strong>
                   <small>Founder &amp; Lead Veterinarian</small>
-                </span>
+                </div>
               </div>
             </Reveal>
+            <Stagger className="hp-about-timeline">
+              {milestones.map(([year, text]) => (
+                <MotionCard className="hp-about-timeline-item" key={year}>
+                  <strong>{year}</strong>
+                  <p>{text}</p>
+                </MotionCard>
+              ))}
+            </Stagger>
           </div>
         </Section>
 
