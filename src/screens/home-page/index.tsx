@@ -1,6 +1,7 @@
 "use client";
 
-import { Header, Footer } from "@/components/organisms";
+import { Header, Footer, Preloader } from "@/components/organisms";
+import { useCallback, useState } from "react";
 import {
   About,
   Contact,
@@ -16,10 +17,16 @@ import {
 } from "@/screens/home-page/components";
 
 export default function HomePage() {
+  const [isIntroReady, setIsIntroReady] = useState(false);
+  const handlePreloaderComplete = useCallback(() => {
+    setIsIntroReady(true);
+  }, []);
+
   return (
     <div className="hp-page">
+      <Preloader onComplete={handlePreloaderComplete} />
       <Header />
-      <Hero />
+      <Hero introReady={isIntroReady} />
       <About />
       <WhyChooseUs />
       <Services />

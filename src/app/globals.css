@@ -604,7 +604,11 @@ body::-webkit-scrollbar {
 
 .hp-hero-content::before {
   animation: hpHeroGlow 5.8s ease-in-out infinite alternate;
-  background: radial-gradient(circle, rgba(242, 166, 90, 0.24), transparent 66%);
+  background: radial-gradient(
+    circle,
+    rgba(242, 166, 90, 0.24),
+    transparent 66%
+  );
   content: "";
   height: min(58vw, 520px);
   left: 50%;
@@ -618,15 +622,15 @@ body::-webkit-scrollbar {
 
 .hp-hero-content::after {
   animation: hpHeroBreath 4.8s ease-in-out infinite;
-  background: rgba(255, 255, 255, 0.14);
+
   border-radius: 999px;
   content: "";
   height: 1px;
   left: 50%;
   position: absolute;
-  top: 102px;
   transform: translateX(-50%);
   width: min(320px, 48vw);
+  border: none;
 }
 
 .hp-hero h1 {
@@ -645,7 +649,6 @@ body::-webkit-scrollbar {
   --type-delay: 0s;
   --type-duration: 1s;
   --type-steps: 14;
-  animation: hpTypeReveal var(--type-duration) steps(var(--type-steps), end) var(--type-delay) forwards;
   clip-path: inset(-0.1em 100% -0.18em 0);
   line-height: 1.12;
   margin-bottom: -0.04em;
@@ -655,9 +658,6 @@ body::-webkit-scrollbar {
 }
 
 .hp-type-line::after {
-  animation:
-    hpCaretBlink 0.78s steps(1, end) var(--type-delay) infinite,
-    hpCaretHide 0.01s linear calc(var(--type-delay) + var(--type-duration) + 0.12s) forwards;
   background: rgba(255, 255, 255, 0.86);
   border-radius: 999px;
   content: "";
@@ -667,6 +667,18 @@ body::-webkit-scrollbar {
   right: -0.12em;
   top: 0.12em;
   width: 0.05em;
+}
+
+.hp-hero-ready .hp-type-line {
+  animation: hpTypeReveal var(--type-duration) steps(var(--type-steps), end)
+    var(--type-delay) forwards;
+}
+
+.hp-hero-ready .hp-type-line::after {
+  animation:
+    hpCaretBlink 0.78s steps(1, end) var(--type-delay) infinite,
+    hpCaretHide 0.01s linear
+      calc(var(--type-delay) + var(--type-duration) + 0.12s) forwards;
 }
 
 .hp-type-line-one {
@@ -726,7 +738,12 @@ body::-webkit-scrollbar {
 
 .hp-cta-lg::after {
   animation: hpButtonSheen 3.8s ease-in-out infinite;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.32), transparent);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.32),
+    transparent
+  );
   content: "";
   inset: 0;
   position: absolute;
@@ -855,18 +872,18 @@ body::-webkit-scrollbar {
   .hp-hero-video,
   .hp-hero-content::before,
   .hp-hero-content::after,
-  .hp-type-line,
-  .hp-type-line::after,
+  .hp-hero-ready .hp-type-line,
+  .hp-hero-ready .hp-type-line::after,
   .hp-cta-lg::after {
     animation: none;
   }
 
-  .hp-type-line {
+  .hp-hero-ready .hp-type-line {
     clip-path: none;
     opacity: 1;
   }
 
-  .hp-type-line::after {
+  .hp-hero-ready .hp-type-line::after {
     display: none;
   }
 }

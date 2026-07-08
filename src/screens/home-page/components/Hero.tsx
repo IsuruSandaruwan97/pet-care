@@ -1,4 +1,4 @@
-import { Section, Icon, Stagger, PawMark } from "@/components/atoms";
+import { Section, Icon, PawMark } from "@/components/atoms";
 import { FloatingPaws } from "@/components/molecules";
 import {
   heroVideo,
@@ -9,7 +9,11 @@ import {
 import { trustChips } from "@/data";
 import { motion } from "motion/react";
 
-const heroTypingCompleteDelay = 4.2;
+const heroTypingCompleteDelay = 3.2;
+
+type HeroProps = {
+  introReady?: boolean;
+};
 
 const delayedHeroItemVariants = {
   hidden: itemVariants.hidden,
@@ -24,9 +28,12 @@ const delayedHeroItemVariants = {
   },
 };
 
-export function Hero() {
+export function Hero({ introReady = true }: HeroProps) {
   return (
-    <Section className="hp-hero" id="home">
+    <Section
+      className={`hp-hero${introReady ? " hp-hero-ready" : ""}`}
+      id="home"
+    >
       <video
         autoPlay
         muted
@@ -42,7 +49,7 @@ export function Hero() {
       <motion.div
         className="hp-hero-content"
         initial="hidden"
-        animate="visible"
+        animate={introReady ? "visible" : "hidden"}
         variants={staggerVariants}
       >
         <h1>
@@ -97,7 +104,12 @@ export function Hero() {
           </motion.a>
         </motion.div>
       </motion.div>
-      <Stagger className="hp-trust">
+      <motion.div
+        className="hp-trust"
+        initial="hidden"
+        animate={introReady ? "visible" : "hidden"}
+        variants={staggerVariants}
+      >
         {trustChips.map((chip) => (
           <motion.div
             className="hp-trust-chip"
@@ -108,7 +120,7 @@ export function Hero() {
             <PawMark /> {chip}
           </motion.div>
         ))}
-      </Stagger>
+      </motion.div>
     </Section>
   );
 }

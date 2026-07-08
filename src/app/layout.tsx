@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import "@/components/organisms/perloader/styles.css";
+
 import {
   CustomCursor,
   RightClickGuard,
