@@ -3,7 +3,7 @@ import { useScrolled } from "@/hooks";
 import { classNames } from "@/utils";
 import { AnimatePresence, motion } from "motion/react";
 import { useState } from "react";
-import { Icon, PawMark, Button } from "../atoms";
+import { Icon, PawMark, Button } from "@/components/atoms";
 
 export function Header() {
   const scrolled = useScrolled();
@@ -18,7 +18,7 @@ export function Header() {
         <span>
           <Icon name="schedule" /> Mon-Sat: 8 AM-7 PM
         </span>
-        <strong>
+        <strong className="animate-pulse">
           <Icon name="emergency_home" /> 24/7 Emergency Line
         </strong>
       </div>

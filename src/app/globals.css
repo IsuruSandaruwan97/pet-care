@@ -8,9 +8,10 @@
   font-style: normal;
   font-weight: 400 800;
   src: url("/assets/fonts/inter-latin-400-800.woff2") format("woff2");
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6,
-    U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122,
-    U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
+    U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212,
+    U+2215, U+FEFF, U+FFFD;
 }
 
 @font-face {
@@ -28,9 +29,10 @@
   font-style: normal;
   font-weight: 500 600;
   src: url("/assets/fonts/fraunces-latin-500-600.woff2") format("woff2");
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6,
-    U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122,
-    U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
+    U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212,
+    U+2215, U+FEFF, U+FFFD;
 }
 
 @font-face {
@@ -39,9 +41,10 @@
   font-style: italic;
   font-weight: 400;
   src: url("/assets/fonts/fraunces-latin-italic-400.woff2") format("woff2");
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6,
-    U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122,
-    U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
+    U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212,
+    U+2215, U+FEFF, U+FFFD;
 }
 
 @font-face {
@@ -116,6 +119,16 @@ body::-webkit-scrollbar {
   100% {
     transform: translateY(0);
   }
+}
+
+@keyframes pulse {
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
 .animate-float {
@@ -199,9 +212,7 @@ body::-webkit-scrollbar {
 
 .hp-custom-cursor-paw {
   color: #f7b267;
-  filter:
-    drop-shadow(0 0 1px #143026)
-    drop-shadow(0 0 2px #143026)
+  filter: drop-shadow(0 0 1px #143026) drop-shadow(0 0 2px #143026)
     drop-shadow(0 3px 8px rgba(0, 0, 0, 0.34));
   height: 18px;
   width: 18px;
@@ -209,8 +220,7 @@ body::-webkit-scrollbar {
 
 .hp-custom-cursor-interactive .hp-custom-cursor-paw {
   color: #fff8f0;
-  filter:
-    drop-shadow(0 0 1px var(--hp-green))
+  filter: drop-shadow(0 0 1px var(--hp-green))
     drop-shadow(0 0 3px var(--hp-green))
     drop-shadow(0 5px 10px rgba(0, 0, 0, 0.36));
   transform: translate(-50%, -50%) scale(1.14) rotate(-8deg);
@@ -782,8 +792,17 @@ body::-webkit-scrollbar {
 
 .hp-loop-video::before {
   background:
-    radial-gradient(circle at 28% 22%, rgba(242, 166, 90, 0.26), transparent 28%),
-    linear-gradient(110deg, transparent 0%, rgba(255, 255, 255, 0.14) 42%, transparent 62%);
+    radial-gradient(
+      circle at 28% 22%,
+      rgba(242, 166, 90, 0.26),
+      transparent 28%
+    ),
+    linear-gradient(
+      110deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.14) 42%,
+      transparent 62%
+    );
   content: "";
   inset: 0;
   opacity: 1;
@@ -1015,8 +1034,16 @@ body::-webkit-scrollbar {
   align-items: end;
   background:
     linear-gradient(160deg, rgba(27, 67, 50, 0.2), rgba(27, 67, 50, 0.78)),
-    linear-gradient(45deg, #d8eadf 0 25%, #f6efe6 25% 50%, #cde0d4 50% 75%, #fff8f0 75%);
-  background-size: auto, 26px 26px;
+    linear-gradient(
+      45deg,
+      #d8eadf 0 25%,
+      #f6efe6 25% 50%,
+      #cde0d4 50% 75%,
+      #fff8f0 75%
+    );
+  background-size:
+    auto,
+    26px 26px;
   color: #fff;
   display: flex;
   min-height: 180px;
@@ -1027,8 +1054,18 @@ body::-webkit-scrollbar {
 
 .hp-facility-visual::before {
   background:
-    linear-gradient(90deg, transparent 16px, rgba(255, 255, 255, 0.38) 16px 20px, transparent 20px),
-    linear-gradient(0deg, transparent 16px, rgba(255, 255, 255, 0.38) 16px 20px, transparent 20px);
+    linear-gradient(
+      90deg,
+      transparent 16px,
+      rgba(255, 255, 255, 0.38) 16px 20px,
+      transparent 20px
+    ),
+    linear-gradient(
+      0deg,
+      transparent 16px,
+      rgba(255, 255, 255, 0.38) 16px 20px,
+      transparent 20px
+    );
   background-size: 42px 42px;
   content: "";
   inset: 0;
@@ -1122,8 +1159,16 @@ body::-webkit-scrollbar {
 .hp-team-portrait {
   align-items: center;
   background:
-    radial-gradient(circle at 50% 32%, rgba(255, 255, 255, 0.94) 0 34px, transparent 35px),
-    radial-gradient(circle at 50% 72%, rgba(255, 255, 255, 0.88) 0 74px, transparent 75px),
+    radial-gradient(
+      circle at 50% 32%,
+      rgba(255, 255, 255, 0.94) 0 34px,
+      transparent 35px
+    ),
+    radial-gradient(
+      circle at 50% 72%,
+      rgba(255, 255, 255, 0.88) 0 74px,
+      transparent 75px
+    ),
     linear-gradient(145deg, #d8eadf, #f6efe6 48%, #c7dcd1);
   color: var(--hp-green);
   display: flex;
