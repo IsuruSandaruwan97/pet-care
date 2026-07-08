@@ -9,7 +9,7 @@ export const navLinks = [
   { label: "Home", section: "home" },
   { label: "About Us", section: "about", page: "about-us" },
   { label: "Services", section: "services", page: "services" },
-  { label: "Facilities", section: "facilities" },
+  { label: "Facilities", section: "facilities", page: "facilities" },
   { label: "Our Vets", section: "team", page: "our-vets" },
   { label: "Pet Care Tips", section: "tips", page: "pet-care" },
   { label: "Pricing", section: "pricing", page: "pricing" },

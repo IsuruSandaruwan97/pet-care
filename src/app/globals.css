@@ -1346,6 +1346,12 @@ body::-webkit-scrollbar {
   padding: 22px;
 }
 
+.hp-facilities-more {
+  display: flex;
+  justify-content: center;
+  margin-top: 36px;
+}
+
 .hp-team {
   background: var(--hp-cream);
   position: relative;

@@ -211,7 +211,7 @@ export function AboutUs() {
                   <Icon name="calendar_month" />
                   Book Your First Visit
                 </Button>
-                <Button href="/#facilities" variant="outline">
+                <Button href="/facilities" variant="outline">
                   Tour Our Clinic
                 </Button>
               </div>

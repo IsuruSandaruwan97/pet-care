@@ -1,4 +1,10 @@
-import { Section, SectionTitle, Stagger, MotionCard } from "@/components/atoms";
+import {
+  Button,
+  Section,
+  SectionTitle,
+  Stagger,
+  MotionCard,
+} from "@/components/atoms";
 import { facilities } from "@/data";
 
 export function Facilities() {
@@ -26,6 +32,11 @@ export function Facilities() {
             </MotionCard>
           ))}
         </Stagger>
+        <div className="hp-facilities-more">
+          <Button href="/facilities" variant="outline">
+            View All Facilities
+          </Button>
+        </div>
       </div>
     </Section>
   );

@@ -1,0 +1,666 @@
+.hp-facilities-page {
+  --fac-primary: #012d1d;
+  --fac-primary-container: #1b4332;
+  --fac-primary-fixed: #c1ecd4;
+  --fac-secondary: #8b5006;
+  --fac-secondary-container: #feb063;
+  --fac-secondary-fixed: #ffdcbf;
+  --fac-on-secondary-container: #764200;
+  --fac-on-secondary-fixed: #2d1600;
+  --fac-surface: #fcf9f8;
+  --fac-surface-low: #f6f3f2;
+  --fac-surface-high: #eae7e7;
+  --fac-surface-variant: #e5e2e1;
+  --fac-on-surface: #1c1b1b;
+  --fac-on-surface-variant: #414844;
+  --fac-outline: #717973;
+  background: var(--fac-surface);
+  color: var(--fac-on-surface);
+}
+
+.hp-facilities-page .material-symbols-outlined {
+  font-family: "Material Symbols Outlined";
+  font-variation-settings:
+    "FILL" 0,
+    "wght" 400,
+    "GRAD" 0,
+    "opsz" 24;
+  font-size: 16px;
+  line-height: 1;
+}
+
+.hp-facilities-page .hp-container {
+  max-width: 1280px;
+  padding-left: 64px;
+  padding-right: 64px;
+}
+
+.hp-facilities-hero {
+  align-items: center;
+  display: flex;
+  height: 80vh;
+  min-height: 640px;
+  overflow: hidden;
+  padding: 0;
+  position: relative;
+}
+
+.hp-facilities-hero-image {
+  object-fit: cover;
+  z-index: 0;
+}
+
+.hp-facilities-hero-overlay {
+  background: linear-gradient(
+    90deg,
+    rgba(1, 45, 29, 0.8) 0%,
+    rgba(1, 45, 29, 0.52) 44%,
+    transparent 100%
+  );
+  inset: 0;
+  position: absolute;
+  z-index: 1;
+}
+
+.hp-facilities-hero-content {
+  position: relative;
+  width: 100%;
+  z-index: 2;
+}
+
+.hp-facilities-hero-content > div {
+  color: #fff;
+  max-width: 672px;
+}
+
+.hp-facilities-kicker {
+  color: var(--fac-secondary-fixed);
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  line-height: 1.2;
+  margin-bottom: 24px;
+  text-transform: uppercase;
+}
+
+.hp-facilities-hero h1,
+.hp-facilities-philosophy h2,
+.hp-facilities-section-head h2,
+.hp-facilities-final h2 {
+  font-family: var(--font-fraunces), Georgia, serif;
+  font-weight: 500;
+}
+
+.hp-facilities-hero h1 {
+  color: #fff;
+  font-size: 60px;
+  font-weight: 600;
+  letter-spacing: 0;
+  line-height: 1.1;
+  margin-bottom: 24px;
+}
+
+.hp-facilities-hero p {
+  color: var(--fac-surface-variant);
+  font-size: 18px;
+  line-height: 1.6;
+  margin-bottom: 48px;
+}
+
+.hp-facilities-hero-actions {
+  display: flex;
+  gap: 24px;
+}
+
+.hp-facilities-hero-actions a,
+.hp-facilities-final-card a {
+  align-items: center;
+  border-radius: 999px;
+  display: inline-flex;
+  font-size: 14px;
+  font-weight: 600;
+  gap: 4px;
+  justify-content: center;
+  letter-spacing: 0.05em;
+  line-height: 1.2;
+  min-height: 48px;
+  padding: 12px 48px;
+}
+
+.hp-facilities-hero-actions .bg-secondary-container,
+.hp-facilities-final-card .bg-secondary-container {
+  background: var(--fac-secondary-container);
+  color: var(--fac-on-secondary-container);
+}
+
+.hp-facilities-hero-actions .border-primary,
+.hp-facilities-final-card .border-primary {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.3);
+  color: #fff;
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+}
+
+.hp-facilities-hero-actions .border-primary:hover,
+.hp-facilities-final-card .border-primary:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+}
+
+.hp-facilities-leading-icon,
+.hp-facilities-final-card .hp-icon {
+  font-size: 20px;
+}
+
+.hp-facilities-philosophy {
+  background:
+    radial-gradient(rgba(1, 45, 29, 0.03) 2px, transparent 2px),
+    var(--fac-surface-low);
+  background-size: 40px 40px;
+  padding: 80px 0;
+}
+
+.hp-facilities-philosophy-grid {
+  align-items: center;
+  display: grid;
+  gap: 80px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.hp-facilities-philosophy h2,
+.hp-facilities-section-head h2,
+.hp-facilities-final h2 {
+  color: var(--fac-primary);
+  font-size: 48px;
+  line-height: 1.2;
+  margin-bottom: 24px;
+}
+
+.hp-facilities-philosophy-copy > p {
+  color: var(--fac-on-surface-variant);
+  font-size: 18px;
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+
+.hp-facilities-principles {
+  display: grid;
+  gap: 24px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-top: 48px;
+}
+
+.hp-facilities-principles article {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.hp-facilities-principles .hp-icon {
+  color: var(--fac-secondary);
+  font-size: 40px;
+}
+
+.hp-facilities-principles h3 {
+  color: var(--fac-primary);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  line-height: 1.2;
+}
+
+.hp-facilities-principles p {
+  color: var(--fac-on-surface-variant);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.hp-facilities-philosophy-media {
+  overflow: visible;
+  position: relative;
+}
+
+.hp-facilities-philosophy-media::before {
+  animation: hpFacilitiesFloat 6s ease-in-out infinite;
+  aspect-ratio: 1;
+  background: var(--fac-surface-high);
+  border-radius: 32px;
+  content: "";
+  display: block;
+  overflow: hidden;
+}
+
+.hp-facilities-philosophy-media > div {
+  background: var(--fac-secondary-fixed);
+  border-radius: 12px;
+  bottom: -8px;
+  box-shadow: 0 10px 40px -10px rgba(1, 45, 29, 0.1);
+  color: var(--fac-on-secondary-fixed);
+  max-width: 200px;
+  padding: 48px;
+  position: absolute;
+  right: -8px;
+  z-index: 2;
+}
+
+.hp-facilities-philosophy-media strong {
+  display: block;
+  font-family: var(--font-fraunces), Georgia, serif;
+  font-size: 32px;
+  font-weight: 500;
+  line-height: 1.3;
+  margin-bottom: 4px;
+}
+
+.hp-facilities-philosophy-media span {
+  color: var(--fac-on-secondary-fixed);
+  display: block;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+@keyframes hpFacilitiesFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.hp-facilities-detail {
+  background: var(--fac-surface);
+  padding: 80px 0;
+}
+
+.hp-facilities-extract {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 1280px;
+  padding: 80px 64px;
+}
+
+.hp-facilities-extract-head {
+  margin-bottom: 80px;
+  text-align: center;
+}
+
+.hp-facilities-extract-head h2 {
+  color: var(--fac-primary);
+  font-family: var(--font-fraunces), Georgia, serif;
+  font-size: 48px;
+  font-weight: 500;
+  line-height: 1.2;
+  margin-bottom: 8px;
+}
+
+.hp-facilities-extract-head p {
+  color: var(--fac-on-surface-variant);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 576px;
+}
+
+.hp-facilities-extract-grid {
+  display: grid;
+  gap: 48px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.hp-facilities-extract-card {
+  background: var(--fac-surface-low);
+  border: 1px solid rgba(113, 121, 115, 0.1);
+  border-radius: 1.5rem;
+  box-shadow: 0 10px 40px -10px rgba(1, 45, 29, 0.1);
+  overflow: hidden;
+  transform-style: preserve-3d;
+  transition:
+    transform 0.3s cubic-bezier(0.23, 1, 0.32, 1),
+    box-shadow 0.3s ease;
+}
+
+.hp-facilities-extract-card:hover {
+  transform: perspective(1000px) rotateX(2deg) rotateY(-2deg) scale(1.02);
+}
+
+.hp-facilities-extract-image {
+  height: 256px;
+  overflow: hidden;
+}
+
+.hp-facilities-extract-image img {
+  display: block;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.7s ease;
+  width: 100%;
+}
+
+.hp-facilities-extract-card:hover .hp-facilities-extract-image img {
+  transform: scale(1.1);
+}
+
+.hp-facilities-extract-body {
+  padding: 48px;
+}
+
+.hp-facilities-extract-title {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.hp-facilities-extract-title h3 {
+  color: var(--fac-primary);
+  font-family: var(--font-fraunces), Georgia, serif;
+  font-size: 32px;
+  font-weight: 500;
+  line-height: 1.3;
+}
+
+.hp-facilities-extract-title span {
+  background: rgba(139, 80, 6, 0.15);
+  border-radius: 999px;
+  color: var(--fac-secondary);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.2;
+  padding: 4px 12px;
+  white-space: nowrap;
+}
+
+.hp-facilities-extract-body > p {
+  color: var(--fac-on-surface-variant);
+  line-height: 1.5;
+  margin-bottom: 24px;
+}
+
+.hp-facilities-extract-body ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.hp-facilities-extract-body li {
+  align-items: center;
+  color: var(--fac-on-surface-variant);
+  display: flex;
+  font-size: 12px;
+  font-weight: 500;
+  gap: 4px;
+  line-height: 1.2;
+}
+
+.hp-facilities-extract-body li .material-symbols-outlined {
+  color: var(--fac-primary);
+  font-size: 16px;
+}
+
+.hp-facilities-section-head {
+  margin: 0 auto 80px;
+  max-width: 760px;
+  text-align: center;
+}
+
+.hp-facilities-section-head h2 {
+  margin-bottom: 8px;
+}
+
+.hp-facilities-section-head p {
+  color: var(--fac-on-surface-variant);
+  font-size: 16px;
+  line-height: 1.5;
+  margin: 0 auto;
+  max-width: 576px;
+}
+
+.hp-facilities-detail-grid {
+  gap: 48px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.hp-facilities-detail-card {
+  background: var(--fac-surface-low);
+  border: 1px solid rgba(113, 121, 115, 0.1);
+  border-radius: 1.5rem;
+  box-shadow: 0 10px 40px -10px rgba(1, 45, 29, 0.1);
+  overflow: hidden;
+  transition:
+    transform 0.3s cubic-bezier(0.23, 1, 0.32, 1),
+    box-shadow 0.3s ease;
+  transform-style: preserve-3d;
+}
+
+.hp-facilities-detail-card:hover {
+  box-shadow: 0 10px 40px -10px rgba(1, 45, 29, 0.1);
+  transform: perspective(1000px) rotateX(2deg) rotateY(-2deg) scale(1.02);
+}
+
+.hp-facilities-card-media {
+  height: 256px;
+  overflow: hidden;
+  position: relative;
+}
+
+.hp-facilities-card-media img {
+  object-fit: cover;
+  transition: transform 0.7s ease;
+}
+
+.hp-facilities-detail-card:hover .hp-facilities-card-media img {
+  transform: scale(1.1);
+}
+
+.hp-facilities-card-body {
+  padding: 48px;
+}
+
+.hp-facilities-card-head {
+  align-items: center;
+  display: flex;
+  gap: 16px;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.hp-facilities-card-head h3 {
+  color: var(--fac-primary);
+  font-family: var(--font-fraunces), Georgia, serif;
+  font-size: 32px;
+  font-weight: 500;
+  line-height: 1.3;
+}
+
+.hp-facilities-card-head span {
+  background: rgba(139, 80, 6, 0.15);
+  border-radius: 999px;
+  color: var(--fac-secondary);
+  flex-shrink: 0;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.2;
+  padding: 4px 12px;
+  white-space: nowrap;
+}
+
+.hp-facilities-card-body > p {
+  color: var(--fac-on-surface-variant);
+  line-height: 1.5;
+  margin-bottom: 24px;
+}
+
+.hp-facilities-card-body ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.hp-facilities-card-body li {
+  align-items: center;
+  color: var(--fac-on-surface-variant);
+  display: flex;
+  font-size: 12px;
+  font-weight: 500;
+  gap: 4px;
+  line-height: 1.2;
+}
+
+.hp-facilities-card-body li .hp-icon {
+  color: var(--fac-primary);
+  font-size: 16px;
+}
+
+.hp-facilities-final {
+  background: var(--fac-surface);
+  padding: 80px 0 160px;
+}
+
+.hp-facilities-final-card {
+  background: var(--fac-primary);
+  border-radius: 40px;
+  color: var(--fac-primary-fixed);
+  margin: 0 auto;
+  max-width: 1024px;
+  overflow: hidden;
+  padding: 80px 48px;
+  position: relative;
+  text-align: center;
+}
+
+.hp-facilities-final-card h2 {
+  color: #fff;
+  margin-bottom: 24px;
+}
+
+.hp-facilities-final-card p {
+  color: var(--fac-primary-fixed);
+  font-size: 18px;
+  line-height: 1.6;
+  margin: 0 auto 48px;
+  max-width: 672px;
+}
+
+.hp-facilities-final-card > div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  justify-content: center;
+}
+
+@media (max-width: 900px) {
+  .hp-facilities-page .hp-container {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  .hp-facilities-philosophy-grid,
+  .hp-facilities-extract-grid,
+  .hp-facilities-detail-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hp-facilities-hero {
+    min-height: 640px;
+  }
+
+  .hp-facilities-hero-overlay {
+    background: rgba(1, 45, 29, 0.74);
+  }
+}
+
+@media (max-width: 640px) {
+  .hp-facilities-page .hp-container {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .hp-facilities-extract {
+    padding: 64px 20px;
+  }
+
+  .hp-facilities-extract-head {
+    margin-bottom: 48px;
+  }
+
+  .hp-facilities-extract-head h2 {
+    font-size: 32px;
+    line-height: 1.2;
+  }
+
+  .hp-facilities-hero {
+    height: auto;
+    min-height: 620px;
+    padding: 128px 0 72px;
+  }
+
+  .hp-facilities-hero h1 {
+    font-size: 40px;
+    line-height: 1.2;
+  }
+
+  .hp-facilities-hero-actions,
+  .hp-facilities-final-card > div {
+    flex-direction: column;
+  }
+
+  .hp-facilities-hero-actions a,
+  .hp-facilities-final-card a {
+    width: 100%;
+  }
+
+  .hp-facilities-philosophy,
+  .hp-facilities-detail,
+  .hp-facilities-final {
+    padding: 64px 0;
+  }
+
+  .hp-facilities-philosophy h2,
+  .hp-facilities-section-head h2,
+  .hp-facilities-final h2 {
+    font-size: 32px;
+    line-height: 1.2;
+  }
+
+  .hp-facilities-principles {
+    grid-template-columns: 1fr;
+  }
+
+  .hp-facilities-philosophy-media > div {
+    bottom: -8px;
+    max-width: 190px;
+    padding: 28px;
+    right: -4px;
+  }
+
+  .hp-facilities-card-head {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .hp-facilities-extract-title {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .hp-facilities-card-body,
+  .hp-facilities-extract-body,
+  .hp-facilities-final-card {
+    padding: 32px 24px;
+  }
+}

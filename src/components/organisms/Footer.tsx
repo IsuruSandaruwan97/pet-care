@@ -44,6 +44,13 @@ export function Footer() {
               resolveHref({ section: "services", page: "services" }, pathname),
             ],
             [
+              "Facilities",
+              resolveHref(
+                { section: "facilities", page: "facilities" },
+                pathname,
+              ),
+            ],
+            [
               "Our Vets",
               resolveHref({ section: "team", page: "our-vets" }, pathname),
             ],
