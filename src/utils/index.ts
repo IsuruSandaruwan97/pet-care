@@ -19,3 +19,15 @@ export const parseStatValue = (value: string) => {
     suffix: match[2],
   };
 };
+
+export const resolveHref = (slug: string, pathname: string) => {
+  if (slug === "home") {
+    return "/";
+  }
+
+  if (pathname === `/${slug}`) {
+    return pathname;
+  }
+
+  return pathname === "/" ? `#${slug}` : `/#${slug}`;
+};

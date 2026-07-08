@@ -1,13 +1,18 @@
+"use client";
+
 import { navLinks } from "@/constants";
 import { useScrolled } from "@/hooks";
-import { classNames } from "@/utils";
+import { classNames, resolveHref } from "@/utils";
 import { AnimatePresence, motion } from "motion/react";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { PawMark, Button } from "@/components/atoms";
 
 export function Header() {
+  const pathname = usePathname();
   const scrolled = useScrolled();
   const [open, setOpen] = useState(false);
+  const contactHref = resolveHref("contact", pathname);
 
   return (
     <header className="hp-header">
@@ -28,13 +33,13 @@ export function Header() {
           <span>Happy Paws</span>
         </a>
         <div className="hp-navlinks">
-          {navLinks.map(([label, href]) => (
-            <a href={href} key={label}>
+          {navLinks.map(([label, slug]) => (
+            <a href={resolveHref(slug, pathname)} key={label}>
               {label}
             </a>
           ))}
         </div>
-        <a className="hp-cta hp-nav-cta" href="/#contact">
+        <a className="hp-cta hp-nav-cta" href={contactHref}>
           Book an Appointment
         </a>
         <Button
@@ -68,14 +73,18 @@ export function Header() {
                 x
               </Button>
             </div>
-            {navLinks.map(([label, href]) => (
-              <a href={href} key={label} onClick={() => setOpen(false)}>
+            {navLinks.map(([label, slug]) => (
+              <a
+                href={resolveHref(slug, pathname)}
+                key={label}
+                onClick={() => setOpen(false)}
+              >
                 {label}
               </a>
             ))}
             <a
               className="hp-cta"
-              href="/#contact"
+              href={contactHref}
               onClick={() => setOpen(false)}
             >
               Book an Appointment

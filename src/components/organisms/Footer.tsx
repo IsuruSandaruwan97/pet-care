@@ -1,8 +1,13 @@
-import { PawMark, SocialIcon, Button } from "../atoms";
-import { FooterLinks } from "../molecules";
-import { FloatingPaws } from "../molecules/FloatingPaws";
+"use client";
+
+import { usePathname } from "next/navigation";
+import { PawMark, SocialIcon, Button } from "@/components/atoms";
+import { FloatingPaws, FooterLinks } from "@/components/molecules";
+import { resolveHref } from "@/utils";
 
 export function Footer() {
+  const pathname = usePathname();
+
   return (
     <footer className="hp-footer">
       <FloatingPaws variant="footer" />
@@ -30,22 +35,42 @@ export function Footer() {
           title="Quick Links"
           links={[
             ["Home", "/"],
-            ["About Us", "/#about"],
-            ["Services", "/services"],
-            ["Our Vets", "/#team"],
-            ["Testimonials", "/#testimonials"],
-            ["Contact", "/#contact"],
+            ["About Us", resolveHref("about", pathname)],
+            ["Services", resolveHref("services", pathname)],
+            ["Our Vets", resolveHref("team", pathname)],
+            ["Testimonials", resolveHref("testimonials", pathname)],
+            ["Contact", resolveHref("contact", pathname)],
           ]}
         />
         <FooterLinks
           title="Services"
           links={[
-            ["Wellness & Vaccinations", "/services#wellness"],
-            ["Surgery", "/services#surgery"],
-            ["Emergency Care", "/services#emergency"],
-            ["Grooming", "/services#grooming"],
-            ["Boarding", "/services#boarding"],
-            ["Senior Pet Care", "/services#senior-care"],
+            [
+              "Wellness & Vaccinations",
+              pathname === "/services" ? "#wellness" : "/services#wellness",
+            ],
+            [
+              "Surgery",
+              pathname === "/services" ? "#surgery" : "/services#surgery",
+            ],
+            [
+              "Emergency Care",
+              pathname === "/services" ? "#emergency" : "/services#emergency",
+            ],
+            [
+              "Grooming",
+              pathname === "/services" ? "#grooming" : "/services#grooming",
+            ],
+            [
+              "Boarding",
+              pathname === "/services" ? "#boarding" : "/services#boarding",
+            ],
+            [
+              "Senior Pet Care",
+              pathname === "/services"
+                ? "#senior-care"
+                : "/services#senior-care",
+            ],
           ]}
         />
         <div>
