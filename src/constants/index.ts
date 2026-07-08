@@ -1,8 +1,8 @@
 import { Variants } from "motion";
 
-export const heroVideo = "/assets/videos/hero_banner_video.mp4";
+export const heroVideo = "/api/media/hero-video";
 
-export const certifiedVetsVideo = "/assets/videos/certified_vets.mp4";
+export const certifiedVetsVideo = "/api/media/certified-vets-video";
 export const videoLoopFadeSeconds = 0.55;
 
 export const navLinks = [

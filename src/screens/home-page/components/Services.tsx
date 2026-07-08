@@ -1,4 +1,5 @@
 import {
+  Button,
   Section,
   SectionTitle,
   Stagger,
@@ -31,6 +32,9 @@ export function Services() {
             </MotionCard>
           ))}
         </Stagger>
+        <div className="mt-10 flex justify-center">
+          <Button href="/services">Explore all services</Button>
+        </div>
       </div>
     </Section>
   );

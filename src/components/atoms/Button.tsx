@@ -1,4 +1,4 @@
-import type { ButtonHTMLAttributes, ReactNode } from "react";
+import type { AnchorHTMLAttributes, ButtonHTMLAttributes, ReactNode } from "react";
 
 type ButtonVariant = "primary" | "secondary" | "outline" | "ghost" | "unstyled";
 
@@ -10,26 +10,66 @@ const variants: Record<ButtonVariant, string> = {
   unstyled: "",
 };
 
-type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
+type ButtonBaseProps = {
   children: ReactNode;
   variant?: ButtonVariant;
   className?: string;
 };
 
-export function Button({ children, variant = "primary", className = "", type = "button", ...props }: ButtonProps) {
+type ButtonProps = ButtonBaseProps &
+  ButtonHTMLAttributes<HTMLButtonElement> & {
+    href?: never;
+  };
+
+type ButtonLinkProps = ButtonBaseProps &
+  AnchorHTMLAttributes<HTMLAnchorElement> & {
+    href: string;
+  };
+
+export function Button({
+  children,
+  variant = "primary",
+  className = "",
+  ...props
+}: ButtonProps | ButtonLinkProps) {
   if (variant === "unstyled") {
+    if ("href" in props && props.href) {
+      const linkProps = props as ButtonLinkProps;
+      return (
+        <a className={className} {...linkProps}>
+          {children}
+        </a>
+      );
+    }
+
+    const { type = "button", ...buttonProps } =
+      props as ButtonHTMLAttributes<HTMLButtonElement>;
     return (
-      <button className={className} type={type} {...props}>
+      <button className={className} type={type} {...buttonProps}>
         {children}
       </button>
     );
   }
 
+  const classes = `rounded-full px-6 py-3 font-label-md transition-all active:scale-95 ${variants[variant]} ${className}`;
+
+  if ("href" in props && props.href) {
+    const linkProps = props as ButtonLinkProps;
+    return (
+      <a className={classes} {...linkProps}>
+        {children}
+      </a>
+    );
+  }
+
+  const { type = "button", ...buttonProps } =
+    props as ButtonHTMLAttributes<HTMLButtonElement>;
+
   return (
     <button
-      className={`rounded-full px-6 py-3 font-label-md transition-all active:scale-95 ${variants[variant]} ${className}`}
+      className={classes}
       type={type}
-      {...props}
+      {...buttonProps}
     >
       {children}
     </button>

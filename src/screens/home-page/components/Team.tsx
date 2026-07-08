@@ -8,7 +8,7 @@ export function Team() {
         <SectionTitle eyebrow="Our Vets" title="Meet the Care Team" />
         <div className="hp-team-grid">
           {team.map(([name, role, bio, label, image]) => {
-            const imageURL = `/assets/images/team/${image}.jpg`;
+            const imageURL = `/api/media/team-${image.toLowerCase()}`;
             return (
               <Profile
                 bio={bio}
