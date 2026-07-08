@@ -3,7 +3,7 @@ import { useScrolled } from "@/hooks";
 import { classNames } from "@/utils";
 import { AnimatePresence, motion } from "motion/react";
 import { useState } from "react";
-import { Icon, PawMark, Button } from "@/components/atoms";
+import { PawMark, Button } from "@/components/atoms";
 
 export function Header() {
   const scrolled = useScrolled();
@@ -13,13 +13,13 @@ export function Header() {
     <header className="hp-header">
       <div className="hp-topbar">
         <span>
-          <Icon name="call" /> (555) 123-4567
+          <span aria-hidden="true">{"\u{1F4DE}"}</span> (555) 123-4567
         </span>
         <span>
-          <Icon name="schedule" /> Mon-Sat: 8 AM-7 PM
+          <span aria-hidden="true">{"\u{1F550}"}</span> Mon-Sat: 8 AM-7 PM
         </span>
         <strong className="animate-pulse">
-          <Icon name="emergency_home" /> 24/7 Emergency Line
+          <span aria-hidden="true">{"\u{1F6A8}"}</span> 24/7 Emergency Line
         </strong>
       </div>
       <nav className={classNames("hp-nav", scrolled && "hp-nav-scrolled")}>
