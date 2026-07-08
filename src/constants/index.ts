@@ -4,8 +4,6 @@ export const heroVideo = "/assets/videos/hero_banner_video.mp4";
 
 export const certifiedVetsVideo = "/assets/videos/certified_vets.mp4";
 export const videoLoopFadeSeconds = 0.55;
-export const rightClickGuardEnabled =
-  process.env.NEXT_PUBLIC_APP_ENV === "local";
 
 export const navLinks = [
   ["Home", "#home"],

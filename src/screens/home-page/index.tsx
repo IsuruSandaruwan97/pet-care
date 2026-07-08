@@ -1,13 +1,5 @@
 "use client";
 
-import {
-  CustomCursor,
-  RightClickGuard,
-  ScrollProgress,
-  ScrollToTop,
-} from "@/components/atoms";
-
-import { rightClickGuardEnabled } from "@constants";
 import { Header, Footer } from "@/components/organisms";
 import {
   About,
