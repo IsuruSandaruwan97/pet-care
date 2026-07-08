@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "motion/react";
 import { useState } from "react";
 
 export function FrequentlyAskedQuestions() {
-  const [openFaq, setOpenFaq] = useState(0);
+  const [openFaq, setOpenFaq] = useState(-1);
 
   return (
     <Section className="hp-section hp-faq-section">
