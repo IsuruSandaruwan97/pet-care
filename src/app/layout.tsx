@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import "@/components/organisms/perloader/styles.css";
 
 import {
   CustomCursor,
@@ -13,6 +12,10 @@ export const metadata: Metadata = {
   title: "Happy Paws | Compassionate Veterinary Care",
   description:
     "Professional and warm veterinary care for your beloved pets. Book your appointment today with our certified vets.",
+  icons: {
+    icon: [{ url: "/favicon.svg", type: "image/svg+xml" }],
+    shortcut: [{ url: "/favicon.svg", type: "image/svg+xml" }],
+  },
 };
 
 export default function RootLayout({

@@ -3,6 +3,7 @@
 import { PawMark } from "@/components/atoms";
 import type { CSSProperties } from "react";
 import { useEffect, useRef, useState } from "react";
+import "@/components/organisms/perloader/styles.css";
 
 type PreloaderProps = {
   onComplete?: () => void;
