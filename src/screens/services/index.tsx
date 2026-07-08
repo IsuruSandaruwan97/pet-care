@@ -12,6 +12,7 @@ import {
 import { Footer, Header } from "@/components/organisms";
 import { pricing, bentoServices } from "@/data";
 import { classNames } from "@/utils";
+import Image from "next/image";
 import "./styles.css";
 
 const trustItems = [
@@ -99,8 +100,11 @@ export function Services() {
                   </div>
                   {"image" in service ? (
                     <div className="hp-services-card-visual">
-                      <img
+                      <Image
                         alt="A veterinarian softly examining a golden retriever in a warm modern clinic."
+                        className="hp-services-card-image"
+                        fill
+                        sizes="(max-width: 720px) 100vw, (max-width: 1020px) 50vw, 33vw"
                         src={service.image}
                       />
                     </div>
