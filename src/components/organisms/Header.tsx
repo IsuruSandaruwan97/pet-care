@@ -11,8 +11,9 @@ import { PawMark, Button } from "@/components/atoms";
 export function Header() {
   const pathname = usePathname();
   const scrolled = useScrolled();
+  const forceStaticNav = pathname !== "/";
   const [open, setOpen] = useState(false);
-  const contactHref = resolveHref("contact", pathname);
+  const contactHref = resolveHref({ section: "contact" }, pathname);
 
   return (
     <header className="hp-header">
@@ -27,15 +28,20 @@ export function Header() {
           <span aria-hidden="true">{"\u{1F6A8}"}</span> 24/7 Emergency Line
         </strong>
       </div>
-      <nav className={classNames("hp-nav", scrolled && "hp-nav-scrolled")}>
+      <nav
+        className={classNames(
+          "hp-nav",
+          (scrolled || forceStaticNav) && "hp-nav-scrolled",
+        )}
+      >
         <a className="hp-brand" href="/" onClick={() => setOpen(false)}>
           <PawMark className="hp-brand-mark" />
           <span>Happy Paws</span>
         </a>
         <div className="hp-navlinks">
-          {navLinks.map(([label, slug]) => (
-            <a href={resolveHref(slug, pathname)} key={label}>
-              {label}
+          {navLinks.map((link) => (
+            <a href={resolveHref(link, pathname)} key={link.label}>
+              {link.label}
             </a>
           ))}
         </div>
@@ -73,13 +79,13 @@ export function Header() {
                 x
               </Button>
             </div>
-            {navLinks.map(([label, slug]) => (
+            {navLinks.map((link) => (
               <a
-                href={resolveHref(slug, pathname)}
-                key={label}
+                href={resolveHref(link, pathname)}
+                key={link.label}
                 onClick={() => setOpen(false)}
               >
-                {label}
+                {link.label}
               </a>
             ))}
             <a

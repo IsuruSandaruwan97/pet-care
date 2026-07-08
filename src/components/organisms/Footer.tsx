@@ -35,11 +35,20 @@ export function Footer() {
           title="Quick Links"
           links={[
             ["Home", "/"],
-            ["About Us", resolveHref("about", pathname)],
-            ["Services", resolveHref("services", pathname)],
-            ["Our Vets", resolveHref("team", pathname)],
-            ["Testimonials", resolveHref("testimonials", pathname)],
-            ["Contact", resolveHref("contact", pathname)],
+            [
+              "About Us",
+              resolveHref({ section: "about", page: "about-us" }, pathname),
+            ],
+            [
+              "Services",
+              resolveHref({ section: "services", page: "services" }, pathname),
+            ],
+            [
+              "Our Vets",
+              resolveHref({ section: "team", page: "our-vets" }, pathname),
+            ],
+            ["Testimonials", resolveHref({ section: "testimonials" }, pathname)],
+            ["Contact", resolveHref({ section: "contact" }, pathname)],
           ]}
         />
         <FooterLinks

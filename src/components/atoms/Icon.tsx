@@ -42,8 +42,29 @@ const iconPaths: Record<string, ReactNode> = {
   call: (
     <path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.9a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.9.3 1.9.6 2.9.7a2 2 0 0 1 1.7 2Z" />
   ),
+  check: <path d="m5 12 4 4L19 6" />,
+  check_circle: (
+    <>
+      <circle cx="12" cy="12" r="9" />
+      <path d="m8 12 2.5 2.5L16 9" />
+    </>
+  ),
   chevron_left: <path d="m15 18-6-6 6-6" />,
   chevron_right: <path d="m9 18 6-6-6-6" />,
+  child_care: (
+    <>
+      <circle cx="12" cy="9" r="5" />
+      <path d="M8.5 15.5c1.8 1.2 5.2 1.2 7 0" />
+      <path d="M9 9h.01M15 9h.01" />
+      <path d="M5 21c1.5-2.5 4-4 7-4s5.5 1.5 7 4" />
+    </>
+  ),
+  close: (
+    <>
+      <path d="M18 6 6 18" />
+      <path d="m6 6 12 12" />
+    </>
+  ),
   arrow_forward: <path d="M5 12h14M13 6l6 6-6 6" />,
   chat: (
     <>
@@ -103,6 +124,21 @@ const iconPaths: Record<string, ReactNode> = {
       <path d="M17 21v-9" />
     </>
   ),
+  elderly_woman: (
+    <>
+      <circle cx="12" cy="4" r="2" />
+      <path d="M10 7h4l1 7" />
+      <path d="M9 21v-6l-2 1" />
+      <path d="M15 21v-6l2 1" />
+      <path d="M8 10h8" />
+    </>
+  ),
+  ecg_heart: (
+    <>
+      <path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8L12 21l3.5-3.4" />
+      <path d="M3 14h4l2-4 3 8 2-4h7" />
+    </>
+  ),
   keyboard_arrow_up: <path d="m18 15-6-6-6 6" />,
   laptop_mac: (
     <>
@@ -154,6 +190,12 @@ const iconPaths: Record<string, ReactNode> = {
       <path d="M14 14h2v2h-2zM18 14h2v6h-6v-2M14 18h2" />
     </>
   ),
+  priority_high: (
+    <>
+      <path d="M12 4v10" />
+      <path d="M12 19h.01" />
+    </>
+  ),
   restaurant: (
     <>
       <path d="M7 2v8" />
@@ -163,6 +205,16 @@ const iconPaths: Record<string, ReactNode> = {
       <path d="M7 10v12" />
       <path d="M17 2v20" />
       <path d="M17 2c2 1.8 3 4.3 3 7 0 2-1 3-3 3" />
+    </>
+  ),
+  savings: (
+    <>
+      <path d="M5 11a7 7 0 0 1 14 0v6H5z" />
+      <path d="M7 17v4h3v-4" />
+      <path d="M14 17v4h3v-4" />
+      <path d="M9 9h.01" />
+      <path d="M16 8h3" />
+      <path d="M12 11c-1.2 0-2 .6-2 1.4s.8 1.4 2 1.4 2 .6 2 1.4-.8 1.4-2 1.4" />
     </>
   ),
   receipt_long: (
@@ -212,6 +264,12 @@ const iconPaths: Record<string, ReactNode> = {
     <>
       <path d="M12 22s8-4 8-11V5l-8-3-8 3v6c0 7 8 11 8 11Z" />
       <path d="m9 12 2 2 4-5" />
+    </>
+  ),
+  verified: (
+    <>
+      <path d="m12 2 2.5 2 3.2-.2.9 3.1 2.5 2.1-1.2 3 1.2 3-2.5 2.1-.9 3.1-3.2-.2-2.5 2-2.5-2-3.2.2-.9-3.1L2.9 15l1.2-3-1.2-3 2.5-2.1.9-3.1 3.2.2z" />
+      <path d="m8.5 12 2.2 2.2 4.8-5" />
     </>
   ),
   videocam: (

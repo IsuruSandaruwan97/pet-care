@@ -20,14 +20,21 @@ export const parseStatValue = (value: string) => {
   };
 };
 
-export const resolveHref = (slug: string, pathname: string) => {
-  if (slug === "home") {
+export const resolveHref = (
+  target: { section: string; page?: string },
+  pathname: string,
+) => {
+  if (target.section === "home") {
     return "/";
   }
 
-  if (pathname === `/${slug}`) {
+  if (target.page && pathname === `/${target.page}`) {
     return pathname;
   }
 
-  return pathname === "/" ? `#${slug}` : `/#${slug}`;
+  if (pathname === "/") {
+    return `#${target.section}`;
+  }
+
+  return target.page ? `/${target.page}` : `/#${target.section}`;
 };
