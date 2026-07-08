@@ -8,7 +8,7 @@ export function Footer() {
       <FloatingPaws variant="footer" />
       <div className="hp-container hp-footer-grid">
         <div>
-          <a className="hp-brand hp-footer-brand" href="#home">
+          <a className="hp-brand hp-footer-brand" href="/">
             <PawMark className="hp-brand-mark" /> <span>Happy Paws</span>
           </a>
           <p>
@@ -29,23 +29,23 @@ export function Footer() {
         <FooterLinks
           title="Quick Links"
           links={[
-            ["Home", "#home"],
-            ["About Us", "#about"],
-            ["Services", "#services"],
-            ["Our Vets", "#team"],
-            ["Testimonials", "#testimonials"],
-            ["Contact", "#contact"],
+            ["Home", "/"],
+            ["About Us", "/#about"],
+            ["Services", "/services"],
+            ["Our Vets", "/#team"],
+            ["Testimonials", "/#testimonials"],
+            ["Contact", "/#contact"],
           ]}
         />
         <FooterLinks
           title="Services"
           links={[
-            ["Wellness & Vaccinations", "#services"],
-            ["Surgery", "#services"],
-            ["Emergency Care", "#services"],
-            ["Grooming", "#services"],
-            ["Boarding", "#services"],
-            ["Senior Pet Care", "#services"],
+            ["Wellness & Vaccinations", "/services#wellness"],
+            ["Surgery", "/services#surgery"],
+            ["Emergency Care", "/services#emergency"],
+            ["Grooming", "/services#grooming"],
+            ["Boarding", "/services#boarding"],
+            ["Senior Pet Care", "/services#senior-care"],
           ]}
         />
         <div>

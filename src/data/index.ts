@@ -299,3 +299,106 @@ export const visitReasonOptions = [
     value: "other",
   },
 ];
+
+const wellnessImage =
+  "https://lh3.googleusercontent.com/aida-public/AB6AXuDA3A9rHemvJUukNa6PKOeKb6gH8bBCdTJKDw5FEYO3_K7IiXkKIiFsANn6VkLbRu0Iq0b2pDhHfCgSeRpukrLUVEMrXcKdVrA4fxuEm1rftfqCYzTRmiV8iaaSCQ1Cwqj-OE67dtOuyG7GUVbhu5APbn7iOJQGPpBfhMjtO4uCRYH9VUK2hDdttWfMyaOJ1U81EgAJPbVAk7r_t5ZvogXl3Ls-jf2XDDvpXAuochbzFPZxVQCot1J7epjKtMwJRmJXqnpqUHeiOHyB";
+
+export const bentoServices = [
+  {
+    id: "wellness",
+    icon: "favorite",
+    title: "Wellness Exams",
+    text: "Preventative care is the cornerstone of a long, happy life. Our comprehensive wellness exams include physical assessment, nutritional counseling, and lifestyle-based health planning tailored for your pet.",
+    tone: "feature",
+    image: wellnessImage,
+  },
+  {
+    id: "emergency",
+    icon: "emergency",
+    title: "Emergency Care",
+    text: "Critical situations require immediate action. We provide priority emergency triage during clinic hours.",
+    tone: "urgent",
+  },
+  {
+    id: "diagnostics",
+    icon: "biotech",
+    title: "Advanced Diagnostics",
+    text: "In-house lab, digital X-rays, and ultrasound for rapid results and accurate diagnosis.",
+    tone: "compact",
+  },
+  {
+    id: "vaccinations",
+    icon: "vaccines",
+    title: "Vaccinations",
+    text: "Core and lifestyle vaccines to protect against rabies, distemper, and common regional threats.",
+    tone: "compact",
+  },
+  {
+    id: "surgery",
+    icon: "medication",
+    title: "Surgical Suite",
+    text: "From routine spay/neuter to complex soft tissue surgeries performed by experienced hands.",
+    tone: "compact",
+  },
+  {
+    id: "dental",
+    icon: "dentistry",
+    title: "Dental Health",
+    text: "Professional cleaning, extractions, and oral health assessments for fresh breath and pain-free eating.",
+    tone: "compact",
+  },
+  {
+    id: "virtual-consults",
+    icon: "videocam",
+    title: "Virtual Consults",
+    text: "Can't make it to the clinic? Our telehealth service allows for initial screenings and follow-ups from the comfort of your home.",
+    tone: "wide",
+    badge: "New Service",
+    features: [
+      ["videocam", "HD Video"],
+      ["chat", "Direct Chat"],
+    ],
+  },
+  {
+    id: "grooming",
+    icon: "content_cut",
+    title: "Grooming",
+    text: "Therapeutic baths, breed-specific clips, and nail trims for the well-kept companion.",
+    tone: "small",
+  },
+  {
+    id: "boarding",
+    icon: "hotel",
+    title: "Boarding",
+    text: "A safe, medically-supervised home away from home with plenty of love and playtime.",
+    tone: "small",
+  },
+  {
+    id: "senior-care",
+    icon: "elderly",
+    title: "Senior Care",
+    text: "Specialized monitoring and pain management for our aging friends to ensure comfort.",
+    tone: "small",
+  },
+  {
+    id: "nutrition",
+    icon: "restaurant",
+    title: "Nutrition",
+    text: "Custom diet plans and prescription foods to manage allergies, weight, and chronic illness.",
+    tone: "small",
+  },
+  {
+    id: "microchipping",
+    icon: "qr_code_2",
+    title: "Microchipping",
+    text: "Permanent identification for peace of mind. A simple, painless procedure.",
+    tone: "accent",
+  },
+  {
+    id: "pharmacy",
+    icon: "pill",
+    title: "In-House Pharmacy",
+    text: "Quick access to prescription medications and heartworm preventatives.",
+    tone: "pharmacy",
+  },
+] as const;

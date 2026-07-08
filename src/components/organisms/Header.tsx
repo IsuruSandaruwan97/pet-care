@@ -23,7 +23,7 @@ export function Header() {
         </strong>
       </div>
       <nav className={classNames("hp-nav", scrolled && "hp-nav-scrolled")}>
-        <a className="hp-brand" href="#home" onClick={() => setOpen(false)}>
+        <a className="hp-brand" href="/" onClick={() => setOpen(false)}>
           <PawMark className="hp-brand-mark" />
           <span>Happy Paws</span>
         </a>
@@ -34,7 +34,7 @@ export function Header() {
             </a>
           ))}
         </div>
-        <a className="hp-cta hp-nav-cta" href="#contact">
+        <a className="hp-cta hp-nav-cta" href="/#contact">
           Book an Appointment
         </a>
         <Button
@@ -75,7 +75,7 @@ export function Header() {
             ))}
             <a
               className="hp-cta"
-              href="#contact"
+              href="/#contact"
               onClick={() => setOpen(false)}
             >
               Book an Appointment

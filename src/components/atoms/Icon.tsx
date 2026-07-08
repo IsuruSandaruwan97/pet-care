@@ -44,6 +44,13 @@ const iconPaths: Record<string, ReactNode> = {
   ),
   chevron_left: <path d="m15 18-6-6 6-6" />,
   chevron_right: <path d="m9 18 6-6-6-6" />,
+  arrow_forward: <path d="M5 12h14M13 6l6 6-6 6" />,
+  chat: (
+    <>
+      <path d="M21 15a4 4 0 0 1-4 4H8l-5 3V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4Z" />
+      <path d="M8 9h8M8 13h5" />
+    </>
+  ),
   content_cut: (
     <>
       <circle cx="6" cy="6" r="3" />
@@ -61,6 +68,14 @@ const iconPaths: Record<string, ReactNode> = {
       <path d="M8 12h8" />
     </>
   ),
+  emergency: (
+    <>
+      <path d="M12 3v18" />
+      <path d="M3 12h18" />
+      <path d="m5.6 5.6 12.8 12.8" />
+      <path d="M18.4 5.6 5.6 18.4" />
+    </>
+  ),
   expand_more: <path d="m6 9 6 6 6-6" />,
   favorite: (
     <path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8Z" />
@@ -71,7 +86,37 @@ const iconPaths: Record<string, ReactNode> = {
       <path d="M5 10v10h14V10" />
     </>
   ),
+  hotel: (
+    <>
+      <path d="M4 21V6a2 2 0 0 1 2-2h8a4 4 0 0 1 4 4v13" />
+      <path d="M4 12h17" />
+      <path d="M7 9h4" />
+      <path d="M7 21v-5h10v5" />
+    </>
+  ),
+  elderly: (
+    <>
+      <circle cx="11" cy="4" r="2" />
+      <path d="M10 7v5l-2 4" />
+      <path d="m12 12 3 3" />
+      <path d="M14 21v-7" />
+      <path d="M17 21v-9" />
+    </>
+  ),
   keyboard_arrow_up: <path d="m18 15-6-6-6 6" />,
+  laptop_mac: (
+    <>
+      <rect height="11" rx="2" width="16" x="4" y="5" />
+      <path d="M2 20h20" />
+      <path d="M8 16h8" />
+    </>
+  ),
+  medication: (
+    <>
+      <path d="m10.5 20.5 10-10a4 4 0 0 0-5.7-5.7l-10 10a4 4 0 0 0 5.7 5.7Z" />
+      <path d="m8.5 10.5 5 5" />
+    </>
+  ),
   nutrition: (
     <>
       <path d="M12 22s8-4 8-11V5l-8-3-8 3v6c0 7 8 11 8 11Z" />
@@ -86,10 +131,38 @@ const iconPaths: Record<string, ReactNode> = {
       <path d="M9 8c2 1 4 1 6 0" />
     </>
   ),
+  dentistry: (
+    <>
+      <path d="M8 3c1.4 0 2.4.8 4 .8S14.6 3 16 3c2.2 0 4 1.8 4 4 0 4.2-2.4 13-5 13-1.4 0-1.2-4-3-4s-1.6 4-3 4c-2.6 0-5-8.8-5-13 0-2.2 1.8-4 4-4Z" />
+    </>
+  ),
+  pill: (
+    <>
+      <path d="m10.5 20.5 10-10a4 4 0 0 0-5.7-5.7l-10 10a4 4 0 0 0 5.7 5.7Z" />
+      <path d="m8.5 10.5 5 5" />
+    </>
+  ),
   qr_code_scanner: (
     <>
       <path d="M4 4h5v5H4zM15 4h5v5h-5zM4 15h5v5H4z" />
       <path d="M15 15h2v2h-2zM19 15h1v5h-5v-1M12 4v2M12 9v2M4 12h2M9 12h2M13 12h7" />
+    </>
+  ),
+  qr_code_2: (
+    <>
+      <path d="M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4z" />
+      <path d="M14 14h2v2h-2zM18 14h2v6h-6v-2M14 18h2" />
+    </>
+  ),
+  restaurant: (
+    <>
+      <path d="M7 2v8" />
+      <path d="M4 2v8" />
+      <path d="M10 2v8" />
+      <path d="M4 10h6" />
+      <path d="M7 10v12" />
+      <path d="M17 2v20" />
+      <path d="M17 2c2 1.8 3 4.3 3 7 0 2-1 3-3 3" />
     </>
   ),
   receipt_long: (

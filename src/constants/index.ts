@@ -6,15 +6,15 @@ export const certifiedVetsVideo = "/api/media/certified-vets-video";
 export const videoLoopFadeSeconds = 0.55;
 
 export const navLinks = [
-  ["Home", "#home"],
-  ["About Us", "#about"],
-  ["Services", "#services"],
-  ["Facilities", "#facilities"],
-  ["Our Vets", "#team"],
-  ["Pet Care Tips", "#tips"],
-  ["Pricing", "#pricing"],
-  ["Testimonials", "#testimonials"],
-  ["Contact", "#contact"],
+  ["Home", "/"],
+  ["About Us", "/#about"],
+  ["Services", "/services"],
+  ["Facilities", "/#facilities"],
+  ["Our Vets", "/#team"],
+  ["Pet Care Tips", "/#tips"],
+  ["Pricing", "/#pricing"],
+  ["Testimonials", "/#testimonials"],
+  ["Contact", "/#contact"],
 ] as const;
 
 export const revealTransition = {
