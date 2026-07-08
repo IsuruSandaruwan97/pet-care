@@ -40,6 +40,12 @@ export default function RootLayout({
           as="video"
           type="video/mp4"
         />
+        <link
+          rel="preload"
+          href="/assets/videos/hero_banner_video.mp4"
+          as="video"
+          type="video/mp4"
+        />
       </head>
       <body className="bg-background text-on-background font-body-md selection:bg-secondary-container/30">
         <CustomCursor />
