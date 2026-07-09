@@ -50,16 +50,16 @@ const philosophy = [
 const milestones = [
   ["2009", "Opened as a neighborhood clinic with one exam room."],
   ["2016", "Expanded diagnostics, surgery, and dental care under one roof."],
-  ["Today", "A six-vet team serving cats, dogs, and the families who love them."],
+  [
+    "Today",
+    "A six-vet team serving cats, dogs, and the families who love them.",
+  ],
 ] as const;
 
 const images = {
-  hero:
-    "https://lh3.googleusercontent.com/aida/AP1WRLtIUDGCB6xZ03fWM9HFXPlcQqGiA8cSFColRmqU7HI8OVCTaSowNJLqOIos7EPwep97XKtonP9cynwMOOH7GSIbUg1b8J3PJLyLswji9_gx8cJjnsNB-jiULsI4Rtyuyhxx2jYJ-PYUaa8sKkuW-uo4zDkwhqNcMCgw6BRnE-ImclOnx0aEQFbjkTp8A5f29_HD6aujurbeVVpnPXddPxD8U80IAx_-YjpFMhaYNb3ttxm9nXBJQSg5De_H",
-  clinic:
-    "https://lh3.googleusercontent.com/aida/AP1WRLstm07UrrcNsl2iL9PVuiqf3SYI_1kiXMdXCHzp-IhokhMi7BAWOHdM7hqF7C3_lqb0-zbjXXwkg5gCu9_WMTBhj9cJssFPHQmJCfK4CwYeX0fq1E3YH6uuB7LTebu6RcSBm9AOHiIKXfsWtpkFgQrwaU36bk7PnMkkcy7gKdeHkJeY21NkoqMZuOyFWGf9z1kYKtNcJ1HltX6dTv1Pep5fvzkU5xxm7UKwyYJ7sNtfK7dwoyWjXUclB6tz",
-  founder:
-    "https://lh3.googleusercontent.com/aida-public/AB6AXuCGePegwtNT2uI-ibTSoXpW3kLo6PDYkkoV6MX5NwCAM6hB6KZCADThpea5SSIzeyJhuxMi-RLo8n_dXqjA56avXcJdmkrjJK3wL1vG-abMvZKVrzk2FMyGbxEJqfS3pS6EVLwnQ-Q0tNa5lfI89r9q4OsXejA607eUcmBDCs82g3gB9dTA3YGEN1TRy6zFDr2el2en9r-qY9RKEuPevCh1RwjYRWVnxptOfSj-2dYtaidiBqaCs4MQH_Rid1COGsvtHIdTde7jjLPv",
+  hero: "/api/media/dr-sarah",
+  clinic: "/api/media/our-clinic",
+  founder: "/api/media/founder",
 };
 
 export function AboutUs() {
@@ -138,7 +138,10 @@ export function AboutUs() {
             <div className="hp-about-care">
               <Icon name="favorite" />
               <strong>Care without compromise</strong>
-              <span>Every visit is planned around comfort, safety, and clear next steps.</span>
+              <span>
+                Every visit is planned around comfort, safety, and clear next
+                steps.
+              </span>
             </div>
             <div className="hp-about-clinic-photo">
               <Image

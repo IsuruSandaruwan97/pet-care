@@ -1,4 +1,4 @@
-import { Section, SectionTitle, Profile } from "@/components/atoms";
+import { Button, Section, SectionTitle, Profile } from "@/components/atoms";
 import { team } from "@/data";
 
 export function Team() {
@@ -21,6 +21,11 @@ export function Team() {
               />
             );
           })}
+        </div>
+        <div className="hp-team-more">
+          <Button href="/our-vets" variant="outline">
+            See More
+          </Button>
         </div>
       </div>
     </Section>

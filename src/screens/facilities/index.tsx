@@ -1,26 +1,17 @@
 "use client";
 
-import {
-  Button,
-  Icon,
-  Reveal,
-  Section,
-  Stagger,
-} from "@/components/atoms";
+import { Button, Icon, Reveal, Section } from "@/components/atoms";
 import { Footer, Header } from "@/components/organisms";
 import type { MouseEvent } from "react";
 import Image from "next/image";
 import "./styles.css";
 
 const images = {
-  reception:
-    "https://lh3.googleusercontent.com/aida/AP1WRLu7l29Hxd1Cs8rogz9asH1BVVke0QjKVJCNOUiYJNqbQkvyOoF0SmhxDCnuoFPEmVFXJyukgrNrHkI9dDIsto5RFW9os7dvb_kzqk64nVA3kJc0j5hGPuqb479G-gDIBKkyQXCBlvsT6aRvn2SuceTjoM7n1dviD4TDnLpaImSvx6aQNMsmiCDZ-ohDdTcy5JwjZ2izxuJFFilwwqZ_aELTMqh9SCeLfOZAVv4MPaTqUVdflObOC9EjeXgg",
-  exam:
-    "https://lh3.googleusercontent.com/aida/AP1WRLuYvY3QZByAeW63RCQYFDtpJV_-c0QVQ3VyuYPbhj-eeJbws5-dV4BNsTLAhv1ynrDRs0NiCYgEG3p-bXrxnoc8IfYctk9MIE67ew-VCAeEbPMlAHZ-WSus0mk-8eNBLzzQt351BfcC6P9Em9UlhWm1lAW969HRy_DeXWEnopJWSUnlkefy9FYsHwiHMOJ1hY-k3k-_IhHidSm9JmQhY78FKRZrjlKUhZs65zxlX0bY6n35rpp2IUPzUXw",
-  surgery:
-    "https://lh3.googleusercontent.com/aida/AP1WRLv2asYItA-zVmYQF24QI5Q0QT6xjwqb9JJdKIUMm91zNrJ_4wb4EDezrlhKFfD90F3RDWubrM9AcC4YlQtFCUanUjMXYwfeW-31xsze21KuaF41QWPWuh1fBr5ktd51nTqAiSNdluiY6NlPbQm-eAPXtlLSSbaVs004VRoeTZUZ-wLNXdNeIzheT19O4Px0qKeN0pQZGfxnhewubLZWKnE3Zf5g_b5yN6xwT_JY5AeXl1sl7lgz2FInu9XC",
-  boarding:
-    "https://lh3.googleusercontent.com/aida/AP1WRLsRfZSXtMgquP8u0lNMKHvDdmnEA6PJQpBCJbZ8APA-esmfLcDqPGhPnWKwXB58xuXkFbJvTYEdZkGiJpfuYyJP2MHPDvk_G10IYn8RmgBSK2mH1QesFh778faN8H2I3znrzMUni0Kgp6xaxKeBoMfn12nMZqKlfXHK2v_DZX0-TEYgFRJWNWpiSPzA4bP-hQpNGnbYRoAuxWpe3B-JbRhsbGxChEfGhwLAXacjeal3uO5xwUgMmLutyozf",
+  facilities: "/api/media/facilities",
+  reception: "/api/media/reception",
+  exam: "/api/media/exam",
+  surgery: "/api/media/surgery",
+  boarding: "/api/media/boarding",
 };
 
 const principles = [
@@ -101,7 +92,7 @@ export function Facilities() {
             fill
             priority
             sizes="100vw"
-            src={images.reception}
+            src={images.facilities}
           />
           <div className="hp-facilities-hero-overlay" />
           <div className="hp-container hp-facilities-hero-content">
@@ -118,7 +109,10 @@ export function Facilities() {
                   Explore Spaces
                 </Button>
                 <Button href="#virtual-tour" variant="outline">
-                  <Icon name="videocam" className="hp-facilities-leading-icon" />
+                  <Icon
+                    name="videocam"
+                    className="hp-facilities-leading-icon"
+                  />
                   Virtual Tour
                 </Button>
               </div>
@@ -149,7 +143,9 @@ export function Facilities() {
             <Reveal className="hp-facilities-philosophy-media" delay={0.1}>
               <div>
                 <strong>0%</strong>
-                <span>Patient stress policy implementation in all design choices.</span>
+                <span>
+                  Patient stress policy implementation in all design choices.
+                </span>
               </div>
             </Reveal>
           </div>
@@ -173,7 +169,12 @@ export function Facilities() {
                 onMouseMove={handleFacilityCardMove}
               >
                 <div className="hp-facilities-extract-image">
-                  <img alt={facility.alt} src={facility.image} />
+                  <Image
+                    alt={facility.alt}
+                    fill
+                    sizes="(max-width: 900px) 100vw, 50vw"
+                    src={facility.image}
+                  />
                 </div>
                 <div className="hp-facilities-extract-body">
                   <div className="hp-facilities-extract-title">

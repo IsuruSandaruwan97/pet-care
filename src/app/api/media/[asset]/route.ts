@@ -34,6 +34,74 @@ const mediaAssets: Record<string, MediaAsset> = {
     contentType: "image/jpeg",
     path: ["media", "images", "team", "SM.jpg"],
   },
+  "dr-sarah": {
+    contentType: "image/png",
+    path: ["media", "images", "dr_sarah.png"],
+  },
+  founder: {
+    contentType: "image/png",
+    path: ["media", "images", "founder.png"],
+  },
+  "our-clinic": {
+    contentType: "image/png",
+    path: ["media", "images", "our_clinic.png"],
+  },
+  wellness: {
+    contentType: "image/png",
+    path: ["media", "images", "wellness.png"],
+  },
+  facilities: {
+    contentType: "image/png",
+    path: ["media", "images", "facilities.png"],
+  },
+  reception: {
+    contentType: "image/png",
+    path: ["media", "images", "reception.png"],
+  },
+  exam: {
+    contentType: "image/png",
+    path: ["media", "images", "exam.png"],
+  },
+  surgery: {
+    contentType: "image/png",
+    path: ["media", "images", "surgery.png"],
+  },
+  boarding: {
+    contentType: "image/png",
+    path: ["media", "images", "boarding.png"],
+  },
+  "value-image": {
+    contentType: "image/png",
+    path: ["media", "images", "value_image.png"],
+  },
+  "pet-care": {
+    contentType: "image/png",
+    path: ["media", "images", "pet_care.png"],
+  },
+  "cat-in-pain": {
+    contentType: "image/png",
+    path: ["media", "images", "pet-care", "cat_in_pain.png"],
+  },
+  "dental-disease": {
+    contentType: "image/png",
+    path: ["media", "images", "pet-care", "dental_disease.png"],
+  },
+  "first-year-puppy": {
+    contentType: "image/png",
+    path: ["media", "images", "pet-care", "first_year_puppy.png"],
+  },
+  "over-weight": {
+    contentType: "image/png",
+    path: ["media", "images", "pet-care", "over_weight.png"],
+  },
+  "righ-food": {
+    contentType: "image/png",
+    path: ["media", "images", "pet-care", "right_food.png"],
+  },
+  "senior-cat": {
+    contentType: "image/png",
+    path: ["media", "images", "pet-care", "senior_cat.png"],
+  },
 };
 
 export async function GET(

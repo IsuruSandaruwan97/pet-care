@@ -8,8 +8,7 @@ import "./styles.css";
 const leadVet = {
   name: "Dr. Sarah Mitchell",
   role: "Lead Veterinarian",
-  image:
-    "https://lh3.googleusercontent.com/aida/AP1WRLuMXUAWWle034_YRXjcF4wGzrusfHKceeQ3HY3_rOrsyhCSecSkScTKP3N6uYHK6PZRcUDJRN4O_OvaFCMXeHwP2FMmWAhNwm_MTCVKxhlAPpY354Cika62zVYdM0mBntTHqT7nD_bQOV54bE9lEMJy_9hM4X2rmGQ42tOvafVKnj-ddXzGw96r3NjrohLcHP9Nk9FkV-zby3jsFsm0W7Yg4JVhkfpucCnqU44rxV2Vwu85v3GHteqxkfE",
+  image: "/api/media/team-sm",
   specialties: ["Internal Medicine", "Geriatric Care", "20+ Years Experience"],
 };
 
@@ -17,8 +16,7 @@ const vets = [
   {
     name: "Dr. James Okafor",
     role: "Chief Surgeon",
-    image:
-      "https://lh3.googleusercontent.com/aida/AP1WRLvo0MsyoJ_SPbAOqtC_AuWFJ-VknezQF8oQD11dAc7_PSMCmhsv57Pjnq0r7hu3aVZ5iQ9alOFfrmJwae7PndG3TfnDstyFFwbicse-yOsr_tR3UJmrl40Hxu1-_uSJk-WRPCDiNyA8xNWr0TJ6nsATyAid1wg9y55uwzu2-rU3QBNLTl5Kq7BClarClY784i2Z_LZObhSj-qPc2LnEq6TNcR1RNEywIt11OGMArq6_cfkojGDgGYXGc4LO",
+    image: "/api/media/team-jo",
     text: "Specializing in orthopedic and soft tissue surgery with a focus on minimally invasive techniques for faster recovery.",
     quote:
       "Restoring mobility to a pet is like giving them their world back. That's why I do what I do.",
@@ -26,8 +24,7 @@ const vets = [
   {
     name: "Dr. Priya Nair",
     role: "Feline Specialist",
-    image:
-      "https://lh3.googleusercontent.com/aida/AP1WRLv_jLRyMm53v6RV-G9rOFiRWw_M3o6WwK2af7bSCVyxt91_UfQ2rzE65igPClaDIhUBLEvy89Sf3USWuIL1e3JhDIOIeeQx60qmDlxpffy_EX1clOl-6s012-EEXmhBgjE9foe9ZtlHaocJ4QZY1cIurL0eKxyHKbAWblwnBtPRuwALKH-SDKX8GoQtU90cJO5a_ZerfD9JqpKyodJwMaqQY7zgK15nBJSJM5aracn4tDNyoGQqH-W0HkYy",
+    image: "/api/media/team-pn",
     text: "An expert in cat behavior and internal medicine, dedicated to making clinical visits stress-free for our feline friends.",
     quote:
       "Cats require a different kind of patience and understanding. I love the challenge of winning their trust.",
@@ -35,8 +32,7 @@ const vets = [
   {
     name: "Dr. Michael Chen",
     role: "ER Specialist",
-    image:
-      "https://lh3.googleusercontent.com/aida/AP1WRLt-5QSZtFeGr1002bxFoLCiCF_qovf-87oCxPk-Po8fm7EDOHx3DJclz6WUAlzuoLPDvRjvpDrJaB5j4LJuEF4fC0ZOSODYXwOLU9501yK6M5fiqae_71ACLRC1U74n4hF9LlSir5jfkUHeZo2Yf1_IExIt7NFjnq6hovvDfMIZOyqY-NZtwHD3Wt2hdlHL7yCVYr8RCwcklK70vd5SuClzKiuhFhYSwwSeHDpfymZOewIGXZ3bzAeiLWc",
+    image: "/api/media/team-mc",
     text: "Dr. Chen heads our 24/7 critical care unit, providing calm expertise during the most stressful emergency situations.",
     quote:
       "In emergencies, every second counts. Being the calm in the storm for pets and owners is my calling.",

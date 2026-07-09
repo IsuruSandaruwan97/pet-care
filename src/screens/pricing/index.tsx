@@ -97,10 +97,15 @@ const faqItems = [
   ],
 ] as const;
 
-const valueImage =
-  "https://lh3.googleusercontent.com/aida-public/AB6AXuCwQ46ao1WjQmb_Qvav1sbzC_cg4F3C8e1w9M4qZkpUwfdWT08TXmp-gIbDK80OOfulYDxpogxfcLy9j5_vN39UBCTAV7C9z3552gbw90j4DRMcAB9TLQ9VLNJbxUBPxVl8q8wFvJXqeajhI6_2oySc0B0vlNgRagrr4zZtWxfFjn5O0gdi401dVOhvmMy6lLomcciCdVi3AIUyOT3lElQosZuSoPHUMP6akIVR2bSNSvxhQ51GyDv61tncVXkUVaHTf9GNwNkgP9Qw";
+const valueImage = "/api/media/value-image";
 
-function ComparisonValue({ value, highlighted }: { value: string; highlighted?: boolean }) {
+function ComparisonValue({
+  value,
+  highlighted,
+}: {
+  value: string;
+  highlighted?: boolean;
+}) {
   if (value === "check") {
     return <Icon name="check" className="hp-pricing-check" />;
   }
@@ -109,7 +114,9 @@ function ComparisonValue({ value, highlighted }: { value: string; highlighted?: 
     return <Icon name="close" className="hp-pricing-close" />;
   }
 
-  return <span className={highlighted ? "hp-pricing-strong" : ""}>{value}</span>;
+  return (
+    <span className={highlighted ? "hp-pricing-strong" : ""}>{value}</span>
+  );
 }
 
 export function Pricing() {
@@ -140,7 +147,9 @@ export function Pricing() {
                 className={`hp-pricing-tier${plan.popular ? " hp-pricing-tier-popular" : ""}${plan.urgent ? " hp-pricing-tier-urgent" : ""}`}
                 key={plan.title}
               >
-                {plan.popular ? <span className="hp-pricing-popular">POPULAR</span> : null}
+                {plan.popular ? (
+                  <span className="hp-pricing-popular">POPULAR</span>
+                ) : null}
                 <div className="hp-pricing-tier-head">
                   <div>
                     <h3>{plan.title}</h3>
@@ -155,15 +164,28 @@ export function Pricing() {
                 <ul>
                   {plan.features.map((feature, index) => (
                     <li
-                      className={plan.urgent && index === 0 ? "hp-pricing-urgent-feature" : ""}
+                      className={
+                        plan.urgent && index === 0
+                          ? "hp-pricing-urgent-feature"
+                          : ""
+                      }
                       key={feature}
                     >
-                      <Icon name={plan.urgent && index === 0 ? "priority_high" : "check_circle"} />
+                      <Icon
+                        name={
+                          plan.urgent && index === 0
+                            ? "priority_high"
+                            : "check_circle"
+                        }
+                      />
                       {feature}
                     </li>
                   ))}
                 </ul>
-                <Button href="/#contact" variant={plan.popular ? "secondary" : "primary"}>
+                <Button
+                  href="/#contact"
+                  variant={plan.popular ? "secondary" : "primary"}
+                >
                   {plan.action}
                 </Button>
               </MotionCard>
@@ -186,16 +208,23 @@ export function Pricing() {
                   </tr>
                 </thead>
                 <tbody>
-                  {comparisonRows.map(([feature, newcomer, annual, senior, priority]) => (
-                    <tr key={feature}>
-                      <td>{feature}</td>
-                      {[newcomer, annual, senior, priority].map((value, index) => (
-                        <td key={`${feature}-${index}`}>
-                          <ComparisonValue value={value} highlighted={index === 1} />
-                        </td>
-                      ))}
-                    </tr>
-                  ))}
+                  {comparisonRows.map(
+                    ([feature, newcomer, annual, senior, priority]) => (
+                      <tr key={feature}>
+                        <td>{feature}</td>
+                        {[newcomer, annual, senior, priority].map(
+                          (value, index) => (
+                            <td key={`${feature}-${index}`}>
+                              <ComparisonValue
+                                value={value}
+                                highlighted={index === 1}
+                              />
+                            </td>
+                          ),
+                        )}
+                      </tr>
+                    ),
+                  )}
                 </tbody>
               </table>
             </div>

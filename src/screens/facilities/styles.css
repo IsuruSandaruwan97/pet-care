@@ -226,7 +226,11 @@
 .hp-facilities-philosophy-media::before {
   animation: hpFacilitiesFloat 6s ease-in-out infinite;
   aspect-ratio: 1;
-  background: var(--fac-surface-high);
+  background:
+    linear-gradient(rgba(1, 45, 29, 0.08), rgba(1, 45, 29, 0.08)),
+    url("/api/media/facilities");
+  background-position: center;
+  background-size: cover;
   border-radius: 32px;
   content: "";
   display: block;
@@ -334,6 +338,7 @@
 .hp-facilities-extract-image {
   height: 256px;
   overflow: hidden;
+  position: relative;
 }
 
 .hp-facilities-extract-image img {

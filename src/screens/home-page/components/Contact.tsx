@@ -78,7 +78,13 @@ export function Contact() {
         <RevealCard className="hp-contact-info" delay={0.12}>
           <Card className="hp-map" unstyled>
             <div />
-            <span>[ GOOGLE MAP EMBED ]</span>
+            <div className="map-container">
+              <iframe
+                src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBVizdQeh3udy11xDc5Ao2YStR2gLc-rfc&amp;q=1%20Grafton%20Street%2C%20Dublin%2C%20Ireland&amp;maptype=roadmap&amp;zoom=14"
+                frameBorder="0"
+                allowFullScreen
+              ></iframe>
+            </div>
           </Card>
           <Card className="hp-contact-details" unstyled>
             <div>&#128205; 123 Main Street, Your City, ST 00000</div>

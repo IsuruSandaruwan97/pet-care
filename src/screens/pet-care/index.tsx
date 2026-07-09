@@ -13,8 +13,7 @@ import { Footer, Header } from "@/components/organisms";
 import Image from "next/image";
 import "./styles.css";
 
-const heroImage =
-  "https://lh3.googleusercontent.com/aida-public/AB6AXuDA3A9rHemvJUukNa6PKOeKb6gH8bBCdTJKDw5FEYO3_K7IiXkKIiFsANn6VkLbRu0Iq0b2pDhHfCgSeRpukrLUVEMrXcKdVrA4fxuEm1rftfqCYzTRmiV8iaaSCQ1Cwqj-OE67dtOuyG7GUVbhu5APbn7iOJQGPpBfhMjtO4uCRYH9VUK2hDdttWfMyaOJ1U81EgAJPbVAk7r_t5ZvogXl3Ls-jf2XDDvpXAuochbzFPZxVQCot1J7epjKtMwJRmJXqnpqUHeiOHyB";
+const heroImage = "/api/media/pet-care";
 
 const featuredGuides = [
   {
@@ -38,12 +37,36 @@ const featuredGuides = [
 ] as const;
 
 const careTopics = [
-  ["dentistry", "Dental Care", "Bad breath, gum redness, and chewing changes can signal oral pain."],
-  ["restaurant", "Healthy Weight", "Simple body-condition checks help prevent diabetes and joint strain."],
-  ["elderly", "Senior Pets", "Older pets benefit from twice-yearly checks and early lab screening."],
-  ["content_cut", "Grooming", "Skin, coat, nails, and ears all give clues about overall health."],
-  ["qr_code_2", "Safety", "Microchips, ID tags, and safe routines help pets find their way home."],
-  ["emergency", "Urgent Signs", "Know when vomiting, breathing changes, or collapse needs immediate care."],
+  [
+    "dentistry",
+    "Dental Care",
+    "Bad breath, gum redness, and chewing changes can signal oral pain.",
+  ],
+  [
+    "restaurant",
+    "Healthy Weight",
+    "Simple body-condition checks help prevent diabetes and joint strain.",
+  ],
+  [
+    "elderly",
+    "Senior Pets",
+    "Older pets benefit from twice-yearly checks and early lab screening.",
+  ],
+  [
+    "content_cut",
+    "Grooming",
+    "Skin, coat, nails, and ears all give clues about overall health.",
+  ],
+  [
+    "qr_code_2",
+    "Safety",
+    "Microchips, ID tags, and safe routines help pets find their way home.",
+  ],
+  [
+    "emergency",
+    "Urgent Signs",
+    "Know when vomiting, breathing changes, or collapse needs immediate care.",
+  ],
 ] as const;
 
 const seasonalChecklist = [
@@ -75,8 +98,8 @@ export function PetCare() {
               </span>
               <h1>Practical advice for healthier cats and dogs.</h1>
               <p>
-                Clear, clinic-tested guidance from the Happy Paws team, built
-                to help you spot concerns early, plan preventive care, and make
+                Clear, clinic-tested guidance from the Happy Paws team, built to
+                help you spot concerns early, plan preventive care, and make
                 confident everyday decisions for your pet.
               </p>
               <div className="hp-pet-care-actions">
@@ -110,7 +133,10 @@ export function PetCare() {
             </Reveal>
             <Stagger className="hp-pet-care-featured-grid">
               {featuredGuides.map((guide) => (
-                <MotionCard className="hp-pet-care-featured-card" key={guide.title}>
+                <MotionCard
+                  className="hp-pet-care-featured-card"
+                  key={guide.title}
+                >
                   <div>
                     <Icon name={guide.icon} />
                     <span>{guide.tag}</span>
