@@ -984,7 +984,7 @@ body::-webkit-scrollbar {
 }
 
 .hp-section {
-  padding: 92px 0;
+  padding: 60px 0;
 }
 
 .hp-cream {
@@ -1630,6 +1630,10 @@ body::-webkit-scrollbar {
   margin-top: 48px;
 }
 
+.hp-pricing-carousel .swiper {
+  overflow: visible;
+}
+
 .hp-pricing-carousel .swiper-pagination-bullet {
   background: rgba(255, 255, 255, 0.42);
 }
@@ -1670,6 +1674,7 @@ body::-webkit-scrollbar {
   top: -13px;
   transform: translateX(-50%);
   white-space: nowrap;
+  z-index: 2;
 }
 
 .hp-price-icon {
@@ -2733,7 +2738,6 @@ body::-webkit-scrollbar {
   .hp-price-popular {
     transform: none;
   }
-
 }
 
 .map-container {
