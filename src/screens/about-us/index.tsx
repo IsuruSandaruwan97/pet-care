@@ -5,10 +5,13 @@ import {
   Icon,
   MotionCard,
   Reveal,
+  RevealCard,
   Section,
   Stagger,
 } from "@/components/atoms";
+import { itemVariants } from "@/constants";
 import { Footer, Header } from "@/components/organisms";
+import { motion } from "motion/react";
 import Image from "next/image";
 import "./styles.css";
 
@@ -135,31 +138,31 @@ export function AboutUs() {
                 <Icon name="arrow_forward" />
               </a>
             </MotionCard>
-            <div className="hp-about-care">
+            <RevealCard className="hp-about-care" delay={0.08}>
               <Icon name="favorite" />
               <strong>Care without compromise</strong>
               <span>
                 Every visit is planned around comfort, safety, and clear next
                 steps.
               </span>
-            </div>
-            <div className="hp-about-clinic-photo">
+            </RevealCard>
+            <RevealCard className="hp-about-clinic-photo" delay={0.12}>
               <Image
                 alt="Our Clinic"
                 fill
                 sizes="(max-width: 900px) 100vw, 33vw"
                 src={images.clinic}
               />
-            </div>
+            </RevealCard>
             <MotionCard className="hp-about-philosophy">
               <h2>Our Philosophy</h2>
               <Stagger>
                 {philosophy.map(([icon, title, text]) => (
-                  <article key={title}>
+                  <motion.article key={title} variants={itemVariants}>
                     <Icon name={icon} />
                     <h3>{title}</h3>
                     <p>{text}</p>
-                  </article>
+                  </motion.article>
                 ))}
               </Stagger>
             </MotionCard>
@@ -203,7 +206,7 @@ export function AboutUs() {
 
         <Section className="hp-about-final">
           <div className="hp-container">
-            <div className="hp-about-final-card">
+            <RevealCard className="hp-about-final-card">
               <h2>Join Our Happy Paws Family</h2>
               <p>
                 Experience the professional warmth and expert care your pet
@@ -218,7 +221,7 @@ export function AboutUs() {
                   Tour Our Clinic
                 </Button>
               </div>
-            </div>
+            </RevealCard>
           </div>
         </Section>
       </main>

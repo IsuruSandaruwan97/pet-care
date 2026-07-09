@@ -1,6 +1,6 @@
 "use client";
 
-import { Button, Icon, MotionCard, Reveal, Section } from "@/components/atoms";
+import { Button, Icon, MotionCard, Reveal, Section, Stagger } from "@/components/atoms";
 import { Footer, Header } from "@/components/organisms";
 import Image from "next/image";
 import "./styles.css";
@@ -95,7 +95,7 @@ export function OurVets() {
             </div>
           </Reveal>
 
-          <div className="hp-vets-grid">
+          <Stagger className="hp-vets-grid">
             {vets.map((vet) => (
               <MotionCard className="hp-vets-card" key={vet.name}>
                 <div className="hp-vets-card-media">
@@ -119,10 +119,10 @@ export function OurVets() {
                 </div>
               </MotionCard>
             ))}
-          </div>
+          </Stagger>
 
           <Section className="hp-vets-standard">
-            <div>
+            <Reveal>
               <h2>The Happy Paws Standard</h2>
               <p>
                 Beyond their degrees and specialties, our vets share a singular
@@ -140,15 +140,15 @@ export function OurVets() {
                   Fear Free Certified
                 </span>
               </div>
-            </div>
-            <div className="hp-vets-join">
+            </Reveal>
+            <Reveal className="hp-vets-join" delay={0.12}>
               <span>Join our family</span>
               <h3>Ready for a checkup?</h3>
               <p>Our team is ready to welcome you and your pet.</p>
               <Button href="/#contact" variant="secondary">
                 Book Now
               </Button>
-            </div>
+            </Reveal>
           </Section>
         </main>
       </main>

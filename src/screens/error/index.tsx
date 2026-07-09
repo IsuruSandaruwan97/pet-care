@@ -1,7 +1,8 @@
 "use client";
 
-import { Button, Icon, PawMark } from "@/components/atoms";
+import { Button, Icon, PawMark, Reveal } from "@/components/atoms";
 import { Footer, Header } from "@/components/organisms";
+import { motion } from "motion/react";
 import Image from "next/image";
 import "./styles.css";
 
@@ -45,7 +46,13 @@ export function ErrorScreen({
       <Header />
       <main className="hp-error-main">
         <section className="hp-error-panel" aria-labelledby="error-title">
-          <div className="hp-error-visual" aria-hidden="true">
+          <motion.div
+            animate={{ opacity: 1, scale: 1 }}
+            aria-hidden="true"
+            className="hp-error-visual"
+            initial={{ opacity: 0, scale: 0.96 }}
+            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          >
             {errorImage ? (
               <Image
                 alt=""
@@ -62,8 +69,8 @@ export function ErrorScreen({
                 {normalizedCode}
               </span>
             )}
-          </div>
-          <div className="hp-error-copy">
+          </motion.div>
+          <Reveal className="hp-error-copy" delay={0.08}>
             <span className="hp-error-kicker">Happy Paws Clinic</span>
             <h1 id="error-title">{title ?? fallback.title}</h1>
             <p>{message ?? fallback.message}</p>
@@ -84,7 +91,7 @@ export function ErrorScreen({
                 </Button>
               )}
             </div>
-          </div>
+          </Reveal>
         </section>
       </main>
       <Footer />

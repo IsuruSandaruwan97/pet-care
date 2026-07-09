@@ -9,9 +9,11 @@ import {
   Stagger,
   PawMark,
 } from "@/components/atoms";
+import { itemVariants } from "@/constants";
 import { Footer, Header } from "@/components/organisms";
 import { pricing } from "@/data";
 import { classNames } from "@/utils";
+import { motion } from "motion/react";
 import Image from "next/image";
 import "./styles.css";
 
@@ -282,14 +284,14 @@ export function Services() {
                 </Button>
               </div>
             </Reveal>
-            <div className="hp-services-trust">
+            <Stagger className="hp-services-trust">
               {trustItems.map(([icon, label]) => (
-                <span key={label}>
+                <motion.span key={label} variants={itemVariants}>
                   <Icon name={icon} />
                   {label}
-                </span>
+                </motion.span>
               ))}
-            </div>
+            </Stagger>
           </div>
         </Section>
       </main>

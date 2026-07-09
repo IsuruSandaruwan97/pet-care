@@ -6,6 +6,7 @@ import {
   MotionCard,
   PawMark,
   Reveal,
+  RevealCard,
   Section,
   Stagger,
 } from "@/components/atoms";
@@ -209,7 +210,7 @@ export function PetCare() {
 
         <Section className="hp-pet-care-final">
           <div className="hp-container">
-            <div className="hp-pet-care-final-card">
+            <RevealCard className="hp-pet-care-final-card">
               <h2>Need advice specific to your pet?</h2>
               <p>
                 Our team can help turn general care tips into a plan that fits
@@ -221,7 +222,7 @@ export function PetCare() {
                   View Services
                 </Button>
               </div>
-            </div>
+            </RevealCard>
           </div>
         </Section>
       </main>

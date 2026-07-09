@@ -1,7 +1,9 @@
 "use client";
 
-import { Button, Icon, Reveal, Section } from "@/components/atoms";
+import { Button, Icon, Reveal, RevealCard, Section, Stagger } from "@/components/atoms";
+import { itemVariants } from "@/constants";
 import { Footer, Header } from "@/components/organisms";
+import { motion } from "motion/react";
 import type { MouseEvent } from "react";
 import Image from "next/image";
 import "./styles.css";
@@ -130,15 +132,15 @@ export function Facilities() {
                 equipment; it's about creating a Fear-Free atmosphere that
                 minimizes stress for our patients.
               </p>
-              <div className="hp-facilities-principles">
+              <Stagger className="hp-facilities-principles">
                 {principles.map((principle) => (
-                  <article key={principle.title}>
+                  <motion.article key={principle.title} variants={itemVariants}>
                     <Icon name={principle.icon} />
                     <h3>{principle.title}</h3>
                     <p>{principle.text}</p>
-                  </article>
+                  </motion.article>
                 ))}
-              </div>
+              </Stagger>
             </Reveal>
             <Reveal className="hp-facilities-philosophy-media" delay={0.1}>
               <div>
@@ -152,21 +154,22 @@ export function Facilities() {
         </Section>
 
         <section className="hp-facilities-extract" id="facility-spaces">
-          <div className="hp-facilities-extract-head">
+          <Reveal className="hp-facilities-extract-head">
             <h2>Designed for Every Need</h2>
             <p>
               From the first moment you walk in to the most advanced surgical
               procedures, our clinic is optimized for safety, precision, and
               comfort.
             </p>
-          </div>
-          <div className="hp-facilities-extract-grid">
+          </Reveal>
+          <Stagger className="hp-facilities-extract-grid">
             {facilityCards.map((facility) => (
-              <div
+              <motion.div
                 className="hp-facilities-extract-card"
                 key={facility.title}
                 onMouseLeave={handleFacilityCardLeave}
                 onMouseMove={handleFacilityCardMove}
+                variants={itemVariants}
               >
                 <div className="hp-facilities-extract-image">
                   <Image
@@ -193,14 +196,14 @@ export function Facilities() {
                     ))}
                   </ul>
                 </div>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </Stagger>
         </section>
 
         <Section className="hp-facilities-final" id="virtual-tour">
           <div className="hp-container">
-            <div className="hp-facilities-final-card">
+            <RevealCard className="hp-facilities-final-card">
               <h2>Experience the Difference in Person</h2>
               <p>
                 We invite you to take a tour of our facilities or schedule your
@@ -217,7 +220,7 @@ export function Facilities() {
                   <Icon name="videocam" />
                 </Button>
               </div>
-            </div>
+            </RevealCard>
           </div>
         </Section>
       </main>

@@ -1,7 +1,9 @@
 "use client";
 
-import { Button, Icon, MotionCard, Reveal, Section } from "@/components/atoms";
+import { Button, Icon, MotionCard, Reveal, RevealCard, Section, Stagger } from "@/components/atoms";
+import { itemVariants } from "@/constants";
 import { Footer, Header } from "@/components/organisms";
+import { motion } from "motion/react";
 import Image from "next/image";
 import "./styles.css";
 
@@ -141,7 +143,7 @@ export function Pricing() {
         </Section>
 
         <Section className="hp-pricing-tiers">
-          <div className="hp-container hp-pricing-tier-grid">
+          <Stagger className="hp-container hp-pricing-tier-grid">
             {plans.map((plan) => (
               <MotionCard
                 className={`hp-pricing-tier${plan.popular ? " hp-pricing-tier-popular" : ""}${plan.urgent ? " hp-pricing-tier-urgent" : ""}`}
@@ -190,13 +192,15 @@ export function Pricing() {
                 </Button>
               </MotionCard>
             ))}
-          </div>
+          </Stagger>
         </Section>
 
         <Section className="hp-pricing-comparison">
           <div className="hp-container">
-            <h2>Side-by-Side Comparison</h2>
-            <div className="hp-pricing-table-wrap">
+            <Reveal>
+              <h2>Side-by-Side Comparison</h2>
+            </Reveal>
+            <Reveal className="hp-pricing-table-wrap" delay={0.08}>
               <table>
                 <thead>
                   <tr>
@@ -227,13 +231,13 @@ export function Pricing() {
                   )}
                 </tbody>
               </table>
-            </div>
+            </Reveal>
           </div>
         </Section>
 
         <Section className="hp-pricing-value">
           <div className="hp-container hp-pricing-value-grid">
-            <div className="hp-pricing-value-photo">
+            <Reveal className="hp-pricing-value-photo">
               <Image
                 alt="A healthy Golden Retriever being hugged by a smiling veterinarian in a sunlit clinic."
                 fill
@@ -248,48 +252,50 @@ export function Pricing() {
                   pet needs without the stress of lump-sum bills.
                 </p>
               </article>
-            </div>
-            <div className="hp-pricing-value-stack">
-              <article>
+            </Reveal>
+            <Stagger className="hp-pricing-value-stack">
+              <MotionCard>
                 <Icon name="savings" />
                 <h4>Save Up to 30%</h4>
                 <p>
                   Our plans are designed to give you more care for less,
                   bundling essential services at significant discounts.
                 </p>
-              </article>
-              <article>
+              </MotionCard>
+              <MotionCard>
                 <Icon name="ecg_heart" />
                 <h4>Early Detection</h4>
                 <p>
                   80% of health issues caught during wellness exams are treated
                   successfully before becoming chronic.
                 </p>
-              </article>
-            </div>
+              </MotionCard>
+            </Stagger>
           </div>
         </Section>
 
         <Section className="hp-pricing-faq">
           <div className="hp-container">
-            <h2>Your Questions, Answered</h2>
-            <div>
+            <Reveal>
+              <h2>Your Questions, Answered</h2>
+            </Reveal>
+            <Stagger>
               {faqItems.map(([question, answer]) => (
-                <details key={question}>
+                <motion.details key={question} variants={itemVariants}>
                   <summary>
                     {question}
                     <Icon name="expand_more" />
                   </summary>
                   <p>{answer}</p>
-                </details>
+                </motion.details>
               ))}
-            </div>
+            </Stagger>
           </div>
         </Section>
 
         <Section className="hp-pricing-final">
           <div className="hp-container">
-            <div className="hp-pricing-final-card">
+            <RevealCard className="hp-pricing-final-card">
               <h2>Ready to invest in their health?</h2>
               <p>
                 Join the Happy Paws family today and give your pet the long,
@@ -301,7 +307,7 @@ export function Pricing() {
                   Talk to a Specialist
                 </Button>
               </div>
-            </div>
+            </RevealCard>
           </div>
         </Section>
       </main>
