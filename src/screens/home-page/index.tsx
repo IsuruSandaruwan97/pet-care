@@ -20,7 +20,7 @@ const PRELOADER_SEEN_KEY = "happy-paws-preloader-seen";
 
 export default function HomePage() {
   const [isIntroReady, setIsIntroReady] = useState(false);
-  const [shouldShowPreloader, setShouldShowPreloader] = useState(false);
+  const [shouldShowPreloader, setShouldShowPreloader] = useState(true);
 
   useEffect(() => {
     const navigationEntry = performance.getEntriesByType(
