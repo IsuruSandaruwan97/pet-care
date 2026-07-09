@@ -102,6 +102,10 @@ const mediaAssets: Record<string, MediaAsset> = {
     contentType: "image/png",
     path: ["media", "images", "pet-care", "senior_cat.png"],
   },
+  error: {
+    contentType: "image/png",
+    path: ["media", "images", "error.png"],
+  },
 };
 
 export async function GET(
