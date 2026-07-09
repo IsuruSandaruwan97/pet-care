@@ -1,4 +1,5 @@
 export * from "./Button";
+export * from "./Carousel";
 export * from "./Card";
 export * from "./Cursor";
 export * from "./DateTimePicker";

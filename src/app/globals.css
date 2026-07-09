@@ -77,6 +77,67 @@ body::-webkit-scrollbar {
   width: 1em;
 }
 
+.hp-carousel {
+  position: relative;
+}
+
+.hp-carousel .swiper {
+  overflow: hidden;
+  touch-action: pan-y;
+  width: 100%;
+}
+
+.hp-carousel .swiper-wrapper {
+  align-items: stretch;
+  display: flex;
+}
+
+.hp-carousel .swiper-slide {
+  display: flex;
+  flex-shrink: 0;
+  height: auto;
+}
+
+.hp-carousel .swiper-slide > * {
+  width: 100%;
+}
+
+.hp-carousel .swiper-pagination {
+  align-items: center;
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  margin-top: 18px;
+  position: static;
+}
+
+.hp-carousel .swiper-pagination-bullet {
+  background: rgba(27, 67, 50, 0.22);
+  border: 0;
+  border-radius: 999px;
+  cursor: pointer;
+  display: block;
+  height: 8px;
+  margin: 0;
+  opacity: 1;
+  padding: 0;
+  transition:
+    background 0.2s ease,
+    width 0.2s ease;
+  width: 8px;
+}
+
+.hp-carousel .swiper-pagination-bullet-active {
+  background: var(--hp-green);
+  width: 22px;
+}
+
+@media (max-width: 767px) {
+  .hp-carousel .hp-scroll-buttons {
+    display: none;
+  }
+}
+
 .tilt-card {
   transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   transform-style: preserve-3d;
@@ -1691,14 +1752,8 @@ body::-webkit-scrollbar {
 }
 
 .hp-testimonials {
-  overflow: hidden;
+  overflow: visible;
   padding: 10px 4px 20px;
-}
-
-.hp-testimonials-track {
-  display: flex;
-  gap: 22px;
-  will-change: transform;
 }
 
 .hp-testimonial-card {
@@ -1706,9 +1761,8 @@ body::-webkit-scrollbar {
   border: 1px solid #efe7da;
   border-radius: 18px;
   box-shadow: 0 8px 24px rgba(27, 67, 50, 0.08);
-  flex: 0 0 330px;
-  max-width: 330px;
-  min-width: 330px;
+  flex: 1 1 auto;
+  min-width: 0;
   padding: 28px;
   transform-style: preserve-3d;
 }
@@ -2630,6 +2684,7 @@ body::-webkit-scrollbar {
   .hp-price-popular {
     transform: none;
   }
+
 }
 
 .map-container {
