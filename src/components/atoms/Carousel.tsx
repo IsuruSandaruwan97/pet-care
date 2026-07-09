@@ -2,10 +2,11 @@
 
 import { Button } from "./Button";
 import { Icon } from "./Icon";
+import { useIsMobile } from "@/hooks";
 import { Autoplay, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import type { Swiper as SwiperInstance } from "swiper";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import type { ReactNode } from "react";
 
 type CarouselBreakpoints = {
@@ -15,7 +16,7 @@ type CarouselBreakpoints = {
 };
 
 type CarouselProps<T> = {
-  items: T[];
+  items: readonly T[];
   renderItem: (item: T, index: number) => ReactNode;
   getKey?: (item: T, index: number) => string | number;
   className?: string;
@@ -32,6 +33,8 @@ type CarouselProps<T> = {
   paginationClickable?: boolean;
   previousLabel?: string;
   nextLabel?: string;
+  showArrows?: boolean;
+  showPauseButton?: boolean;
 };
 
 export function Carousel<T>({
@@ -52,25 +55,49 @@ export function Carousel<T>({
   paginationClickable = true,
   previousLabel = "Previous slide",
   nextLabel = "Next slide",
+  showArrows = true,
+  showPauseButton = false,
 }: CarouselProps<T>) {
   const [swiper, setSwiper] = useState<SwiperInstance | null>(null);
+  const [isAutoplayPaused, setIsAutoplayPaused] = useState(false);
+  const isMobile = useIsMobile();
   const mobileSlides = breakpoints.mobile ?? 1;
   const tabletSlides = breakpoints.tablet ?? 3;
   const desktopSlides = breakpoints.desktop ?? 4;
-  const modules = [
-    ...(autoplay ? [Autoplay] : []),
-    ...(pagination ? [Pagination] : []),
-  ];
+  const showMobileAutoplayControl =
+    autoplay && pagination && isMobile && showPauseButton;
+
+  const toggleAutoplay = () => {
+    if (!swiper?.autoplay) {
+      return;
+    }
+
+    if (isAutoplayPaused) {
+      swiper.autoplay.start();
+      setIsAutoplayPaused(false);
+      return;
+    }
+
+    swiper.autoplay.stop();
+    setIsAutoplayPaused(true);
+  };
+
+  useEffect(() => {
+    if (!autoplay || !isMobile) {
+      setIsAutoplayPaused(false);
+    }
+  }, [autoplay, isMobile]);
 
   return (
     <div className={`hp-carousel ${className}`}>
       <Swiper
+        key={`${autoplay}-${loop}-${pagination}-${isMobile}`}
         autoplay={
           autoplay
             ? {
                 delay: autoplayDelay,
                 disableOnInteraction: false,
-                pauseOnMouseEnter: pauseAutoplayOnHover,
+                pauseOnMouseEnter: pauseAutoplayOnHover && !isMobile,
               }
             : false
         }
@@ -80,7 +107,7 @@ export function Carousel<T>({
           1100: { slidesPerView: desktopSlides },
         }}
         loop={loop}
-        modules={modules}
+        modules={[Autoplay, Pagination]}
         onSwiper={setSwiper}
         pagination={
           pagination
@@ -101,22 +128,41 @@ export function Carousel<T>({
           </SwiperSlide>
         ))}
       </Swiper>
-      <div className={`hp-scroll-buttons ${navigationClassName}`}>
-        <Button
-          onClick={() => swiper?.slidePrev(300)}
-          variant="unstyled"
-          aria-label={previousLabel}
-        >
-          <Icon name="chevron_left" />
-        </Button>
-        <Button
-          onClick={() => swiper?.slideNext(300)}
-          variant="unstyled"
-          aria-label={nextLabel}
-        >
-          <Icon name="chevron_right" />
-        </Button>
-      </div>
+      {showMobileAutoplayControl && (
+        <div className="hp-carousel-mobile-controls">
+          <Button
+            aria-label={
+              isAutoplayPaused
+                ? "Resume carousel autoplay"
+                : "Pause carousel autoplay"
+            }
+            className="hp-carousel-pause"
+            onClick={toggleAutoplay}
+            variant="unstyled"
+          >
+            <Icon name={isAutoplayPaused ? "play_arrow" : "pause"} />
+            <span>{isAutoplayPaused ? "Play" : "Pause"}</span>
+          </Button>
+        </div>
+      )}
+      {showArrows && (
+        <div className={`hp-scroll-buttons ${navigationClassName}`}>
+          <Button
+            onClick={() => swiper?.slidePrev(300)}
+            variant="unstyled"
+            aria-label={previousLabel}
+          >
+            <Icon name="chevron_left" />
+          </Button>
+          <Button
+            onClick={() => swiper?.slideNext(300)}
+            variant="unstyled"
+            aria-label={nextLabel}
+          >
+            <Icon name="chevron_right" />
+          </Button>
+        </div>
+      )}
     </div>
   );
 }

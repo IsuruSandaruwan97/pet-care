@@ -51,6 +51,13 @@ const iconPaths: Record<string, ReactNode> = {
   ),
   chevron_left: <path d="m15 18-6-6 6-6" />,
   chevron_right: <path d="m9 18 6-6-6-6" />,
+  pause: (
+    <>
+      <path d="M8 5v14" />
+      <path d="M16 5v14" />
+    </>
+  ),
+  play_arrow: <path d="m8 5 11 7-11 7V5Z" />,
   child_care: (
     <>
       <circle cx="12" cy="9" r="5" />

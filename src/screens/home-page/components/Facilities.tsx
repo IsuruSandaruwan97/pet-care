@@ -1,17 +1,16 @@
 import {
   Button,
+  Carousel,
   Section,
   SectionTitle,
-  Stagger,
   MotionCard,
 } from "@/components/atoms";
 import { facilities } from "@/data";
+import { useIsMobile } from "@/hooks";
 import Image from "next/image";
 
-const facilityImages: Partial<Record<(typeof facilities)[number][2], string>> =
-  {};
-
 export function Facilities() {
+  const isMobile = useIsMobile();
   return (
     <Section className="hp-section hp-cream" id="facilities">
       <div className="hp-container">
@@ -19,8 +18,18 @@ export function Facilities() {
           eyebrow="Clinic Spaces"
           title="Designed for Comfort and Clarity"
         />
-        <Stagger className="hp-facilities">
-          {facilities.map(([title, text, visual, image]) => {
+        <Carousel
+          className="hp-facilities-carousel"
+          getKey={([title]) => title}
+          items={facilities}
+          loop={false}
+          pagination={isMobile}
+          autoplay={isMobile}
+          showArrows={false}
+          breakpoints={{ mobile: 1, tablet: 3, desktop: 3 }}
+          nextLabel="Next facility"
+          previousLabel="Previous facility"
+          renderItem={([title, text, visual, image]) => {
             return (
               <MotionCard className="hp-facility-card" key={title}>
                 <div
@@ -44,8 +53,8 @@ export function Facilities() {
                 </div>
               </MotionCard>
             );
-          })}
-        </Stagger>
+          }}
+        />
         <div className="hp-facilities-more">
           <Button href="/facilities" variant="outline">
             View All Facilities

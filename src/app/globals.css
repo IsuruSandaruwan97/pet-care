@@ -132,9 +132,38 @@ body::-webkit-scrollbar {
   width: 22px;
 }
 
+.hp-carousel-mobile-controls {
+  display: none;
+}
+
+.hp-carousel-pause {
+  align-items: center;
+  background: #fff;
+  border: 1px solid var(--hp-border);
+  border-radius: 999px;
+  color: var(--hp-green);
+  cursor: pointer;
+  display: inline-flex;
+  font-size: 13px;
+  font-weight: 700;
+  gap: 6px;
+  justify-content: center;
+  padding: 8px 14px;
+}
+
+.hp-carousel-pause .hp-icon {
+  font-size: 16px;
+}
+
 @media (max-width: 767px) {
   .hp-carousel .hp-scroll-buttons {
     display: none;
+  }
+
+  .hp-carousel-mobile-controls {
+    display: flex;
+    justify-content: center;
+    margin-top: 12px;
   }
 }
 
@@ -1316,6 +1345,10 @@ body::-webkit-scrollbar {
   grid-template-columns: repeat(3, 1fr);
 }
 
+.hp-facilities-carousel {
+  margin-top: 0;
+}
+
 .hp-facility-card {
   background: #fff;
   border: 1px solid var(--hp-border);
@@ -1438,6 +1471,10 @@ body::-webkit-scrollbar {
 
 .hp-team-grid {
   grid-template-columns: repeat(4, 1fr);
+}
+
+.hp-team-carousel {
+  margin-top: 0;
 }
 
 .hp-team-card {
@@ -1587,6 +1624,18 @@ body::-webkit-scrollbar {
   gap: 22px;
   grid-template-columns: repeat(4, 1fr);
   margin-top: 48px;
+}
+
+.hp-pricing-carousel {
+  margin-top: 48px;
+}
+
+.hp-pricing-carousel .swiper-pagination-bullet {
+  background: rgba(255, 255, 255, 0.42);
+}
+
+.hp-pricing-carousel .swiper-pagination-bullet-active {
+  background: var(--hp-amber);
 }
 
 .hp-price-card {

@@ -1,22 +1,34 @@
 import {
+  Carousel,
   Section,
   SectionTitle,
-  Stagger,
   MotionCard,
   Reveal,
   Button,
 } from "@/components/atoms";
 import { pricing } from "@/data";
+import { useIsMobile } from "@/hooks";
 import { classNames } from "@/utils";
 import { motion } from "motion/react";
 
 export function Pricing() {
+  const isMobile = useIsMobile();
   return (
     <Section className="hp-section hp-pricing-section" id="pricing">
       <div className="hp-container">
         <SectionTitle title="Simple, Transparent Pricing" />
-        <Stagger className="hp-pricing-grid">
-          {pricing.map(([emoji, name, price, per, features, popular]) => (
+        <Carousel
+          className="hp-pricing-carousel"
+          getKey={([, name]) => name}
+          items={pricing}
+          loop={false}
+          pagination={isMobile}
+          autoplay={false}
+          showArrows={false}
+          breakpoints={{ mobile: 1, tablet: 4, desktop: 4 }}
+          nextLabel="Next pricing plan"
+          previousLabel="Previous pricing plan"
+          renderItem={([emoji, name, price, per, features, popular]) => (
             <MotionCard
               className={classNames(
                 "hp-price-card hp-tilt-card",
@@ -47,8 +59,8 @@ export function Pricing() {
                 Book This Package
               </motion.a>
             </MotionCard>
-          ))}
-        </Stagger>
+          )}
+        />
         <Reveal className="hp-pricing-note">
           All packages can be customized. Ask our front desk about multi-pet
           discounts and payment plans.
