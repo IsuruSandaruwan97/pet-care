@@ -37,10 +37,12 @@
 }
 
 .hp-preloader-paws {
+  --pl-scale: 1;
   height: 130px;
-  max-width: 80vw;
   position: relative;
-  width: 340px;
+  transform: scale(var(--pl-scale));
+  transform-origin: center bottom;
+  width: 374px;
 }
 
 .hp-preloader-paw {
@@ -83,5 +85,17 @@
     animation: none;
     opacity: 1;
     transform: rotate(var(--pl-rotate));
+  }
+}
+
+@media (max-width: 420px) {
+  .hp-preloader-paws {
+    --pl-scale: 0.86;
+  }
+}
+
+@media (max-width: 360px) {
+  .hp-preloader-paws {
+    --pl-scale: 0.74;
   }
 }
