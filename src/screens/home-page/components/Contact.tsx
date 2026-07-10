@@ -10,6 +10,8 @@ import { visitReasonOptions } from "@/data";
 import { classNames } from "@/utils";
 import { useState } from "react";
 
+const mapEmbedUrl: string | null = process.env.NEXT_PUBLIC_MAP_URL || null;
+
 export function Contact() {
   const [pet, setPet] = useState<"dog" | "cat">("dog");
   const [submitted, setSubmitted] = useState(false);
@@ -78,13 +80,13 @@ export function Contact() {
         <RevealCard className="hp-contact-info" delay={0.12}>
           <Card className="hp-map" unstyled>
             <div />
-            <div className="map-container">
-              <iframe
-                src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBVizdQeh3udy11xDc5Ao2YStR2gLc-rfc&amp;q=1%20Grafton%20Street%2C%20Dublin%2C%20Ireland&amp;maptype=roadmap&amp;zoom=14"
-                frameBorder="0"
-                allowFullScreen
-              ></iframe>
-            </div>
+            {mapEmbedUrl ? (
+              <div className="map-container">
+                <iframe src={mapEmbedUrl} frameBorder="0" allowFullScreen />
+              </div>
+            ) : (
+              <span>[ GOOGLE MAP EMBED ]</span>
+            )}
           </Card>
           <Card className="hp-contact-details" unstyled>
             <div>&#128205; 123 Main Street, Your City, ST 00000</div>
