@@ -4,6 +4,7 @@ import { usePathname } from "next/navigation";
 import { PawMark, SocialIcon, Button } from "@/components/atoms";
 import { FloatingPaws, FooterLinks } from "@/components/molecules";
 import { resolveHref } from "@/utils";
+import { siteConfig } from "@/config/site";
 
 export function Footer() {
   const pathname = usePathname();
@@ -14,19 +15,17 @@ export function Footer() {
       <div className="hp-container hp-footer-grid">
         <div>
           <a className="hp-brand hp-footer-brand" href="/">
-            <PawMark className="hp-brand-mark" /> <span>Happy Paws</span>
+            <PawMark className="hp-brand-mark" /> <span>{siteConfig.name}</span>
           </a>
-          <p>
-            Compassionate care for your cats and dogs, every step of the way.
-          </p>
+          <p>{siteConfig.tagline}</p>
           <div className="hp-footer-socials">
-            <a href="#" aria-label="Facebook">
+            <a href={siteConfig.socialLinks.facebook} aria-label="Facebook">
               <SocialIcon name="facebook" />
             </a>
-            <a href="#" aria-label="Instagram">
+            <a href={siteConfig.socialLinks.instagram} aria-label="Instagram">
               <SocialIcon name="instagram" />
             </a>
-            <a href="#" aria-label="TikTok">
+            <a href={siteConfig.socialLinks.tiktok} aria-label="TikTok">
               <span aria-hidden="true">&#9834;</span>
             </a>
           </div>
@@ -106,7 +105,8 @@ export function Footer() {
       </div>
       <div className="hp-container hp-footer-bottom">
         <span>
-          &copy; 2026 Happy Paws Veterinary &amp; Pet Care. All rights reserved.
+          &copy; {new Date().getFullYear()} {siteConfig.legalName}. All rights
+          reserved.
         </span>
         <span>Privacy Policy &middot; Terms of Service &middot; Sitemap</span>
       </div>

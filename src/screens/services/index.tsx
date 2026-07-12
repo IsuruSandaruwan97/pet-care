@@ -11,6 +11,7 @@ import {
 } from "@/components/atoms";
 import { itemVariants } from "@/constants";
 import { Footer, Header } from "@/components/organisms";
+import { siteConfig } from "@/config/site";
 import { pricing } from "@/data";
 import { classNames } from "@/utils";
 import { motion } from "motion/react";
@@ -214,8 +215,11 @@ export function Services() {
                     </div>
                   ) : null}
                   {service.tone === "urgent" ? (
-                    <a className="hp-services-call" href="tel:+15551234567">
-                      Call Now: (555) PAW-HELP
+                    <a
+                      className="hp-services-call"
+                      href={siteConfig.contact.emergencyPhoneHref}
+                    >
+                      Call Now: {siteConfig.contact.emergencyPhone}
                     </a>
                   ) : null}
                   {service.tone === "wide" ? (

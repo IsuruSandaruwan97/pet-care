@@ -94,7 +94,7 @@ const mediaAssets: Record<string, MediaAsset> = {
     contentType: "image/png",
     path: ["media", "images", "pet-care", "over_weight.png"],
   },
-  "righ-food": {
+  "right-food": {
     contentType: "image/png",
     path: ["media", "images", "pet-care", "right_food.png"],
   },

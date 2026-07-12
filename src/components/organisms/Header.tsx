@@ -7,6 +7,7 @@ import { AnimatePresence, motion } from "motion/react";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { PawMark, Button } from "@/components/atoms";
+import { siteConfig } from "@/config/site";
 
 export function Header() {
   const pathname = usePathname();
@@ -19,10 +20,10 @@ export function Header() {
     <header className="hp-header">
       <div className="hp-topbar">
         <span>
-          <span aria-hidden="true">{"\u{1F4DE}"}</span> (555) 123-4567
+          <span aria-hidden="true">{"\u{1F4DE}"}</span> {siteConfig.contact.phone}
         </span>
         <span>
-          <span aria-hidden="true">{"\u{1F550}"}</span> Mon-Sat: 8 AM-7 PM
+          <span aria-hidden="true">{"\u{1F550}"}</span> {siteConfig.hours.short}
         </span>
         <strong className="animate-pulse">
           <span aria-hidden="true">{"\u{1F6A8}"}</span> 24/7 Emergency Line
@@ -36,7 +37,7 @@ export function Header() {
       >
         <a className="hp-brand" href="/" onClick={() => setOpen(false)}>
           <PawMark className="hp-brand-mark" />
-          <span>Happy Paws</span>
+          <span>{siteConfig.name}</span>
         </a>
         <div className="hp-navlinks">
           {navLinks.map((link) => (
@@ -69,7 +70,7 @@ export function Header() {
             transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
           >
             <div className="hp-mobile-head">
-              <span>Happy Paws</span>
+              <span>{siteConfig.name}</span>
               <Button
                 variant="unstyled"
                 type="button"

@@ -1,6 +1,7 @@
 "use client";
 
 import { PawMark } from "@/components/atoms";
+import { siteConfig } from "@/config/site";
 import type { CSSProperties } from "react";
 import { useEffect, useRef, useState } from "react";
 
@@ -48,7 +49,7 @@ export function Preloader({ onComplete }: PreloaderProps) {
 
   return (
     <div
-      aria-label="Happy Paws loading"
+      aria-label={`${siteConfig.name} loading`}
       aria-live="polite"
       className={`hp-preloader${isLeaving ? " hp-preloader-leaving" : ""}`}
       role="status"
@@ -72,7 +73,7 @@ export function Preloader({ onComplete }: PreloaderProps) {
           </div>
         ))}
       </div>
-      <div className="hp-preloader-brand">Happy Paws</div>
+      <div className="hp-preloader-brand">{siteConfig.name}</div>
       <div className="hp-preloader-subtitle">Veterinary &amp; Pet Care</div>
     </div>
   );

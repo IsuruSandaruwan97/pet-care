@@ -8,6 +8,7 @@ import {
 } from "@/constants";
 import { trustChips } from "@/data";
 import { motion } from "motion/react";
+import { siteConfig } from "@/config/site";
 
 const heroTypingCompleteDelay = 3.2;
 
@@ -96,11 +97,11 @@ export function Hero({ introReady = true }: HeroProps) {
           </motion.a>
           <motion.a
             className="hp-call"
-            href="tel:5551234567"
+            href={siteConfig.contact.phoneHref}
             whileHover={{ scale: 1.04, y: -3 }}
             whileTap={{ scale: 0.97, y: 0 }}
           >
-            <Icon name="call" /> Call Us: (555) 123-4567
+            <Icon name="call" /> Call Us: {siteConfig.contact.phone}
           </motion.a>
         </motion.div>
       </motion.div>

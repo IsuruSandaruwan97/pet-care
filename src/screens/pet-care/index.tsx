@@ -11,6 +11,7 @@ import {
   Stagger,
 } from "@/components/atoms";
 import { Footer, Header } from "@/components/organisms";
+import { siteConfig } from "@/config/site";
 import Image from "next/image";
 import "./styles.css";
 
@@ -201,7 +202,10 @@ export function PetCare() {
                   <span key={sign}>{sign}</span>
                 ))}
               </div>
-              <Button href="tel:+15551234567" variant="secondary">
+              <Button
+                href={siteConfig.contact.emergencyPhoneHref}
+                variant="secondary"
+              >
                 Call Emergency Line
               </Button>
             </Reveal>

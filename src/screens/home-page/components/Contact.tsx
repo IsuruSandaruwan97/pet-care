@@ -7,6 +7,7 @@ import {
   DateTimePicker,
 } from "@/components/atoms";
 import { visitReasonOptions } from "@/data";
+import { formatAddress, siteConfig } from "@/config/site";
 import { classNames } from "@/utils";
 import { useState } from "react";
 
@@ -15,6 +16,8 @@ const mapEmbedUrl: string | null = process.env.NEXT_PUBLIC_MAP_URL || null;
 export function Contact() {
   const [pet, setPet] = useState<"dog" | "cat">("dog");
   const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState("");
+  const [submitting, setSubmitting] = useState(false);
 
   return (
     <Section className="hp-section hp-contact" id="contact">
@@ -34,9 +37,34 @@ export function Contact() {
           ) : (
             <form
               className="hp-form"
-              onSubmit={(event) => {
+              onSubmit={async (event) => {
                 event.preventDefault();
-                setSubmitted(true);
+                setError("");
+                setSubmitting(true);
+
+                const form = event.currentTarget;
+                const formData = new FormData(form);
+                formData.set("petType", pet);
+
+                try {
+                  const response = await fetch("/api/appointments", {
+                    method: "POST",
+                    body: formData,
+                  });
+
+                  if (!response.ok) {
+                    throw new Error("Appointment request failed");
+                  }
+
+                  setSubmitted(true);
+                  form.reset();
+                } catch {
+                  setError(
+                    "We couldn't send your request. Please call the clinic or try again.",
+                  );
+                } finally {
+                  setSubmitting(false);
+                }
               }}
             >
               <input name="ownerName" placeholder="Pet Owner Name" required />
@@ -66,13 +94,15 @@ export function Contact() {
               </div>
               <Dropdown name="reason" options={visitReasonOptions} />
               <DateTimePicker name="appointmentAt" />
-              <textarea placeholder="Additional Notes" rows={3} />
+              <textarea name="notes" placeholder="Additional Notes" rows={3} />
+              {error ? <p role="alert">{error}</p> : null}
               <Button
                 className="hp-contact-submit"
+                disabled={submitting}
                 type="submit"
                 variant="unstyled"
               >
-                Request Appointment
+                {submitting ? "Sending..." : "Request Appointment"}
               </Button>
             </form>
           )}
@@ -94,14 +124,14 @@ export function Contact() {
             )}
           </Card>
           <Card className="hp-contact-details" unstyled>
-            <div>&#128205; 123 Main Street, Your City, ST 00000</div>
-            <div>&#128222; (555) 123-4567</div>
-            <div>&#9993;&#65039; hello@happypawsvet.com</div>
+            <div>&#128205; {formatAddress()}</div>
+            <div>&#128222; {siteConfig.contact.phone}</div>
+            <div>&#9993;&#65039; {siteConfig.contact.email}</div>
+            <div>&#128336; {siteConfig.hours.full}</div>
             <div>
-              &#128336; Mon-Fri: 8 AM-7 PM &nbsp;|&nbsp; Sat: 9 AM-4 PM
-              &nbsp;|&nbsp; Sun: Closed
+              &#128680; 24/7 Emergency Line:{" "}
+              {siteConfig.contact.emergencyPhone}
             </div>
-            <div>&#128680; 24/7 Emergency Line: (555) 999-0000</div>
           </Card>
         </RevealCard>
       </div>

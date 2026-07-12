@@ -271,7 +271,7 @@ export const tips = [
   },
   {
     title: "How to Choose the Right Food for Your Pet's Life Stage",
-    image: "/api/media/righ-food",
+    image: "/api/media/right-food",
   },
 ];
 
