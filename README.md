@@ -25,16 +25,34 @@ A polished veterinary clinic website built with Next.js, React, TypeScript, Tail
 
 ## Getting Started
 
+This template includes a `pnpm-lock.yaml`, so pnpm is the recommended package manager. You can also use npm or yarn if that better fits your workflow.
+
 Install dependencies:
 
 ```bash
 pnpm install
 ```
 
+Or:
+
+```bash
+npm install
+# or
+yarn install
+```
+
 Start the development server:
 
 ```bash
 pnpm dev
+```
+
+Or:
+
+```bash
+npm run dev
+# or
+yarn dev
 ```
 
 Open the app at:
@@ -49,16 +67,40 @@ Create a production build:
 pnpm build
 ```
 
+Or:
+
+```bash
+npm run build
+# or
+yarn build
+```
+
 Run the production build:
 
 ```bash
 pnpm start
 ```
 
+Or:
+
+```bash
+npm run start
+# or
+yarn start
+```
+
 Run linting:
 
 ```bash
 pnpm lint
+```
+
+Or:
+
+```bash
+npm run lint
+# or
+yarn lint
 ```
 
 ## Available Routes
