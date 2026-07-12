@@ -39,10 +39,10 @@ export function Contact() {
                 setSubmitted(true);
               }}
             >
-              <input placeholder="Pet Owner Name" />
-              <input placeholder="Phone Number" />
-              <input placeholder="Email Address" />
-              <input placeholder="Pet Name" />
+              <input name="ownerName" placeholder="Pet Owner Name" required />
+              <input name="phone" type="tel" placeholder="Phone Number" required />
+              <input name="email" type="email" placeholder="Email Address" required />
+              <input name="petName" placeholder="Pet Name" required />
               <div>
                 <div className="hp-pet-label">Pet Type</div>
                 <div className="hp-pet-toggle">
@@ -82,7 +82,12 @@ export function Contact() {
             <div />
             {mapEmbedUrl ? (
               <div className="map-container">
-                <iframe src={mapEmbedUrl} frameBorder="0" allowFullScreen />
+                <iframe
+                src={mapEmbedUrl}
+                frameBorder="0"
+                referrerPolicy="no-referrer"
+                sandbox="allow-scripts allow-same-origin"
+              />
               </div>
             ) : (
               <span>[ GOOGLE MAP EMBED ]</span>

@@ -23,7 +23,8 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   const rightClickGuardEnabled =
-    process.env.NEXT_PUBLIC_APP_ENV === "production";
+    process.env.NEXT_PUBLIC_RIGHT_CLICK_GUARD === "true";
+
   return (
     <html className="scroll-smooth" lang="en">
       <head>
