@@ -21,7 +21,7 @@ export function FloatingPaws({ variant }: { variant: "hero" | "footer" }) {
 
   return (
     <div className="hp-floating-paws">
-      {paws.map(([left, top, size, opacity, animation], index) => (
+      {paws.map(([left, top, size, opacity, animation]) => (
         <PawMark
           className={String(animation)}
           key={`${left}-${top}`}

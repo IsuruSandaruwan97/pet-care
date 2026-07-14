@@ -12,113 +12,114 @@ type MediaAsset = {
 const mediaAssets: Record<string, MediaAsset> = {
   "certified-vets-video": {
     contentType: "video/mp4",
-    path: ["media", "videos", "certified_vets.mp4"],
+    path: ["videos", "certified_vets.mp4"],
   },
   "hero-video": {
     contentType: "video/mp4",
-    path: ["media", "videos", "hero_banner_video.mp4"],
+    path: ["videos", "hero_banner_video.mp4"],
   },
   "team-jo": {
     contentType: "image/jpeg",
-    path: ["media", "images", "team", "JO.jpg"],
+    path: ["images", "team", "JO.jpg"],
   },
   "team-mc": {
     contentType: "image/jpeg",
-    path: ["media", "images", "team", "MC.jpg"],
+    path: ["images", "team", "MC.jpg"],
   },
   "team-pn": {
     contentType: "image/jpeg",
-    path: ["media", "images", "team", "PN.jpg"],
+    path: ["images", "team", "PN.jpg"],
   },
   "team-sm": {
     contentType: "image/jpeg",
-    path: ["media", "images", "team", "SM.jpg"],
+    path: ["images", "team", "SM.jpg"],
   },
   "dr-sarah": {
     contentType: "image/png",
-    path: ["media", "images", "dr_sarah.png"],
+    path: ["images", "dr_sarah.png"],
   },
   founder: {
     contentType: "image/png",
-    path: ["media", "images", "founder.png"],
+    path: ["images", "founder.png"],
   },
   "our-clinic": {
     contentType: "image/png",
-    path: ["media", "images", "our_clinic.png"],
+    path: ["images", "our_clinic.png"],
   },
   wellness: {
     contentType: "image/png",
-    path: ["media", "images", "wellness.png"],
+    path: ["images", "wellness.png"],
   },
   facilities: {
     contentType: "image/png",
-    path: ["media", "images", "facilities.png"],
+    path: ["images", "facilities.png"],
   },
   reception: {
     contentType: "image/png",
-    path: ["media", "images", "reception.png"],
+    path: ["images", "reception.png"],
   },
   exam: {
     contentType: "image/png",
-    path: ["media", "images", "exam.png"],
+    path: ["images", "exam.png"],
   },
   surgery: {
     contentType: "image/png",
-    path: ["media", "images", "surgery.png"],
+    path: ["images", "surgery.png"],
   },
   boarding: {
     contentType: "image/png",
-    path: ["media", "images", "boarding.png"],
+    path: ["images", "boarding.png"],
   },
   "value-image": {
     contentType: "image/png",
-    path: ["media", "images", "value_image.png"],
+    path: ["images", "value_image.png"],
   },
   "pet-care": {
     contentType: "image/png",
-    path: ["media", "images", "pet_care.png"],
+    path: ["images", "pet_care.png"],
   },
   "cat-in-pain": {
     contentType: "image/png",
-    path: ["media", "images", "pet-care", "cat_in_pain.png"],
+    path: ["images", "pet-care", "cat_in_pain.png"],
   },
   "dental-disease": {
     contentType: "image/png",
-    path: ["media", "images", "pet-care", "dental_disease.png"],
+    path: ["images", "pet-care", "dental_disease.png"],
   },
   "first-year-puppy": {
     contentType: "image/png",
-    path: ["media", "images", "pet-care", "first_year_puppy.png"],
+    path: ["images", "pet-care", "first_year_puppy.png"],
   },
   "over-weight": {
     contentType: "image/png",
-    path: ["media", "images", "pet-care", "over_weight.png"],
+    path: ["images", "pet-care", "over_weight.png"],
   },
   "right-food": {
     contentType: "image/png",
-    path: ["media", "images", "pet-care", "right_food.png"],
+    path: ["images", "pet-care", "right_food.png"],
   },
   "senior-cat": {
     contentType: "image/png",
-    path: ["media", "images", "pet-care", "senior_cat.png"],
+    path: ["images", "pet-care", "senior_cat.png"],
   },
   error: {
     contentType: "image/png",
-    path: ["media", "images", "error.png"],
+    path: ["images", "error.png"],
   },
 };
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { asset: string } },
+  { params }: { params: Promise<{ asset: string }> },
 ) {
-  const asset = mediaAssets[params.asset];
+  const { asset: assetName } = await params;
+  const asset = mediaAssets[assetName];
 
   if (!asset) {
     return new NextResponse(null, { status: 404 });
   }
 
-  const filePath = join(process.cwd(), ...asset.path);
+  const filePath = join(process.cwd(), "media", ...asset.path);
   const { size: fileSize } = statSync(filePath);
   const range = request.headers.get("range");
 

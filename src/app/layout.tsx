@@ -94,7 +94,7 @@ export default function RootLayout({
   };
 
   return (
-    <html className="scroll-smooth" lang="en">
+    <html className="scroll-smooth" data-scroll-behavior="smooth" lang="en">
       <head>
         <link
           rel="preload"
