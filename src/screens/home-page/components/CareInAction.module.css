@@ -41,25 +41,33 @@
   position: absolute;
 }
 
+.videoFooter {
+  align-items: center;
+  bottom: 24px;
+  display: flex;
+  gap: 14px;
+  left: 24px;
+  position: absolute;
+  right: 24px;
+  z-index: 2;
+}
+
 .videoControl {
   align-items: center;
   background: rgba(255, 248, 240, 0.94);
   border: 0;
   border-radius: 999px;
-  bottom: 24px;
   color: var(--hp-green);
   cursor: pointer;
   display: inline-flex;
+  flex: 0 0 auto;
   height: 46px;
-  left: 24px;
   justify-content: center;
   padding: 0;
-  position: absolute;
   transition:
     background 180ms ease,
     transform 180ms ease;
   width: 46px;
-  z-index: 2;
 }
 
 .videoControl:hover {
@@ -73,15 +81,11 @@
 }
 
 .videoLabel {
-  bottom: 25px;
   color: #fff;
   display: flex;
   flex-direction: column;
   gap: 4px;
-  left: 86px;
-  position: absolute;
-  right: 24px;
-  z-index: 2;
+  min-width: 0;
 }
 
 .videoLabel span {
@@ -251,15 +255,20 @@
     border-radius: 22px;
   }
 
-  .videoLabel {
-    bottom: 78px;
+  .videoFooter {
+    bottom: 20px;
+    gap: 12px;
     left: 20px;
     right: 20px;
   }
 
   .videoControl {
-    bottom: 20px;
-    left: 20px;
+    height: 42px;
+    width: 42px;
+  }
+
+  .videoLabel strong {
+    font-size: clamp(16px, 4.8vw, 20px);
   }
 
   .content h2 {

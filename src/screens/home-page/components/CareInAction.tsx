@@ -80,21 +80,23 @@ export function CareInAction() {
               <source src={heroVideo} type="video/mp4" />
             </video>
             <div className={styles.videoShade} />
-            <button
-              aria-label={isPlaying ? "Pause care video" : "Play care video"}
-              className={styles.videoControl}
-              onClick={togglePlayback}
-              type="button"
-            >
-              {isPlaying ? (
-                <Pause fill="currentColor" />
-              ) : (
-                <Play fill="currentColor" />
-              )}
-            </button>
-            <div className={styles.videoLabel}>
-              <span>Inside Happy Paws</span>
-              <strong>Care that pets can feel</strong>
+            <div className={styles.videoFooter}>
+              <button
+                aria-label={isPlaying ? "Pause care video" : "Play care video"}
+                className={styles.videoControl}
+                onClick={togglePlayback}
+                type="button"
+              >
+                {isPlaying ? (
+                  <Pause fill="currentColor" />
+                ) : (
+                  <Play fill="currentColor" />
+                )}
+              </button>
+              <div className={styles.videoLabel}>
+                <span>Inside Happy Paws</span>
+                <strong>Care that pets can feel</strong>
+              </div>
             </div>
           </motion.div>
         </Reveal>
