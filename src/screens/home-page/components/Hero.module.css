@@ -1,0 +1,837 @@
+@font-face {
+  font-family: "DM Serif Display";
+  font-display: swap;
+  font-style: normal;
+  font-weight: 400;
+  src: url("/assets/fonts/dm-serif-display-latin-400.ttf") format("truetype");
+}
+
+.hero {
+  --cozy-background: #effdf0;
+  --cozy-dark: #1a3d1a;
+  --cozy-dark-hover: #2a5a2a;
+  --cozy-orange: #e86a10;
+  --cozy-orange-hover: #d45e0d;
+  background: var(--cozy-background);
+  color: var(--cozy-dark);
+  height: 100svh;
+  min-height: 640px;
+  overflow: hidden;
+  position: relative;
+}
+
+.desktopLayout,
+.mobileLayout {
+  height: 100%;
+  position: relative;
+  width: 100%;
+}
+
+.mobileLayout {
+  display: none;
+}
+
+.heading {
+  left: 50%;
+  padding: clamp(98px, 12vh, 128px) 48px 0;
+  position: absolute;
+  text-align: center;
+  top: 0;
+  transform: translateX(-50%);
+  width: 100%;
+  z-index: 5;
+}
+
+.heading h1,
+.mobileIntro h1 {
+  color: var(--cozy-dark);
+  font-family: "DM Serif Display", Georgia, serif;
+  font-weight: 400;
+  letter-spacing: -0.045em;
+  line-height: 0.9;
+  margin: 0;
+}
+
+.heading h1 {
+  font-size: clamp(54px, 6.75vw, 99px);
+}
+
+.heading h1 span,
+.mobileIntro h1 span {
+  display: block;
+}
+
+.heading h1 span {
+  opacity: 0;
+  transform: translateY(60px) scale(0.7) rotate(-4deg);
+}
+
+.desktopProduct,
+.desktopReview {
+  position: absolute;
+  top: clamp(104px, 12vh, 132px);
+  z-index: 12;
+}
+
+.desktopProduct {
+  left: clamp(24px, 4.7vw, 72px);
+  opacity: 0;
+  transform: translateX(-40px);
+  width: clamp(150px, 14vw, 250px);
+}
+
+.desktopReview {
+  opacity: 0;
+  right: clamp(24px, 4.7vw, 72px);
+  transform: translateX(40px);
+  width: clamp(112px, 10vw, 177px);
+}
+
+.productCard {
+  color: var(--cozy-dark);
+  width: 100%;
+}
+
+.productImage {
+  aspect-ratio: 1;
+  position: relative;
+  width: 100%;
+}
+
+.productImage img {
+  object-fit: contain;
+}
+
+.productImage > a {
+  align-items: center;
+  background: var(--cozy-dark);
+  border: 3px solid var(--cozy-background);
+  border-radius: 50%;
+  bottom: 4%;
+  color: #fff;
+  display: flex;
+  height: clamp(31px, 3vw, 42px);
+  justify-content: center;
+  position: absolute;
+  right: 1%;
+  transition:
+    background 180ms ease,
+    transform 180ms ease;
+  width: clamp(31px, 3vw, 42px);
+  z-index: 2;
+}
+
+.productImage > a:hover {
+  background: var(--cozy-dark-hover);
+  transform: rotate(8deg) scale(1.05);
+}
+
+.productImage svg {
+  height: 52%;
+  width: 52%;
+}
+
+.productCard > p {
+  color: #5b645c;
+  font-size: clamp(11px, 1.05vw, 16px);
+  font-weight: 500;
+  line-height: 1.25;
+  margin: 6px 0 3px;
+}
+
+.productCard > strong {
+  color: var(--cozy-dark);
+  display: block;
+  font-size: clamp(13px, 1.2vw, 18px);
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.reviewCard {
+  aspect-ratio: 177 / 287;
+  background: #fff;
+  border-radius: clamp(12px, 1.25vw, 20px);
+  box-shadow: 0 12px 32px rgba(26, 61, 26, 0.08);
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+
+.reviewCard > img {
+  object-fit: cover;
+}
+
+.reviewCardContent {
+  align-items: center;
+  bottom: 5%;
+  display: flex;
+  flex-direction: column;
+  left: 8%;
+  position: absolute;
+  right: 8%;
+  text-align: center;
+  z-index: 2;
+}
+
+.reviewCardContent button {
+  align-items: center;
+  background: var(--cozy-dark);
+  border: 0;
+  border-radius: 50%;
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  height: clamp(30px, 3vw, 43px);
+  justify-content: center;
+  margin-bottom: clamp(7px, 0.8vw, 12px);
+  padding: 0;
+  transition:
+    background 180ms ease,
+    transform 180ms ease;
+  width: clamp(30px, 3vw, 43px);
+}
+
+.reviewCardContent button:hover {
+  background: var(--cozy-dark-hover);
+  transform: scale(1.06);
+}
+
+.reviewCardContent button svg {
+  height: 44%;
+  margin-left: 2px;
+  width: 44%;
+}
+
+.reviewCardContent p {
+  color: #475248;
+  font-size: clamp(8px, 0.72vw, 12px);
+  font-weight: 600;
+  line-height: 1.25;
+  margin: 0;
+}
+
+.petPanels {
+  align-items: flex-end;
+  bottom: 0;
+  display: flex;
+  left: 0;
+  position: absolute;
+  right: 0;
+  width: 100%;
+  z-index: 10;
+}
+
+.petPanel {
+  min-width: 0;
+  opacity: 0;
+  position: relative;
+  transform: translateY(80px) scale(1.02);
+}
+
+.leftPanel,
+.rightPanel {
+  flex: 1 1 0;
+}
+
+.centerPanel {
+  flex: 1.265 1 0;
+}
+
+.petPanel > img {
+  display: block;
+  height: auto;
+  width: 100%;
+}
+
+.panelOverlay {
+  bottom: clamp(18px, 3.3vh, 42px);
+  left: 8%;
+  opacity: 0;
+  position: absolute;
+  right: 8%;
+  text-align: center;
+  transform: scale(0.85);
+  z-index: 2;
+}
+
+.leftPanel .panelOverlay,
+.rightPanel .panelOverlay {
+  align-items: center;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.leftPanel .panelOverlay {
+  height: 50%;
+}
+
+.rightPanel .panelOverlay {
+  height: 46.5%;
+}
+
+.centerOverlay {
+  color: #fff;
+}
+
+.centerOverlay h2 {
+  color: #fff;
+  font-family: var(--font-inter), Arial, sans-serif;
+  font-size: clamp(14px, 1.65vw, 25px);
+  font-weight: 600;
+  line-height: 1.05;
+  margin: 0 0 clamp(10px, 1.5vh, 18px);
+}
+
+.exploreButton {
+  align-items: center;
+  background: var(--cozy-orange);
+  border-radius: 999px;
+  box-shadow: 0 8px 18px rgba(232, 106, 16, 0.25);
+  color: #fff;
+  display: inline-flex;
+  font-size: 13px;
+  font-weight: 600;
+  gap: 10px;
+  justify-content: center;
+  padding: 12px 17px 12px 20px;
+  text-decoration: none;
+  transition:
+    background 180ms ease,
+    transform 180ms ease;
+}
+
+.exploreButton:hover {
+  background: var(--cozy-orange-hover);
+  transform: translateY(-2px);
+}
+
+.exploreButton > span {
+  align-items: center;
+  background: rgba(255, 255, 255, 0.18);
+  border-radius: 50%;
+  display: flex;
+  height: 24px;
+  justify-content: center;
+  width: 24px;
+}
+
+.exploreButton svg {
+  height: 14px;
+  width: 14px;
+}
+
+.compactButton {
+  font-size: clamp(8px, 0.82vw, 13px);
+  gap: clamp(5px, 0.6vw, 10px);
+  padding: clamp(7px, 0.8vw, 12px) clamp(9px, 1.1vw, 17px)
+    clamp(7px, 0.8vw, 12px) clamp(12px, 1.3vw, 20px);
+}
+
+.compactButton > span {
+  height: clamp(17px, 1.65vw, 24px);
+  width: clamp(17px, 1.65vw, 24px);
+}
+
+.compactButton svg {
+  height: 58%;
+  width: 58%;
+}
+
+.statLine {
+  align-items: center;
+  display: flex;
+  gap: clamp(7px, 0.8vw, 12px);
+  justify-content: center;
+}
+
+.statLine > strong {
+  color: var(--cozy-dark);
+  font-size: clamp(25px, 2.7vw, 42px);
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+
+.customerStat > p,
+.ratingStat > p {
+  color: #58645a;
+  font-size: clamp(9px, 0.85vw, 13px);
+  font-weight: 500;
+  line-height: 1.35;
+  margin: clamp(7px, 1vh, 12px) auto 0;
+  max-width: 220px;
+}
+
+.avatarStack {
+  align-items: center;
+  display: flex;
+}
+
+.avatarStack > img,
+.avatarStack > span {
+  border: 2px solid #a4e9b3;
+  border-radius: 50%;
+  height: clamp(22px, 2.3vw, 33px);
+  width: clamp(22px, 2.3vw, 33px);
+}
+
+.avatarStack > img {
+  object-fit: cover;
+}
+
+.avatarStack > span {
+  align-items: center;
+  background: var(--cozy-dark);
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  margin-left: -7px;
+}
+
+.avatarStack svg {
+  height: 55%;
+  width: 55%;
+}
+
+.ratingStat .statLine {
+  gap: 8px;
+}
+
+.ratingStat .statLine > svg {
+  color: var(--cozy-orange);
+  height: clamp(22px, 2.2vw, 34px);
+  stroke-width: 1.7;
+  width: clamp(22px, 2.2vw, 34px);
+}
+
+.ready .heading h1 span:first-child {
+  animation: wordPop 0.9s 0.2s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+.ready .heading h1 span:last-child {
+  animation: wordPop 0.9s 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+.ready .desktopProduct {
+  animation: slideInLeft 0.8s 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.ready .desktopReview {
+  animation: slideInRight 0.8s 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.ready .centerPanel {
+  animation: photoReveal 1.1s 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.ready .leftPanel {
+  animation: photoReveal 1.1s 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.ready .rightPanel {
+  animation: photoReveal 1.1s 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.ready .panelOverlay {
+  animation: scaleIn 0.7s 1.1s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes wordPop {
+  0% {
+    filter: blur(8px);
+    opacity: 0;
+    transform: translateY(60px) scale(0.7) rotate(-4deg);
+  }
+  70% {
+    filter: blur(0);
+    opacity: 1;
+    transform: translateY(-6px) scale(1.035) rotate(0);
+  }
+  100% {
+    filter: blur(0);
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes photoReveal {
+  from {
+    opacity: 0;
+    transform: translateY(80px) scale(1.02);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.85);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (max-width: 1023px) and (min-width: 768px) {
+  .heading {
+    padding-top: 116px;
+  }
+
+  .heading h1 {
+    font-size: 64.8px;
+  }
+
+  .desktopProduct,
+  .desktopReview {
+    top: 116px;
+  }
+
+  .desktopProduct {
+    left: 16px;
+    width: 160px;
+  }
+
+  .desktopReview {
+    right: 16px;
+    width: 120px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1100px) and (min-height: 760px) {
+  .heading {
+    bottom: calc(40.7vw + 70px);
+    padding: 0 48px;
+    top: auto;
+  }
+}
+
+@media (min-width: 1024px) and (min-aspect-ratio: 3 / 2) {
+  .leftPanel {
+    height: 41vh;
+  }
+
+  .centerPanel {
+    height: 62vh;
+  }
+
+  .rightPanel {
+    height: 44vh;
+  }
+
+  .leftPanel::before,
+  .centerPanel::before,
+  .rightPanel::before {
+    bottom: 0;
+    content: "";
+    left: 0;
+    position: absolute;
+    right: 0;
+  }
+
+  .leftPanel::before {
+    background: #a4e9b3;
+    height: 50%;
+  }
+
+  .centerPanel::before {
+    background: #003c08;
+    height: 33%;
+  }
+
+  .rightPanel::before {
+    background: #a4e9b3;
+    height: 46.5%;
+  }
+
+  .leftPanel > img,
+  .centerPanel > img,
+  .rightPanel > img {
+    height: 100%;
+    object-fit: contain;
+    object-position: center bottom;
+    position: relative;
+    z-index: 1;
+  }
+}
+
+@media (max-width: 767px) {
+  .hero {
+    height: 100svh;
+    min-height: 560px;
+  }
+
+  .desktopLayout {
+    display: none;
+  }
+
+  .mobileLayout {
+    display: block;
+    padding-top: clamp(90px, 18svh, 135px);
+  }
+
+  .mobileIntro {
+    padding: 0 20px;
+    position: relative;
+    text-align: center;
+    z-index: 5;
+  }
+
+  .mobileIntro h1 {
+    font-size: clamp(30.6px, 9.45vw, 39.6px);
+    line-height: 0.94;
+  }
+
+  .mobileIntro h1 span {
+    opacity: 0;
+    transform: translateY(40px) skewY(3deg);
+  }
+
+  .mobileIntro > p {
+    display: none;
+  }
+
+  .mobileIntro > .exploreButton {
+    display: none;
+  }
+
+  .mobileCards {
+    display: none;
+  }
+
+  .mobileCards > * {
+    flex: 1 1 0;
+    min-width: 0;
+    opacity: 0;
+  }
+
+  .mobileCards .productImage > a {
+    border-width: 2px;
+    height: 32px;
+    width: 32px;
+  }
+
+  .mobileCards .productCard > p {
+    font-size: 11px;
+  }
+
+  .mobileCards .productCard > strong {
+    font-size: 13px;
+  }
+
+  .mobileCards .reviewCard {
+    aspect-ratio: 4 / 3;
+  }
+
+  .mobileCards .reviewCardContent {
+    align-items: flex-end;
+    bottom: 10px;
+    left: auto;
+    right: 10px;
+    width: 46%;
+  }
+
+  .mobileCards .reviewCardContent button {
+    height: 30px;
+    margin: 0 auto 5px;
+    width: 30px;
+  }
+
+  .mobileCards .reviewCardContent p {
+    font-size: 7px;
+  }
+
+  .mobileStats {
+    display: none;
+  }
+
+  .mobileStats .statLine > strong {
+    font-size: 22px;
+  }
+
+  .mobileStats .customerStat > p,
+  .mobileStats .ratingStat > p {
+    display: none;
+  }
+
+  .mobileStats .avatarStack > img,
+  .mobileStats .avatarStack > span {
+    height: 24px;
+    width: 24px;
+  }
+
+  .mobileStats .ratingStat .statLine > svg {
+    height: 20px;
+    width: 20px;
+  }
+
+  .statDivider {
+    background: rgba(26, 61, 26, 0.2);
+    height: 32px;
+    width: 1px;
+  }
+
+  .mobileLayout > .petPanels {
+    bottom: 0;
+    display: block;
+    height: 68%;
+    margin: 0;
+    position: absolute;
+  }
+
+  .mobileLayout .leftPanel,
+  .mobileLayout .rightPanel {
+    display: none;
+  }
+
+  .mobileLayout .centerPanel {
+    display: block;
+    height: 100%;
+    overflow: hidden;
+    width: 100%;
+  }
+
+  .mobileLayout .centerPanel > img {
+    height: 100%;
+    object-fit: cover;
+    object-position: center bottom;
+    width: 100%;
+  }
+
+  .mobileLayout .panelOverlay {
+    display: none;
+  }
+
+  .mobileLayout .centerOverlay {
+    align-items: center;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    height: 33%;
+    justify-content: center;
+    left: 8%;
+    right: 8%;
+  }
+
+  .mobileLayout .centerOverlay h2 {
+    font-size: clamp(18px, 5.5vw, 23px);
+    margin-bottom: 14px;
+  }
+
+  .mobileLayout .compactButton {
+    font-size: 11px;
+    gap: 8px;
+    padding: 10px 13px 10px 17px;
+  }
+
+  .mobileLayout .compactButton > span {
+    height: 22px;
+    width: 22px;
+  }
+
+  .ready .mobileIntro h1 span:first-child {
+    animation: wordPop 0.9s 0.2s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  }
+
+  .ready .mobileIntro h1 span:last-child {
+    animation: wordPop 0.9s 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  }
+
+  .ready .mobileIntro > p {
+    animation: fadeUp 0.8s 0.55s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  .ready .mobileIntro > .exploreButton {
+    animation: fadeUp 0.8s 0.65s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  .ready .mobileCards > :first-child {
+    animation: slideInLeft 0.8s 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  .ready .mobileCards > :last-child {
+    animation: slideInRight 0.8s 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  .ready .mobileStats {
+    animation: fadeUp 0.8s 1s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+}
+
+@media (min-width: 525px) and (max-width: 767px) {
+  .mobileLayout .centerPanel::before {
+    background: #003c08;
+    bottom: 0;
+    content: "";
+    height: 33%;
+    left: 0;
+    position: absolute;
+    right: 0;
+  }
+
+  .mobileLayout .centerPanel > img {
+    object-fit: contain;
+    position: relative;
+    z-index: 1;
+  }
+
+  .mobileLayout .centerOverlay {
+    z-index: 2;
+  }
+}
+
+@media (max-width: 380px), (max-height: 720px) and (max-width: 767px) {
+  .hero {
+    min-height: 560px;
+  }
+
+  .mobileIntro h1 {
+    font-size: 30.6px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero *,
+  .hero *::before,
+  .hero *::after {
+    animation-duration: 0.01ms !important;
+    animation-delay: 0ms !important;
+  }
+}

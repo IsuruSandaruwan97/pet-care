@@ -1,6 +1,7 @@
 export * from "./Hero";
 export * from "./HeroVideo";
 export * from "./About";
+export * from "./CareInAction";
 export * from "./WhyChooseUs";
 export * from "./Services";
 export * from "./Facilities";
