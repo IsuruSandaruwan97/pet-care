@@ -37,7 +37,13 @@ export const siteConfig = {
     description:
       "Professional and warm veterinary care for your beloved pets. Book your appointment today with our certified vets.",
     ogImage: "/api/media/pet-care",
+    lastUpdated: "2026-08-09",
   },
+};
+
+type SitemapSettings = {
+  changeFrequency: "weekly" | "monthly" | "yearly";
+  priority: number;
 };
 
 export const routes = [
@@ -46,44 +52,80 @@ export const routes = [
     title: "Compassionate Veterinary Care",
     description:
       "Book veterinary care for cats and dogs with wellness visits, emergency support, pet care tips, and transparent pricing.",
+    sitemap: {
+      changeFrequency: "weekly",
+      priority: 1,
+    },
   },
   {
     path: "/about-us",
     title: "About Us",
     description:
       "Learn about the Happy Paws veterinary team, clinic story, and fear-free care philosophy.",
+    sitemap: {
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
   },
   {
     path: "/services",
     title: "Veterinary Services",
     description:
       "Explore wellness exams, vaccinations, dental care, surgery, diagnostics, grooming, boarding, and urgent care services.",
+    sitemap: {
+      changeFrequency: "monthly",
+      priority: 0.9,
+    },
   },
   {
     path: "/facilities",
     title: "Facilities",
     description:
       "Tour the reception area, exam rooms, surgical suite, diagnostics spaces, and pet boarding facilities.",
+    sitemap: {
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
   },
   {
     path: "/our-vets",
     title: "Our Vets",
     description:
       "Meet the licensed veterinarians and care team behind Happy Paws.",
+    sitemap: {
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
   },
   {
     path: "/pet-care",
     title: "Pet Care Tips",
     description:
       "Read clinic-tested pet care guidance for puppies, kittens, senior pets, nutrition, dental health, and warning signs.",
+    sitemap: {
+      changeFrequency: "weekly",
+      priority: 0.7,
+    },
   },
   {
     path: "/pricing",
     title: "Pricing",
     description:
       "Compare transparent pet care packages for puppies, kittens, annual wellness, senior pets, and emergency visits.",
+    sitemap: {
+      changeFrequency: "monthly",
+      priority: 0.9,
+    },
   },
-] as const;
+] as const satisfies ReadonlyArray<{
+  path: string;
+  title: string;
+  description: string;
+  sitemap: SitemapSettings;
+}>;
+
+export const getAbsoluteUrl = (path = "/") =>
+  new URL(path, siteConfig.url).toString();
 
 export const formatAddress = () =>
   `${siteConfig.address.street}, ${siteConfig.address.city}, ${siteConfig.address.region} ${siteConfig.address.postalCode}`;

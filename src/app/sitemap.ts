@@ -1,11 +1,18 @@
 import type { MetadataRoute } from "next";
-import { routes, siteConfig } from "@/config/site";
+import { getAbsoluteUrl, routes, siteConfig } from "@/config/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
+  const lastModified = new Date(siteConfig.seo.lastUpdated);
+
   return routes.map((route) => ({
-    url: new URL(route.path, siteConfig.url).toString(),
-    lastModified: new Date(),
-    changeFrequency: route.path === "/" ? "weekly" : "monthly",
-    priority: route.path === "/" ? 1 : 0.8,
+    url: getAbsoluteUrl(route.path),
+    lastModified,
+    changeFrequency: route.sitemap.changeFrequency,
+    priority: route.sitemap.priority,
+    alternates: {
+      languages: {
+        en: getAbsoluteUrl(route.path),
+      },
+    },
   }));
 }
