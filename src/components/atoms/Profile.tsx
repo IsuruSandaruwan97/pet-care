@@ -18,6 +18,8 @@ export function Profile({
   label,
   variant = "default",
 }: ProfileProps) {
+  const imageAlt = `${name} veterinarian profile photo in pet care website template design`;
+
   if (variant === "happyPaws") {
     return (
       <article className="hp-team-card">
@@ -25,7 +27,7 @@ export function Profile({
           <div className="hp-team-front">
             <div className="hp-team-portrait">
               <Image
-                alt={name}
+                alt={imageAlt}
                 className="object-cover"
                 fill
                 sizes="(max-width: 820px) 100vw, (max-width: 1100px) 50vw, 25vw"
@@ -53,7 +55,7 @@ export function Profile({
       <div className="flip-card-inner relative h-full w-full rounded-2xl shadow-xl">
         <div className="flip-card-front absolute h-full w-full overflow-hidden rounded-2xl bg-mist">
           <Image
-            alt={name}
+            alt={imageAlt}
             className="object-cover"
             fill
             sizes="(max-width: 820px) 100vw, (max-width: 1100px) 50vw, 33vw"

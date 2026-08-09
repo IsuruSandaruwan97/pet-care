@@ -55,7 +55,7 @@ export function ErrorScreen({
           >
             {errorImage ? (
               <Image
-                alt=""
+                alt="404 error page illustration in pet care website template design"
                 className="hp-error-image"
                 fill
                 sizes="(max-width: 820px) 320px, 40vw"

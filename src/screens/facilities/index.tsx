@@ -34,7 +34,7 @@ const facilityCards = [
     title: "Reception & Waiting",
     badge: "Stress-Free Zone",
     image: images.reception,
-    alt: "Happy Paws reception and waiting area",
+    alt: "Reception and waiting room layout in veterinary website template preview",
     text: "Our greeting area features acoustic dampening and species-specific seating to ensure a calm transition from car to clinic. Soft wood textures and natural light create a welcoming lounge experience for both you and your pet.",
     features: ["Separated cat/dog zones", "Refreshment station"],
   },
@@ -42,7 +42,7 @@ const facilityCards = [
     title: "Advanced Exam Rooms",
     badge: "Calm Interiors",
     image: images.exam,
-    alt: "Advanced veterinary exam room",
+    alt: "Exam room section in modern pet care website template design",
     text: "Featuring calming sage green walls proven to reduce animal anxiety, our exam rooms are equipped with integrated digital diagnostics. Everything is designed to keep the vet and pet together for less separation stress.",
     features: ["Smart monitor integration", "Non-slip tables"],
   },
@@ -50,7 +50,7 @@ const facilityCards = [
     title: "Surgical Suite",
     badge: "High-Tech Sterile",
     image: images.surgery,
-    alt: "Modern veterinary surgical suite",
+    alt: "Surgical suite page design in premium veterinary website template",
     text: "Our surgical theatre meets the highest human-grade sterility standards. Equipped with advanced anesthetic monitoring and precision laser surgery tools for faster recovery times and less pain.",
     features: ["Oxygen-controlled air", "Multi-parameter monitoring"],
   },
@@ -58,7 +58,7 @@ const facilityCards = [
     title: "Comfort Boarding",
     badge: "Home-Like Cozy",
     image: images.boarding,
-    alt: "Comfortable pet boarding room",
+    alt: "Pet boarding section in animal hospital website template preview",
     text: "Spacious, private kennels featuring orthopaedic bedding and soft ambient lighting. Our overnight stays are supervised by medically trained staff who provide the warmth of home with the safety of a clinic.",
     features: ["Sound-dampened walls", "Webcam access for owners"],
   },
@@ -89,7 +89,7 @@ export function Facilities() {
       <main>
         <Section className="hp-facilities-hero">
           <Image
-            alt="Happy Paws reception"
+            alt="Facilities hero image in pet hospital website template design preview"
             className="hp-facilities-hero-image"
             fill
             priority

@@ -39,7 +39,7 @@ export function Facilities() {
                 >
                   {image ? (
                     <Image
-                      alt=""
+                      alt={`${title} section in veterinary clinic website template preview`}
                       className="hp-facility-image"
                       fill
                       sizes="(max-width: 900px) 100vw, 33vw"

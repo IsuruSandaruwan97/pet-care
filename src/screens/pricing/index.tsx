@@ -239,7 +239,7 @@ export function Pricing() {
           <div className="hp-container hp-pricing-value-grid">
             <Reveal className="hp-pricing-value-photo">
               <Image
-                alt="A healthy Golden Retriever being hugged by a smiling veterinarian in a sunlit clinic."
+                alt="Pricing page hero image in pet care website template with wellness package design"
                 fill
                 sizes="(max-width: 900px) 100vw, 66vw"
                 src={valueImage}

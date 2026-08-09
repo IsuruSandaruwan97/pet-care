@@ -1,13 +1,7 @@
 import HomePage from "@/screens/home-page";
-import type { Metadata } from "next";
-import { routes } from "@/config/site";
+import { createPageMetadata } from "@/config/seo";
 
-const route = routes.find((item) => item.path === "/");
-
-export const metadata: Metadata = {
-  title: route?.title,
-  description: route?.description,
-};
+export const metadata = createPageMetadata("/");
 
 export default function Home() {
   return <HomePage />;

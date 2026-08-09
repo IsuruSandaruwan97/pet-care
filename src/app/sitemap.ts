@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { pageSeoImages } from "@/config/seo";
 import { getAbsoluteUrl, routes, siteConfig } from "@/config/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -14,5 +15,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
         en: getAbsoluteUrl(route.path),
       },
     },
+    images: (pageSeoImages[route.path] ?? []).map((image) =>
+      getAbsoluteUrl(image.path),
+    ),
   }));
 }

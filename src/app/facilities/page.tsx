@@ -1,13 +1,7 @@
 import { Facilities as FacilitiesScreen } from "@/screens/facilities";
-import type { Metadata } from "next";
-import { routes } from "@/config/site";
+import { createPageMetadata } from "@/config/seo";
 
-const route = routes.find((item) => item.path === "/facilities");
-
-export const metadata: Metadata = {
-  title: route?.title,
-  description: route?.description,
-};
+export const metadata = createPageMetadata("/facilities");
 
 export default function Facilities() {
   return <FacilitiesScreen />;

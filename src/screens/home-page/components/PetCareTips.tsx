@@ -22,7 +22,7 @@ export function PetCareTips() {
                 <div className="hp-tip-visual">
                   {tip.image ? (
                     <Image
-                      alt={tip.title}
+                      alt={`${tip.title} article card in pet care website template design`}
                       className="hp-tip-image"
                       fill
                       sizes="(max-width: 900px) 100vw, 33vw"
