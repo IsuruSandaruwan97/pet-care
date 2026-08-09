@@ -33,3 +33,4 @@ Thumbs.db
 .pnpm-store/
 design
 dev-server.log
+.cursor
