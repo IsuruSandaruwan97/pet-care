@@ -104,7 +104,7 @@ export function AboutUs() {
             </Reveal>
             <Reveal className="hp-about-story-media" delay={0.1}>
               <Image
-                alt="Dr. Sarah with a cat"
+            alt="About page hero image in Next.js veterinary website template preview"
                 fill
                 priority
                 sizes="(max-width: 900px) 100vw, 50vw"
@@ -148,7 +148,7 @@ export function AboutUs() {
             </RevealCard>
             <RevealCard className="hp-about-clinic-photo" delay={0.12}>
               <Image
-                alt="Our Clinic"
+                alt="Clinic gallery photo in pet care website template about page design"
                 fill
                 sizes="(max-width: 900px) 100vw, 33vw"
                 src={images.clinic}
@@ -182,7 +182,7 @@ export function AboutUs() {
               </blockquote>
               <div className="hp-about-founder">
                 <Image
-                  alt="Dr. Sarah Miller"
+                  alt="Founder profile section in veterinary clinic website template preview"
                   height={64}
                   width={64}
                   src={images.founder}

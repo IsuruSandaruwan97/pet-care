@@ -1,13 +1,7 @@
 import { Pricing as PricingScreen } from "@/screens/pricing";
-import type { Metadata } from "next";
-import { routes } from "@/config/site";
+import { createPageMetadata } from "@/config/seo";
 
-const route = routes.find((item) => item.path === "/pricing");
-
-export const metadata: Metadata = {
-  title: route?.title,
-  description: route?.description,
-};
+export const metadata = createPageMetadata("/pricing");
 
 export default function Pricing() {
   return <PricingScreen />;

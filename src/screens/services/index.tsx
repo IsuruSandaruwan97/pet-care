@@ -206,7 +206,7 @@ export function Services() {
                   {"image" in service ? (
                     <div className="hp-services-card-visual">
                       <Image
-                        alt="A veterinarian softly examining a golden retriever in a warm modern clinic."
+                        alt="Services page wellness section in Next.js veterinary website template preview"
                         className="hp-services-card-image"
                         fill
                         sizes="(max-width: 720px) 100vw, (max-width: 1020px) 50vw, 33vw"

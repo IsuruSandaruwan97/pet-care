@@ -5,10 +5,10 @@ export default function robots(): MetadataRoute.Robots {
   return {
     rules: {
       userAgent: "*",
-      allow: "/",
-      disallow: ["/api/"],
+      allow: ["/", "/api/media/"],
+      disallow: ["/api/appointments"],
     },
     sitemap: getAbsoluteUrl("/sitemap.xml"),
-    host: new URL(siteConfig.url).host,
+    host: new URL(`${siteConfig.url}/`).host,
   };
 }

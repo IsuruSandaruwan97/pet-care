@@ -63,7 +63,7 @@ export function OurVets() {
           <Reveal className="hp-vets-lead">
             <div className="hp-vets-lead-media">
               <Image
-                alt={leadVet.name}
+                alt={`${leadVet.name} lead veterinarian profile in veterinary website template`}
                 fill
                 priority
                 sizes="(max-width: 820px) 100vw, 40vw"
@@ -100,7 +100,7 @@ export function OurVets() {
               <MotionCard className="hp-vets-card" key={vet.name}>
                 <div className="hp-vets-card-media">
                   <Image
-                    alt={vet.name}
+                    alt={`${vet.name} veterinarian team card in pet care website template design`}
                     fill
                     sizes="(max-width: 820px) 100vw, 33vw"
                     src={vet.image}

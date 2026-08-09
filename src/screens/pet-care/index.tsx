@@ -113,7 +113,7 @@ export function PetCare() {
             </Reveal>
             <Reveal className="hp-pet-care-hero-media" delay={0.1}>
               <Image
-                alt="A veterinarian gently examining a healthy dog in a warm clinic."
+                alt="Pet care tips hero image in veterinary website template blog page design"
                 fill
                 priority
                 sizes="(max-width: 900px) 100vw, 45vw"

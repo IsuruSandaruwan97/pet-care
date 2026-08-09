@@ -40,7 +40,7 @@ function ProductCard() {
     <article className={styles.productCard}>
       <div className={styles.productImage}>
         <Image
-          alt="Orange cat house"
+          alt="Pet care website template hero feature card with cat house veterinary design"
           fill
           priority
           sizes="(max-width: 767px) 42vw, (max-width: 1023px) 160px, 14vw"
@@ -60,7 +60,7 @@ function ReviewCard() {
   return (
     <article className={styles.reviewCard}>
       <Image
-        alt="A dog owner opening a pet product box"
+        alt="Veterinary website template trust card with pet owner review section design"
         fill
         priority
         sizes="(max-width: 767px) 42vw, (max-width: 1023px) 120px, 10vw"
@@ -85,7 +85,7 @@ function CustomerStat() {
         <strong>10K+</strong>
         <span className={styles.avatarStack}>
           <Image
-            alt="Happy pet owner"
+            alt="Pet clinic website template customer avatar and social proof UI element"
             height={30}
             src={heroAssets.avatar}
             width={30}
@@ -117,7 +117,7 @@ function PetPanels() {
     <div className={styles.petPanels}>
       <div className={`${styles.petPanel} ${styles.leftPanel}`}>
         <Image
-          alt="Dachshund peeking over a green panel"
+          alt="Responsive veterinary website template hero panel with dachshund layout design"
           height={762}
           priority
           sizes="33vw"
@@ -131,7 +131,7 @@ function PetPanels() {
 
       <div className={`${styles.petPanel} ${styles.centerPanel}`}>
         <Image
-          alt="Golden retriever leaning over a green panel"
+          alt="Next.js pet care website template hero section with golden retriever design"
           height={1024}
           priority
           sizes="40vw"
@@ -146,7 +146,7 @@ function PetPanels() {
 
       <div className={`${styles.petPanel} ${styles.rightPanel}`}>
         <Image
-          alt="Orange cat peeking over a green panel"
+          alt="Pet care website template hero panel with cat-focused veterinary design"
           height={816}
           priority
           sizes="33vw"
