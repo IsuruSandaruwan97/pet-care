@@ -9,6 +9,7 @@ import {
   ScrollProgress,
   ScrollToTop,
 } from "@/components/atoms";
+import { TemplatePromo } from "@/components/organisms";
 
 export const metadata: Metadata = rootMetadata;
 
@@ -50,6 +51,7 @@ export default function RootLayout({
         <ScrollProgress />
         <RightClickGuard enabled={rightClickGuardEnabled} />
         {children}
+        <TemplatePromo />
         <ScrollToTop />
       </body>
     </html>

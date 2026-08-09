@@ -1,6 +1,7 @@
 "use client";
 
 import { Header, Footer, Preloader } from "@/components/organisms";
+import { notifyIntroReady } from "@/utils/intro-ready";
 import { useCallback, useEffect, useState } from "react";
 import {
   About,
@@ -40,11 +41,13 @@ export default function HomePage() {
     }
 
     setIsIntroReady(true);
+    notifyIntroReady();
   }, []);
 
   const handlePreloaderComplete = useCallback(() => {
     setIsIntroReady(true);
     setShouldShowPreloader(false);
+    notifyIntroReady();
   }, []);
 
   return (

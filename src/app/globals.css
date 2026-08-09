@@ -281,7 +281,7 @@ body::-webkit-scrollbar {
   top: -11px;
   transition: opacity 0.18s ease;
   width: 22px;
-  z-index: 9999;
+  z-index: 10051;
 }
 
 .hp-custom-cursor-visible {
