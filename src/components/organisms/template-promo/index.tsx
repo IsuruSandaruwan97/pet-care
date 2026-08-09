@@ -178,8 +178,18 @@ export function TemplatePromo() {
             <div className="hp-template-promo-actions">
               <a href={purchaseUrl} rel="noopener noreferrer" target="_blank">
                 <Icon name="savings" />
-                Purchase on Gumroad
-                <ArrowUpRight aria-hidden="true" size={18} strokeWidth={2.2} />
+                <span className="hp-template-promo-buy-label hp-template-promo-buy-label-full">
+                  Purchase on Gumroad
+                </span>
+                <span className="hp-template-promo-buy-label hp-template-promo-buy-label-short">
+                  Buy on Gumroad
+                </span>
+                <ArrowUpRight
+                  aria-hidden="true"
+                  className="hp-template-promo-buy-arrow"
+                  size={16}
+                  strokeWidth={2.2}
+                />
               </a>
               <button onClick={dismissAlert} type="button">
                 Continue preview

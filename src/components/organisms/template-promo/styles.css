@@ -211,6 +211,14 @@
   width: 1rem;
 }
 
+.hp-template-promo-buy-label-short {
+  display: none;
+}
+
+.hp-template-promo-buy-arrow {
+  flex-shrink: 0;
+}
+
 .hp-template-promo-actions a:hover {
   box-shadow: 0 16px 32px rgb(1 45 29 / 26%);
   transform: translateY(-1px);
@@ -308,8 +316,183 @@ body.hp-template-promo-open .hp-custom-cursor {
 }
 
 @media (max-width: 720px) {
+  .hp-template-promo-backdrop {
+    align-items: flex-end;
+    padding: 0.75rem;
+  }
+
+  .hp-template-promo-dialog {
+    border-radius: 1.15rem 1.15rem 1rem 1rem;
+    max-height: min(88dvh, 40rem);
+    overflow-y: auto;
+    padding: 1rem 0.95rem 0.95rem;
+  }
+
+  .hp-template-promo-close {
+    height: 1.85rem;
+    right: 0.75rem;
+    top: 0.75rem;
+    width: 1.85rem;
+  }
+
+  .hp-template-promo-close svg {
+    height: 0.85rem;
+    width: 0.85rem;
+  }
+
   .hp-template-promo-header {
     align-items: flex-start;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+    padding-right: 2rem;
+  }
+
+  .hp-template-promo-badge {
+    border-radius: 0.85rem;
+    height: 3rem;
+    width: 3rem;
+  }
+
+  .hp-template-promo-badge-mark {
+    height: 1.45rem;
+    width: 1.45rem;
+  }
+
+  .hp-template-promo-sparkle {
+    height: 0.75rem;
+    right: 0.35rem;
+    top: 0.35rem;
+    width: 0.75rem;
+  }
+
+  .hp-template-promo-kicker {
+    font-size: 0.64rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .hp-template-promo-dialog h2 {
+    font-size: 1.15rem;
+    line-height: 1.2;
+  }
+
+  .hp-template-promo-description {
+    font-size: 0.84rem;
+    line-height: 1.55;
+    margin-bottom: 0.75rem;
+  }
+
+  .hp-template-promo-highlights {
+    gap: 0.45rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .hp-template-promo-highlights li {
+    border-radius: 0.75rem;
+    font-size: 0.8rem;
+    gap: 0.55rem;
+    padding: 0.5rem 0.65rem;
+  }
+
+  .hp-template-promo-highlight-icon {
+    border-radius: 0.55rem;
+    height: 1.65rem;
+    width: 1.65rem;
+  }
+
+  .hp-template-promo-highlight-icon svg {
+    height: 0.85rem;
+    width: 0.85rem;
+  }
+
+  .hp-template-promo-price {
+    border-radius: 0.85rem;
+    margin-bottom: 0.75rem;
+    padding: 0.65rem 0.75rem;
+  }
+
+  .hp-template-promo-price span {
+    font-size: 0.78rem;
+  }
+
+  .hp-template-promo-price strong {
+    font-size: 1.2rem;
+  }
+
+  .hp-template-promo-actions {
+    flex-direction: row;
+    gap: 0.5rem;
+  }
+
+  .hp-template-promo-actions a,
+  .hp-template-promo-actions button {
+    font-size: 0.8rem;
+    gap: 0.3rem;
+    min-height: 2.35rem;
+    padding: 0.55rem 0.75rem;
+    width: auto;
+  }
+
+  .hp-template-promo-actions a {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  .hp-template-promo-actions button {
+    flex: 0 0 auto;
+    padding-inline: 0.7rem;
+    white-space: nowrap;
+  }
+
+  .hp-template-promo-buy-label-full {
+    display: none;
+  }
+
+  .hp-template-promo-buy-label-short {
+    display: inline;
+  }
+
+  .hp-template-promo-banner-inner {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 0.75rem 0.9rem calc(0.75rem + env(safe-area-inset-bottom));
+  }
+
+  .hp-template-promo-banner-copy strong {
+    font-size: 0.88rem;
+    line-height: 1.35;
+  }
+
+  .hp-template-promo-banner-copy span {
+    font-size: 0.76rem;
+    line-height: 1.4;
+  }
+
+  .hp-template-promo-banner-actions {
+    gap: 0.5rem;
+    width: 100%;
+  }
+
+  .hp-template-promo-banner-actions a {
+    flex: 1;
+    font-size: 0.8rem;
+    min-height: 2.25rem;
+    padding: 0.5rem 0.75rem;
+    text-align: center;
+  }
+
+  .hp-template-promo-banner-actions button {
+    font-size: 1.15rem;
+  }
+}
+
+@media (max-width: 420px) {
+  .hp-template-promo-backdrop {
+    padding: 0.5rem;
+  }
+
+  .hp-template-promo-dialog {
+    padding: 0.9rem 0.85rem 0.85rem;
   }
 
   .hp-template-promo-actions {
@@ -321,17 +504,7 @@ body.hp-template-promo-open .hp-custom-cursor {
     width: 100%;
   }
 
-  .hp-template-promo-banner-inner {
-    align-items: flex-start;
-    flex-direction: column;
-  }
-
-  .hp-template-promo-banner-actions {
-    width: 100%;
-  }
-
-  .hp-template-promo-banner-actions a {
-    flex: 1;
-    text-align: center;
+  .hp-template-promo-actions button {
+    white-space: normal;
   }
 }
