@@ -4,6 +4,7 @@ import { Header, Footer, Preloader } from "@/components/organisms";
 import { useCallback, useEffect, useState } from "react";
 import {
   About,
+  CareInAction,
   Contact,
   Facilities,
   FrequentlyAskedQuestions,
@@ -55,6 +56,7 @@ export default function HomePage() {
       <Hero introReady={isIntroReady} />
       <About />
       <WhyChooseUs />
+      <CareInAction />
       <Services />
       <Facilities />
       <Team />
