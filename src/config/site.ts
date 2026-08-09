@@ -26,6 +26,9 @@ export const siteConfig = {
       name: "Shadowisk",
       url: "https://shadowisk.com",
     },
+    purchaseUrl: "https://shadowisk.gumroad.com/l/pet-care",
+    price: "30",
+    priceCurrency: "USD",
   },
   address: {
     street: "123 Main Street",

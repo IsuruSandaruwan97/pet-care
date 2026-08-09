@@ -342,8 +342,10 @@ export function buildStructuredData() {
         featureList: siteConfig.template.features,
         offers: {
           "@type": "Offer",
-          availability: "https://schema.org/OnlineOnly",
-          url: siteConfig.url,
+          availability: "https://schema.org/InStock",
+          url: siteConfig.template.purchaseUrl,
+          price: siteConfig.template.price,
+          priceCurrency: siteConfig.template.priceCurrency,
         },
         author: {
           "@id": `${siteConfig.url}/#organization`,
