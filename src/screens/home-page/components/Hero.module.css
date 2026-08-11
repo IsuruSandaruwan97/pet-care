@@ -595,9 +595,9 @@
   }
 
   .heading {
-    left: auto;
+    left: 0;
     padding: clamp(90px, 18svh, 135px) 20px 0;
-    position: relative;
+    position: absolute;
     transform: none;
     width: 100%;
   }
@@ -613,7 +613,7 @@
 
   .mobileLayout {
     display: block;
-    padding-top: 0;
+    padding-top: clamp(90px, 18svh, 135px);
   }
 
   .mobileIntro {
@@ -723,7 +723,6 @@
   .mobileLayout .centerPanel {
     display: block;
     height: 100%;
-    margin-top: -12rem;
     overflow: hidden;
     width: 100%;
   }
