@@ -1,8 +1,18 @@
 import HomePage from "@/screens/home-page";
-import { createPageMetadata } from "@/config/seo";
+import { buildFaqStructuredData, createPageMetadata } from "@/config/seo";
 
 export const metadata = createPageMetadata("/");
 
 export default function Home() {
-  return <HomePage />;
+  const faqStructuredData = buildFaqStructuredData();
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqStructuredData) }}
+      />
+      <HomePage />
+    </>
+  );
 }

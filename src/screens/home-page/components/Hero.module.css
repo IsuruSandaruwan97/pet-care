@@ -42,26 +42,18 @@
   z-index: 5;
 }
 
-.heading h1,
-.mobileIntro h1 {
+.heading h1 {
   color: var(--cozy-dark);
   font-family: "DM Serif Display", Georgia, serif;
+  font-size: clamp(54px, 6.75vw, 99px);
   font-weight: 400;
   letter-spacing: -0.045em;
   line-height: 0.9;
   margin: 0;
 }
 
-.heading h1 {
-  font-size: clamp(54px, 6.75vw, 99px);
-}
-
-.heading h1 span,
-.mobileIntro h1 span {
-  display: block;
-}
-
 .heading h1 span {
+  display: block;
   opacity: 0;
   transform: translateY(60px) scale(0.7) rotate(-4deg);
 }
@@ -602,9 +594,26 @@
     display: none;
   }
 
+  .heading {
+    left: auto;
+    padding: clamp(90px, 18svh, 135px) 20px 0;
+    position: relative;
+    transform: none;
+    width: 100%;
+  }
+
+  .heading h1 {
+    font-size: clamp(30.6px, 9.45vw, 39.6px);
+    line-height: 0.94;
+  }
+
+  .heading h1 span {
+    transform: translateY(40px) skewY(3deg);
+  }
+
   .mobileLayout {
     display: block;
-    padding-top: clamp(90px, 18svh, 135px);
+    padding-top: 0;
   }
 
   .mobileIntro {
@@ -612,16 +621,6 @@
     position: relative;
     text-align: center;
     z-index: 5;
-  }
-
-  .mobileIntro h1 {
-    font-size: clamp(30.6px, 9.45vw, 39.6px);
-    line-height: 0.94;
-  }
-
-  .mobileIntro h1 span {
-    opacity: 0;
-    transform: translateY(40px) skewY(3deg);
   }
 
   .mobileIntro > p {
@@ -766,11 +765,11 @@
     width: 22px;
   }
 
-  .ready .mobileIntro h1 span:first-child {
+  .ready .heading h1 span:first-child {
     animation: wordPop 0.9s 0.2s cubic-bezier(0.34, 1.56, 0.64, 1) both;
   }
 
-  .ready .mobileIntro h1 span:last-child {
+  .ready .heading h1 span:last-child {
     animation: wordPop 0.9s 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) both;
   }
 
@@ -822,7 +821,7 @@
     min-height: 560px;
   }
 
-  .mobileIntro h1 {
+  .heading h1 {
     font-size: 30.6px;
   }
 }

@@ -273,15 +273,17 @@ export function createPageMetadata(
     route.path === "/"
       ? siteConfig.seo.title
       : `${route.title} | ${siteConfig.template.shortName}`;
-  const ogImages = (pageSeoImages[route.path] ?? [allSeoImages[0]]).map(
-    (image) => ({
-      url: image.path,
-      alt: image.caption,
-    }),
-  );
+  const primaryImage =
+    (pageSeoImages[route.path] ?? [allSeoImages[0]])[0] ?? allSeoImages[0];
+  const ogImages = [
+    {
+      url: primaryImage.path,
+      alt: primaryImage.caption,
+    },
+  ];
 
   return {
-    title: route.path === "/" ? route.title : route.title,
+    title: route.title,
     description: route.description,
     keywords: pageKeywords,
     alternates: {
@@ -367,19 +369,23 @@ export function buildStructuredData() {
           },
         })),
       },
-      {
-        "@type": "FAQPage",
-        "@id": `${siteConfig.url}/#faq`,
-        mainEntity: faqs.map(([question, answer]) => ({
-          "@type": "Question",
-          name: question,
-          acceptedAnswer: {
-            "@type": "Answer",
-            text: answer,
-          },
-        })),
-      },
     ],
+  };
+}
+
+export function buildFaqStructuredData() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "@id": `${siteConfig.url}/#faq`,
+    mainEntity: faqs.map(([question, answer]) => ({
+      "@type": "Question",
+      name: question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: answer,
+      },
+    })),
   };
 }
 
@@ -426,9 +432,19 @@ export const rootMetadata: Metadata = {
   },
   icons: {
     icon: [
+      {
+        url: "/favicon-96x96.png",
+        type: "image/png",
+        sizes: "96x96",
+      },
+      {
+        url: "/favicon-48x48.png",
+        type: "image/png",
+        sizes: "48x48",
+      },
+      { url: "/favicon-32x32.png", type: "image/png", sizes: "32x32" },
       { url: "/favicon.ico", sizes: "any" },
       { url: "/favicon.svg", type: "image/svg+xml" },
-      { url: "/favicon-32x32.png", type: "image/png", sizes: "32x32" },
     ],
     shortcut: "/favicon.ico",
     apple: [

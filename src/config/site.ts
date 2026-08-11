@@ -60,7 +60,7 @@ export const siteConfig = {
       "Pet Care & Veterinary Website Template | Next.js Demo | Happy Paws",
     template: "%s | Happy Paws Template",
     description:
-      "Live preview of a modern Next.js pet care and veterinary website template with responsive design, services, facilities, vet profiles, pricing, pet care tips, FAQs, and SEO-ready pages.",
+      "Live preview of a premium Next.js pet care and veterinary template featuring responsive layouts, services, FAQs, and SEO-ready appointment pages.",
     ogImage: "/api/media/pet-care",
     ogImageAlt:
       "Next.js pet care and veterinary website template homepage preview design",
@@ -78,7 +78,7 @@ export const routes = [
     path: "/",
     title: "Pet Care & Veterinary Website Template Demo",
     description:
-      "Preview a responsive Next.js pet care and veterinary website template with homepage hero design, services, pricing, team profiles, FAQs, and appointment-ready sections.",
+      "Preview our responsive Next.js pet care & veterinary template. Explore modern layouts for services, team profiles, wellness plans, and online appointments.",
     keywords: [
       "nextjs pet care template demo",
       "veterinary website template preview",

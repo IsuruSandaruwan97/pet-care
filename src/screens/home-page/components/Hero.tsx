@@ -167,14 +167,14 @@ export function Hero({ introReady = true }: HeroProps) {
       className={`${styles.hero}${introReady ? ` ${styles.ready}` : ""}`}
       id="home"
     >
-      <div className={styles.desktopLayout}>
-        <div className={styles.heading}>
-          <h1>
-            <span>Compassionate Care</span>
-            <span>For Cats &amp; Dogs</span>
-          </h1>
-        </div>
+      <div className={styles.heading}>
+        <h1>
+          <span>Compassionate Care</span>
+          <span>For Cats &amp; Dogs</span>
+        </h1>
+      </div>
 
+      <div className={styles.desktopLayout}>
         <div className={styles.desktopProduct}>
           <ProductCard />
         </div>
@@ -187,10 +187,6 @@ export function Hero({ introReady = true }: HeroProps) {
 
       <div className={styles.mobileLayout}>
         <div className={styles.mobileIntro}>
-          <h1>
-            <span>Compassionate Care</span>
-            <span>For Cats &amp; Dogs</span>
-          </h1>
           <p>Expert veterinary support at every stage of your pet&apos;s life.</p>
           <ExploreButton />
         </div>
