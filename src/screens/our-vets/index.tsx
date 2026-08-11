@@ -59,7 +59,7 @@ export function OurVets() {
           <div className="hp-vets-orb" />
         </Section>
 
-        <main className="hp-container hp-vets-main">
+        <div className="hp-container hp-vets-main">
           <Reveal className="hp-vets-lead">
             <div className="hp-vets-lead-media">
               <Image
@@ -150,7 +150,7 @@ export function OurVets() {
               </Button>
             </Reveal>
           </Section>
-        </main>
+        </div>
       </main>
       <Footer />
     </div>
