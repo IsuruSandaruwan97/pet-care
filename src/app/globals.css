@@ -60,7 +60,12 @@
 }
 
 html {
+  min-width: 320px;
   scrollbar-width: none;
+}
+
+body {
+  min-width: 320px;
 }
 
 body::-webkit-scrollbar {
