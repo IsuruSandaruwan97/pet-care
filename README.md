@@ -11,21 +11,23 @@ A polished veterinary clinic website built with Next.js, React, TypeScript, Tail
 - Appointment API route at `/api/appointments` with optional webhook forwarding.
 - SEO-ready setup with page metadata, Open Graph data, sitemap, robots, and structured business data.
 - Custom UI interactions including preloader, scroll progress, scroll-to-top, custom cursor, reveal animations, carousels, dropdowns, and date/time picker.
-- Locally hosted Inter and Fraunces fonts, plus Material Symbols from Google Fonts.
+- Locally hosted Inter and Fraunces fonts, plus Material Symbols from Google Fonts for icons.
 
 ## Tech Stack
 
-- Next.js 14 App Router
-- React 18
-- TypeScript
-- Tailwind CSS
-- Motion
-- Swiper
+- Next.js 16 App Router
+- React 19
+- TypeScript 6
+- Tailwind CSS 4
+- Motion 13
+- Swiper 14
 - pnpm
 
 ## Getting Started
 
 This template includes a `pnpm-lock.yaml`, so pnpm is the recommended package manager. You can also use npm or yarn if that better fits your workflow.
+
+Requires **Node.js 20.9+** (Node 22 LTS recommended).
 
 Install dependencies:
 

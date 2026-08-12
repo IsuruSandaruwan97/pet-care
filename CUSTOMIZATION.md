@@ -68,11 +68,11 @@ If this value is empty, the template shows a placeholder map area.
 
 ## 6. Colors and Fonts
 
-Theme tokens live in `tailwind.config.ts`.
+Theme tokens live in `tailwind.config.ts` and `src/app/globals.css`.
 
 Global styles live in `src/app/globals.css`, while page-specific CSS lives in `src/screens/*/styles.css`.
 
-Fonts are stored in `public/assets/fonts`.
+Fonts are stored in `public/assets/fonts` (Inter and Fraunces). Material Symbols load from Google Fonts.
 
 ## 7. Optional Effects
 

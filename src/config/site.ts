@@ -14,13 +14,13 @@ export const siteConfig = {
     productName: "Happy Paws Pet Care & Veterinary Website Template",
     shortName: "Happy Paws Template",
     category: "Pet Care & Veterinary Website Template",
-    techStack: ["TypeScript", "JavaScript", "Next.js", "React", "Tailwind CSS"],
+    techStack: ["Next.js 16", "React 19", "TypeScript 6", "Tailwind CSS 4", "Motion 13"],
     features: [
-      "Responsive veterinary clinic homepage design",
-      "Services, facilities, team, pricing, and pet care pages",
+      "Responsive veterinary clinic homepage with 12 sections",
+      "Seven pages: services, facilities, team, pricing, and pet care tips",
       "Appointment request flow with optional webhook integration",
       "SEO metadata, sitemap, robots, and structured data",
-      "Motion animations, carousels, and modern pet care UI sections",
+      "Motion animations, Swiper carousels, and modern pet care UI",
     ],
     author: {
       name: "Shadowisk",
@@ -60,11 +60,11 @@ export const siteConfig = {
       "Pet Care & Veterinary Website Template | Next.js Demo | Happy Paws",
     template: "%s | Happy Paws Template",
     description:
-      "Live preview of a premium Next.js pet care and veterinary template featuring responsive layouts, services, FAQs, and SEO-ready appointment pages.",
+      "Live preview of a premium Next.js 16 pet care and veterinary template featuring responsive layouts, services, FAQs, and SEO-ready appointment pages.",
     ogImage: "/api/media/pet-care",
     ogImageAlt:
       "Next.js pet care and veterinary website template homepage preview design",
-    lastUpdated: "2026-08-09",
+    lastUpdated: "2026-08-12",
   },
 };
 
